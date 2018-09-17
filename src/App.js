@@ -9,14 +9,14 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
+import DanceRegistrationPage from './components/DanceRegistrationPage/DanceRegistrationPage';
+import Profile from './components/Profile/Profile';
 
 import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Project Base" />
+    <Header title="Dance Plan It" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -29,12 +29,12 @@ const App = () => (
           component={RegisterPage}
         />
         <Route
-          path="/user"
-          component={UserPage}
+          path="/registration"
+          component={DanceRegistrationPage}
         />
         <Route
-          path="/info"
-          component={InfoPage}
+          path="/profile"
+          component={Profile}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

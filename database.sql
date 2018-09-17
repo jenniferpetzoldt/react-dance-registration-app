@@ -1,8 +1,8 @@
-CREATE TABLE user (
+CREATE TABLE person (
     id SERIAL PRIMARY KEY,
     username VARCHAR (80) UNIQUE NOT NULL,
     password VARCHAR (1000) NOT NULL,
-    role VARCHAR (80) NOT NULL
+    role VARCHAR (80),
 );
 
 CREATE TABLE wed_form (
@@ -18,7 +18,7 @@ CREATE TABLE wed_form (
 
 CREATE TABLE registration (
 	id SERIAL PRIMARY KEY,
-	user_id INT REFERENCES "username",
+	person_id INT REFERENCES "person",
 	wed_form_id INT REFERENCES "wed_form",
 	first_name VARCHAR(240) NOT NULL,
 	last_name VARCHAR(240) NOT NULL,
