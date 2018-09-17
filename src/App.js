@@ -11,6 +11,9 @@ import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import DanceRegistrationPage from './components/DanceRegistrationPage/DanceRegistrationPage';
 import Profile from './components/Profile/Profile';
+import SuccessPage from './components/SuccessPage/SuccessPage';
+import AttendancePage from './components/AttendancePage/AttendancePage';
+import CreateFormPage from './components/CreateFormPage/CreateFormPage';
 
 import './styles/main.css';
 
@@ -33,8 +36,20 @@ const App = () => (
           component={DanceRegistrationPage}
         />
         <Route
+          path="/success"
+          component={SuccessPage}
+        />
+        <Route
           path="/profile"
           component={Profile}
+        />
+        <Route
+          path="/attendance"
+          component={AttendancePage}
+        />
+        <Route
+          path="/form"
+          component={CreateFormPage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

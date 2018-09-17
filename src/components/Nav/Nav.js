@@ -15,6 +15,16 @@ const Nav = () => (
             Registration
           </Link>
         </li>
+        <li>
+          <Link to="/attendance">
+            Attendance
+          </Link>
+        </li>
+        <li>
+          <Link to="/form">
+            CreateForm
+          </Link>
+        </li>
       </ul>
     </div>
   </div>

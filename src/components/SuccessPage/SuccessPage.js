@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => ({
 });
 
-class RegistrationTitle extends Component {
+class SuccessPage extends Component {
     render() {
         return (
             <div>
-                <h2>Month Year Wednesday Session</h2>
+                <p>Success message here!</p>
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps)(RegistrationTitle);
+export default connect(mapStateToProps)(SuccessPage);

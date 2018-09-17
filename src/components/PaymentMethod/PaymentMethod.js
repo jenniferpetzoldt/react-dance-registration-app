@@ -8,9 +8,9 @@ class PaymentMethod extends Component {
     render() {
         return (
             <div className="Payment Method">
-            <h3>3. Payment Method</h3>
-            <select></select>
-            </div> 
+                <h3>3. Payment Method</h3>
+                <select></select>
+            </div>
         )
     }
 }

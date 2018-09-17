@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 
 class DanceRegistrationPage extends Component {
   componentDidMount() {
-    this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
+    this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
   }
 
   componentDidUpdate() {
@@ -31,18 +31,18 @@ class DanceRegistrationPage extends Component {
       content = (
         <div>
           <div>
-          <label>select registration month</label>
-          <select></select>
-          <button>Select</button>
-        </div>
+            <label>select registration month</label>
+            <select></select>
+            <button>Select</button>
+          </div>
 
-        <form>
-          <RegistrationTitle/>
-          <PersonalInformation/>
-          <Lessons/>
-          <PaymentMethod/>
-          <Confirm/>
-        </form>
+          <form>
+            <RegistrationTitle />
+            <PersonalInformation />
+            <Lessons />
+            <PaymentMethod />
+            <Confirm />
+          </form>
         </div>
       );
     }
@@ -50,7 +50,7 @@ class DanceRegistrationPage extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        {content}
       </div>
     );
   }
