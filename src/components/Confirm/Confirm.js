@@ -24,17 +24,16 @@ class Confirm extends Component {
         return (
             <div>
                 <button onClick={this.handleOpen}>Confirm</button>
-                    <div id="confirmModal" className="modal">
+                <div id="confirmModal" className="modal">
                     <div className="modal-content">
-                    <h1>Confirm Registration Information</h1>
-                    <h3>PersonalInformation:</h3>
-                    <h3>Lessons:</h3>
-                    <h3>Payment Method:</h3>
-                    <button>Submit</button>
-                    <button>Edit</button>
+                        <h1>Confirm Registration Information</h1>
+                        <h3>PersonalInformation:</h3>
+                        <h3>Lessons:</h3>
+                        <h3>Payment Method:</h3>
+                        <button>Submit</button>
+                        <button>Edit</button>
                     </div>
-                        
-                    </div>
+                </div>
             </div>
         );
     }
