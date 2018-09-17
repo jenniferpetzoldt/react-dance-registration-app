@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Select, Button, TextField } from '@material-ui/core';
+// import {Select, Button, TextField, Table,  } from '@material-ui/core';
 
 const mapStateToProps = state => ({
 });
@@ -10,34 +10,42 @@ class AttendancePage extends Component {
         return (
             <div>
                 <div>
-                    <Select></Select>
+                    <select></select>
                 </div>
                 <div>
                     <div>
-                    <Button>Add Dancer</Button>
+                        <button>Add Dancer</button>
                     </div>
                     {/* Form dialog? */}
-                   
+
                     <div>
                         <form>
-                        <TextField
-                        label="Frist Name"/>
-                        <TextField
-                        label="Last Name"/>
-                        <TextField 
-                        label="Email"/>
-                        <br/>
-                        <Select label="role"></Select>
+                            <label>First Name:</label>
+                            <input />
+                            <br />
+                            <label>Last Name:</label>
+                            <input />
+                            <br />
+                            <label>Email:</label>
+                            <input />
+                            <br />
+                            <label>Role:</label>
+                            <select></select>
+                            <br />
+                            <label>Admission:</label>
+                            <select></select>
+                            <label>First Class</label>
+                            <select></select>
+                            <label>Second Class</label>
+                            <select></select>
+                            <button>Add</button>
+                            <button>Cancel</button>
                         </form>
-                        <Select label="admission"></Select>
-                        <TextField
-                        label="level"/>
-                        <TextField
-                        label="level"/>
-                        <Button>Add</Button>
-                        <Button>Cancel</Button>
                     </div>
-                    
+
+                    <div>
+
+                    </div>
                 </div>
             </div>
 

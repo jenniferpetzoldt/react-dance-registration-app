@@ -1,34 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography, Modal, Button } from '@material-ui/core';
+// import { withStyles } from '@material-ui/core/styles';
+// import { Typography, Modal, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
-});
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-const styles = theme => ({
-    paper: {
-        position: 'absolute',
-        width: theme.spacing.unit * 50,
-        // backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
-    },
 });
 
 class Confirm extends Component {
@@ -48,38 +23,23 @@ class Confirm extends Component {
 
         return (
             <div>
-                <Button onClick={this.handleOpen}>Confirm</Button>
-                <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                >
-                    <div style={getModalStyle()}>
-                        <Typography variant="title" id="modal-title">
-                            Confirm Registration Information
-                    </Typography>
-                        <Typography variant="subheading">
-                            Personal Information:
-                    </Typography>
-                        <Typography variant="subheading">
-                            Lessons:
-                    </Typography>
-                        <Typography variant="subheading">
-                            Payment Method:
-                    </Typography>
-                        <Button>Submit</Button>
-                        <Button onClick={this.handlClose}>Edit</Button>
-                        <ConfirmModalWrapped />
+                <button onClick={this.handleOpen}>Confirm</button>
+                    <div id="confirmModal" className="modal">
+                    <div className="modal-content">
+                    <h1>Confirm Registration Information</h1>
+                    <h3>PersonalInformation:</h3>
+                    <h3>Lessons:</h3>
+                    <h3>Payment Method:</h3>
+                    <button>Submit</button>
+                    <button>Edit</button>
                     </div>
-                </Modal>
+                        
+                    </div>
             </div>
         );
     }
 }
 
-
-const ConfirmModalWrapped = withStyles(styles)(Confirm);
 
 export default connect(mapStateToProps)(Confirm);
 
