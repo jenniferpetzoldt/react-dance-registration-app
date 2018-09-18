@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
 class DanceRegistrationPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
+    this.getForms();
   }
 
   componentDidUpdate() {
@@ -23,6 +24,21 @@ class DanceRegistrationPage extends Component {
       this.props.history.push('home');
     }
   }
+
+getForms(){
+  axios({
+    method: 'GET',
+    url: '/api/form'
+  }).then((response)=>{
+    const forms = response.data;
+    const action = {type: 'UPDATE_FORMS', payload: forms};
+    this.props.dispatch(action);
+  }).catch((error)=>{
+    console.log('GET forms error', error);
+    alert('Unable to get forms');
+  })
+}
+
 
   render() {
     let content = null;
@@ -32,7 +48,7 @@ class DanceRegistrationPage extends Component {
         <div>
           <div>
             <label>select registration month</label>
-            <select></select>
+            <select onChange={this.handleChange} ></select>
             <button>Select</button>
           </div>
 

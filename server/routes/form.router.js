@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
      const query = `SELECT * FROM "wed_form";`;
      pool.query(query)
      .then((response) =>{
-         res.send(result.rows);
+         res.send(response.rows);
      }).catch((error) => {
          console.log('GET form failed', error);
          res.sendStatus(500);
