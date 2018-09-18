@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
+    state,
 });
 
 class ClassNameInput extends Component {
@@ -33,12 +34,14 @@ class ClassNameInput extends Component {
     addNewForm = event => {
         event.preventDefault();
         this.props.dispatch({type: 'ADD_FORM', payload: this.state.newForm});
+        event.target.reset();
         axios({
             method: 'POST',
             url: '/api/form',
             data: {newForm: this.state.newForm}
         }).then((response) =>{
             console.log('Success with form POST');
+            this.props.dispatch({type: 'CLEAR_FORM'});
         }).catch((error)=>{
             console.log('Post error', error);
             alert('Unable to add form');
