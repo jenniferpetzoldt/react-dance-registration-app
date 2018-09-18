@@ -6,7 +6,18 @@ const router = express.Router();
  * GET 
  */
 router.get('/', (req, res) => {
-
+ if(req.isAuthenticated()) {
+     const query = `SELECT * FROM "wed_form";`;
+     pool.query(query)
+     .then((response) =>{
+         res.send(result.rows);
+     }).catch((error) => {
+         console.log('GET form failed', error);
+         res.sendStatus(500);
+     });
+ }else {
+     res.sendStatus(403);
+ }
 });
 
 /**
@@ -27,7 +38,7 @@ router.post('/', (req, res) => {
                 res.sendStatus(500);
             });
         } else {
-            res.sendStatuas(403);
+            res.sendStatus(403);
         }
     });
 

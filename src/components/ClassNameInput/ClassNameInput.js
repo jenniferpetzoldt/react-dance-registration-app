@@ -27,7 +27,7 @@ class ClassNameInput extends Component {
                 ...this.state.newForm,
                 [event.target.name]: event.target.value,
             }
-        });
+        })
     }
 
     addNewForm = event => {
@@ -42,7 +42,7 @@ class ClassNameInput extends Component {
         }).catch((error)=>{
             console.log('Post error', error);
             alert('Unable to add form');
-        });
+        })
     }
 
     render() {
