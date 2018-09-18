@@ -2,12 +2,13 @@ CREATE TABLE person (
     id SERIAL PRIMARY KEY,
     username VARCHAR (80) UNIQUE NOT NULL,
     password VARCHAR (1000) NOT NULL,
-    role VARCHAR (80),
+    admin BOOLEAN NOT NULL DEFAULT 'false'
 );
 
 CREATE TABLE wed_form (
 	id SERIAL PRIMARY KEY,
 	month VARCHAR(240) NOT NULL,
+	year VARCHAR(240) NOT NULL,
 	level_one VARCHAR(240) NOT NULL,
 	level_two VARCHAR(240) NOT NULL,
 	level_three VARCHAR(240) NOT NULL,
