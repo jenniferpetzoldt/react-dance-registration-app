@@ -11,9 +11,12 @@ import Confirm from '../Confirm/Confirm';
 
 const mapStateToProps = state => ({
   user: state.user,
+  state,
 });
 
 class DanceRegistrationPage extends Component {
+  constructor()
+ 
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     this.getForms();
@@ -30,8 +33,9 @@ getForms(){
     method: 'GET',
     url: '/api/form'
   }).then((response)=>{
+    console.log('GET forms:', response.data);
     const forms = response.data;
-    const action = {type: 'UPDATE_FORMS', payload: forms};
+    const action = {type: 'UPDATE_FORM', payload: forms};
     this.props.dispatch(action);
   }).catch((error)=>{
     console.log('GET forms error', error);
@@ -39,6 +43,9 @@ getForms(){
   })
 }
 
+handleChange = (event) => {
+  console.log('select', event.target.value)
+}
 
   render() {
     let content = null;
@@ -48,7 +55,12 @@ getForms(){
         <div>
           <div>
             <label>select registration month</label>
-            <select onChange={this.handleChange} ></select>
+            <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
+            <option value="">Select Registration Month</option>
+            {this.props.state.formReducer.map((form, i)=> {
+              return <option key={i} value={form.id}>{form.month + form.year}</option>
+            })}
+            </select>
             <button>Select</button>
           </div>
 
