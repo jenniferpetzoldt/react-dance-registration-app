@@ -15,11 +15,9 @@ const mapStateToProps = state => ({
 });
 
 class DanceRegistrationPage extends Component {
-  constructor()
- 
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
-    this.getForms();
+    this.getFormMonths();
   }
 
   componentDidUpdate() {
@@ -28,14 +26,14 @@ class DanceRegistrationPage extends Component {
     }
   }
 
-getForms(){
+getFormMonths(){
   axios({
     method: 'GET',
     url: '/api/form'
   }).then((response)=>{
-    console.log('GET forms:', response.data);
-    const forms = response.data;
-    const action = {type: 'UPDATE_FORM', payload: forms};
+    console.log('GET form months:', response.data);
+    const formMonths = response.data;
+    const action = {type: 'UPDATE_FORM_MONTHS', payload: formMonths};
     this.props.dispatch(action);
   }).catch((error)=>{
     console.log('GET forms error', error);
@@ -44,6 +42,7 @@ getForms(){
 }
 
 handleChange = (event) => {
+  
   console.log('select', event.target.value)
 }
 
@@ -53,12 +52,13 @@ handleChange = (event) => {
     if (this.props.user.userName) {
       content = (
         <div>
+          {JSON.stringify(this.props.state.formReducer.month)}
           <div>
             <label>select registration month</label>
             <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
             <option value="">Select Registration Month</option>
-            {this.props.state.formReducer.map((form, i)=> {
-              return <option key={i} value={form.id}>{form.month + form.year}</option>
+            {this.props.state.formReducer.map((formMonth, i)=> {
+              return <option key={i} value={formMonth.id}>{formMonth.month + formMonth.year}</option>
             })}
             </select>
             <button>Select</button>
