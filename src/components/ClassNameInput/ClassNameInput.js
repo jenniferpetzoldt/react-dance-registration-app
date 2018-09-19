@@ -12,6 +12,7 @@ class ClassNameInput extends Component {
         this.state = {
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             years: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+
             newForm: {
                 startDate: '',
                 levelOne: '',
@@ -26,44 +27,50 @@ class ClassNameInput extends Component {
         }
     }
 
-    createDate = () => {
+    createDate = event => {
+        // event.preventDefault();
         const selectedMonth = this.state.selectedMonth;
         const selectedYear = this.state.selectedYear;
-        let wholeDate = selectedMonth +' ' + '1' +' '+ selectedYear;
-        this.setState = ({
+        const wholeDate = selectedMonth + ' ' + '1' + ' ' + selectedYear;
+        this.setState({
             newForm: {
                 ...this.state.newForm,
                 startDate: wholeDate,
             }
-        })
-        console.log('wholeDate', wholeDate);
-        
+        });
+        console.log('startDate', this.state);
     }
 
     handleMonthChange = (event) => {
-        this.setState({
-            selectedMonth: event.target.value,
-        })
+            this.setState({
+                selectedMonth: event.target.value,
+            });
     }
 
     handleYearChange = (event) => {
         this.setState({
             selectedYear: event.target.value,
-        })
+        });
     }
 
     handleChange = (event) => {
+        // const target = event.target;
+        // const selectedMonth = target.selectedMonth;
+        // const selectedYear = target.selectedYear;
         this.setState({
             newForm: {
                 ...this.state.newForm,
                 [event.target.name]: event.target.value,
+                //    [selectedMonth]: event.target.value,
+                //    [selectedYear]: event.target.value, 
             },
-        })
+        });
+        console.log('month', this.state.selectedMonth)
     }
- // newForm.startDate is not setting in state
+    // newForm.startDate is not setting in state
     addNewForm = event => {
         event.preventDefault();
-        this.createDate();
+        // this.createDate();
         this.props.dispatch({ type: 'ADD_FORM', payload: this.state.newForm });
         event.target.reset();
         axios({
@@ -77,29 +84,47 @@ class ClassNameInput extends Component {
             console.log('Post error', error);
             alert('Unable to add form');
         })
+        console.log('state in addNewForm', this.state.newForm)
     }
+
+
 
     render() {
         return (
+            <div>
+                <form onSubmit={this.createDate}>
+                    <div>
+                        {JSON.stringify(this.state.newForm.startDate)}
 
+                        <select onChange={this.handleMonthChange} value={this.state.selectedMonth}>
+                            <option value="">Select Month</option>
+                            {this.state.months.map((month, i) => {
+                                return <option key={i} value={month}>{month}</option>
+                            })}
+                        </select>
+                        <select onChange={this.handleYearChange} value={this.state.selectedYear}>
+                            <option value="">Select Year</option>
+                            {this.state.years.map((year, i) => {
+                                return <option key={i} value={year}>{year}</option>
+                            })}
+                        </select>
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+                
             <form onSubmit={this.addNewForm}>
-                <div>
-                    {JSON.stringify(this.state.selectedMonth)}
-                    {JSON.stringify(this.state.selectedYear)}
-                    <select onChange={this.handleMonthChange} value={this.state.selectedMonth}>
+            {/* <select name="month" onChange={this.handleChange} value={this.state.selectedMonth}>
                         <option value="">Select Month</option>
                         {this.state.months.map((month, i) => {
                             return <option key={i} value={month}>{month}</option>
                         })}
                     </select>
-                    <select onChange={this.handleYearChange} value={this.state.selectedYear}>
+                    <select name="year" onChange={this.handleChange} value={this.state.selectedYear}>
                         <option value="">Select Year</option>
                         {this.state.years.map((year, i) => {
                             return <option key={i} value={year}>{year}</option>
                         })}
-                    </select>
-
-                </div>
+                    </select> */}
                 <h2>Lessons</h2>
                 <div>
                     <h3>07:00pm</h3>
@@ -119,6 +144,7 @@ class ClassNameInput extends Component {
                     <input type="submit" value="Submit" />
                 </div>
             </form>
+            </div >
         )
     }
 }
