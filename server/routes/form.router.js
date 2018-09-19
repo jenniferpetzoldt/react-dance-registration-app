@@ -28,9 +28,9 @@ router.post('/', (req, res) => {
     if (req.isAuthenticated()) {
         const formToAdd = req.body;
         const query = `INSERT INTO "wed_form" 
-        ("start_date", "level_one", "level_two", "level_three", "level_four", "level_five", "solo_jazz") 
-        VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-        pool.query(query, [formToAdd.newForm.startDate, formToAdd.newForm.levelOne, formToAdd.newForm.levelTwo, formToAdd.newForm.levelThree, formToAdd.newForm.levelFour, formToAdd.newForm.levelFive, formToAdd.newForm.soloJazz])
+        ("start_date", "form_month", "form_year", "level_one", "level_two", "level_three", "level_four", "level_five", "solo_jazz") 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+        pool.query(query, [formToAdd.newForm.startDate, formToAdd.newForm.month, formToAdd.newForm.year, formToAdd.newForm.levelOne, formToAdd.newForm.levelTwo, formToAdd.newForm.levelThree, formToAdd.newForm.levelFour, formToAdd.newForm.levelFive, formToAdd.newForm.soloJazz])
             .then((results) => {
                 res.send(results.rows);
             }).catch((error) => {
