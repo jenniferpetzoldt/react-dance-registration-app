@@ -28,49 +28,49 @@ class DanceRegistrationPage extends Component {
     }
   }
 
-getFormMonths = () => {
-  axios({
-    method: 'GET',
-    url: '/api/form'
-  }).then((response)=>{
-    console.log('GET form months:', response.data);
-    const formMonths = response.data;
-    const action = {type: 'UPDATE_FORM_MONTHS', payload: formMonths};
-    this.props.dispatch(action);
-  }).catch((error)=>{
-    console.log('GET forms error', error);
-    alert('Unable to get forms');
-  })
-}
+  getFormMonths = () => {
+    axios({
+      method: 'GET',
+      url: '/api/form'
+    }).then((response) => {
+      console.log('GET form months:', response.data);
+      const formMonths = response.data;
+      const action = { type: 'UPDATE_FORM_MONTHS', payload: formMonths };
+      this.props.dispatch(action);
+    }).catch((error) => {
+      console.log('GET forms error', error);
+      alert('Unable to get forms');
+    })
+  }
 
-getSpecificFormData = () => {
-  console.log('selected id:', this.state.selectedFormId)
-  axios({
-    method: 'GET',
-    url: '/api/form/' + this.state.selectedFormId
-  }). then((response)=>{
-    console.log('GET specific form:', response.data);
-    const selectedForm = response.data;
-    const action = {type: 'SET_FORM_DATA', payload: selectedForm};
-    this.props.dispatch(action);
-  }).catch((error)=> {
-    console.log('GET specific form ERROR', error);
-    alert('Unable to get specific form');
-  })
-}
+  getSpecificFormData = () => {
+    console.log('selected id:', this.state.selectedFormId)
+    axios({
+      method: 'GET',
+      url: '/api/form/' + this.state.selectedFormId
+    }).then((response) => {
+      console.log('GET specific form:', response.data);
+      const selectedForm = response.data;
+      const action = { type: 'SET_FORM_DATA', payload: selectedForm };
+      this.props.dispatch(action);
+      this.props.history.push('/personal');
+    }).catch((error) => {
+      console.log('GET specific form ERROR', error);
+      alert('Unable to get specific form');
+    })
+  }
 
-handleChange = (event) => {
-  this.setState({
+  handleChange = (event) => {
+    this.setState({
       selectedFormId: event.target.value,
-  });
-}
+    });
+  }
 
-handleClick = (event) => {
-  console.log('selectedFormID', this.state.selectedFormId);
-  this.props.dispatch({type: 'ADD_FORM_ID', payload: this.state});
-  this.getSpecificFormData();
-  this.props.history.push('/personal');
-}
+  handleClick = (event) => {
+    console.log('selectedFormID', this.state.selectedFormId);
+    this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state });
+    this.getSpecificFormData();
+  }
 
 
   render() {
@@ -78,18 +78,18 @@ handleClick = (event) => {
 
     if (this.props.user.userName) {
       content = (
-          <div>
-            <label>select registration month</label>
-            <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
+        <div>
+          <label>select registration month</label>
+          <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
             <option value="">Select Registration Month</option>
-            {this.props.state.formReducer.map((formMonth, i)=> {
+            {this.props.state.formReducer.map((formMonth, i) => {
               return <option key={i} value={formMonth.id}>{formMonth.form_month + ' ' + formMonth.form_year}</option>
             })}
-            </select>
-            <button onClick={this.handleClick}>Next</button>
-            {/* {JSON.stringify(this.props.state.formReducer)} */}
+          </select>
+          <button onClick={this.handleClick}>Next</button>
+          {/* {JSON.stringify(this.props.state.formReducer)} */}
 
-          </div>
+        </div>
       );
     }
 

@@ -6,33 +6,33 @@ const router = express.Router();
  * GET months for select on main user registration page
  */
 router.get('/', (req, res) => {
- if(req.isAuthenticated()) {
-     const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" > now();`;
-     pool.query(query)
-     .then((response) =>{
-         res.send(response.rows);
-     }).catch((error) => {
-         console.log('GET form failed', error);
-         res.sendStatus(500);
-     });
- }else {
-     res.sendStatus(403);
- }
+    if (req.isAuthenticated()) {
+        const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" > now();`;
+        pool.query(query)
+            .then((response) => {
+                res.send(response.rows);
+            }).catch((error) => {
+                console.log('GET form failed', error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 // GET specific Form data for selected month
 router.get('/:id', (req, res) => {
     console.log('specific form GET req.body', req.params);
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         const query = `SELECT * FROM "wed_form" WHERE "id" = $1;`;
         pool.query(query, [req.params.id])
-        .then((response)=>{
-            res.send(response.rows);
-        }).catch((error)=>{
-            console.log('GET specific form failed', error);
-            res.sendStatus(500);
-        });
-    }else {
+            .then((response) => {
+                res.send(response.rows);
+            }).catch((error) => {
+                console.log('GET specific form failed', error);
+                res.sendStatus(500);
+            });
+    } else {
         res.sendStatus(403);
     }
 })
@@ -55,9 +55,9 @@ router.post('/', (req, res) => {
                 console.log('POST form failed', error);
                 res.sendStatus(500);
             });
-        } else {
-            res.sendStatus(403);
-        }
-    });
+    } else {
+        res.sendStatus(403);
+    }
+});
 
 module.exports = router;
