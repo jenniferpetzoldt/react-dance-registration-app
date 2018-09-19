@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
-import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import PersonalInformation from '../PersonalInformation/PersonalInformation';
-import Lessons from '../Lessons/Lessons';
-import PaymentMethod from '../PaymentMethod/PaymentMethod';
-import Confirm from '../Confirm/Confirm';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -15,6 +10,13 @@ const mapStateToProps = state => ({
 });
 
 class DanceRegistrationPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedFormId: '',
+    }
+  }
+
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     this.getFormMonths();
@@ -26,7 +28,7 @@ class DanceRegistrationPage extends Component {
     }
   }
 
-getFormMonths(){
+getFormMonths = () => {
   axios({
     method: 'GET',
     url: '/api/form'
@@ -41,37 +43,53 @@ getFormMonths(){
   })
 }
 
-handleChange = (event) => {
-  
-  console.log('select', event.target.value)
+getSpecificFormData = () => {
+  console.log('selected id:', this.state.selectedFormId)
+  axios({
+    method: 'GET',
+    url: '/api/form/' + this.state.selectedFormId
+  }). then((response)=>{
+    console.log('GET specific form:', response.data);
+    const selectedForm = response.data;
+    const action = {type: 'SET_FORM_DATA', payload: selectedForm};
+    this.props.dispatch(action);
+  }).catch((error)=> {
+    console.log('GET specific form ERROR', error);
+    alert('Unable to get specific form');
+  })
 }
+
+handleChange = (event) => {
+  this.setState({
+      selectedFormId: event.target.value,
+  });
+}
+
+handleClick = (event) => {
+  console.log('selectedFormID', this.state.selectedFormId);
+  this.props.dispatch({type: 'ADD_FORM_ID', payload: this.state});
+  this.getSpecificFormData();
+  this.props.history.push('/personal');
+}
+
 
   render() {
     let content = null;
 
     if (this.props.user.userName) {
       content = (
-        <div>
-          {JSON.stringify(this.props.state.formReducer.month)}
           <div>
             <label>select registration month</label>
             <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
             <option value="">Select Registration Month</option>
             {this.props.state.formReducer.map((formMonth, i)=> {
-              return <option key={i} value={formMonth.id}>{formMonth.month + formMonth.year}</option>
+              return <option key={i} value={formMonth.id}>{formMonth.form_month + ' ' + formMonth.form_year}</option>
             })}
             </select>
-            <button>Select</button>
-          </div>
+            <button onClick={this.handleClick}>Next</button>
+            {/* {JSON.stringify(this.props.state.formReducer)} */}
 
-          <form>
-            <RegistrationTitle />
-            <PersonalInformation />
-            <Lessons />
-            <PaymentMethod />
-            <Confirm />
-          </form>
-        </div>
+          </div>
       );
     }
 

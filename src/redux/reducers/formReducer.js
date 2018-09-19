@@ -1,6 +1,6 @@
 const formReducer = (state = [], action) => {
     switch (action.type) {
-        case 'UPDATE_FORM':
+        case 'UPDATE_FORM_MONTHS':
             return action.payload;
         default:
             return state;

@@ -14,6 +14,11 @@ import Profile from './components/Profile/Profile';
 import SuccessPage from './components/SuccessPage/SuccessPage';
 import AttendancePage from './components/AttendancePage/AttendancePage';
 import CreateFormPage from './components/CreateFormPage/CreateFormPage';
+import PersonalInformation from './components/PersonalInformation/PersonalInformation';
+import Lessons from './components/Lessons/Lessons';
+import PaymentMethod from './components/PaymentMethod/PaymentMethod';
+import Confirm from './components/Confirm/Confirm';
+
 
 import './styles/main.css';
 
@@ -35,6 +40,22 @@ const App = () => (
           path="/registration"
           component={DanceRegistrationPage}
         />
+        <Route
+          path="/personal"
+          component={PersonalInformation}
+          />
+        <Route
+          path="/lessons"
+          component={Lessons}
+          />
+        <Route
+          path="/payment"
+          component={PaymentMethod}
+          />
+        <Route
+          path="/confirm"
+          component={Confirm}
+          />
         <Route
           path="/success"
           component={SuccessPage}

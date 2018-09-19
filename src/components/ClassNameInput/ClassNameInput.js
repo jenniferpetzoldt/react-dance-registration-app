@@ -32,7 +32,7 @@ class ClassNameInput extends Component {
         event.preventDefault();
         const selectedMonth = this.state.selectedMonth;
         const selectedYear = this.state.selectedYear;
-        const wholeDate = selectedMonth + ' ' + '1' + ' ' + selectedYear;
+        const wholeDate = selectedMonth + ' ' + '1,' + ' ' + selectedYear;
         this.setState({
             newForm: {
                 ...this.state.newForm,
@@ -69,6 +69,7 @@ class ClassNameInput extends Component {
             },
         });
     }
+
     addNewForm = event => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_FORM', payload: this.state.newForm });
@@ -91,6 +92,9 @@ class ClassNameInput extends Component {
             <div>
                 <form onSubmit={this.createDate}>
                     <div>
+                        <h2>Input Month/Year for new class session:</h2>
+                    </div>
+                    <div>
                         <select name="month" onChange={this.handleMonthChange} value={this.state.value}>
                             <option value="">Select Month</option>
                             {this.state.months.map((month, i) => {
@@ -107,7 +111,8 @@ class ClassNameInput extends Component {
                     </div>
                 </form>
                 <form onSubmit={this.addNewForm}>
-                    <h2>Lessons</h2>
+                    <h2>Class Names:</h2>
+                    <p>Input class names including level below:</p>
                     <div>
                         <h3>07:00pm</h3>
                         <label>Level 1</label>

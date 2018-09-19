@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
 
 const mapStateToProps = state => ({
 });
@@ -8,6 +9,7 @@ class PersonalInformation extends Component {
     render() {
         return (
             <div className="Personal Information">
+            <RegistrationTitle />
                 <h3>1. Personal Information:</h3>
                 <label>First Name:</label>
                 <input />
