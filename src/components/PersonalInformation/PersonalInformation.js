@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-
+import {TextField, Button, MenuItem, Select} from '@material-ui/core';
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -44,37 +44,42 @@ class PersonalInformation extends Component {
 
         if (this.props.user.userName) {
             content = (
+               
                 <form onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
                     {JSON.stringify(this.state.personalInformation)}
                     <h3>1. Personal Information:</h3>
-                    <label>First Name:</label>
-                    <input name="firstName" onChange={this.handleChange} />
+                    <TextField label="First Name" name="firstName" onChange={this.handleChange} />
                     <br />
-                    <label>Last Name:</label>
-                    <input name="lastName" onChange={this.handleChange} />
+                    <TextField label="Last Name" name="lastName" onChange={this.handleChange} />
                     <br />
-                    <label>Email:</label>
-                    <input name="email" onChange={this.handleChange}/>
+                    <TextField label="Email Address" name="email" onChange={this.handleChange}/>
                     <br />
-                    <label>Role:</label>
-                    <select name="role" onChange={this.handleChange} value={this.state.value}>
-                    <option value="">Select Role</option>
+                    <Select 
+                    className="formSelect"
+                    label="Role" 
+                    name="role" 
+                    onChange={this.handleChange} 
+                    value={this.state.personalInformation.role}>
+                    <MenuItem value="">Select Role</MenuItem>
                     {this.state.roles.map((role, i) => {
-                        return <option key={i} value={role}>{role}</option>
+                        return <MenuItem key={i} value={role}>{role}</MenuItem>
                     })}
-                    </select>
+                    </Select>
                     <br />
-                    <label>Admission:</label>
-                    <select name="admission" onChange={this.handleChange} value={this.state.value}>
-                    <option value="">Select Admission</option>
+                    <Select 
+                    className="formSelect"
+                    label= "Admission"
+                    onChange={this.handleChange} 
+                    value={this.state.personalInformation.admission}>
+                    <MenuItem value="">Select Admission</MenuItem>
                     {this.state.admissions.map((admission, i)=>{
-                        return <option key={i} value={admission}>{admission}</option>
+                        return <MenuItem key={i} value={admission}>{admission}</MenuItem>
                     })}
-                    </select>
+                    </Select>
                     <br />
                     <p>Students with student id recieve discount</p>
-                    <input type="submit" value="Next" />
+                    <Button className="next" varient="raised" onClick={this.addPersonalInformation}>Next</Button>
                 </form>
             );
         }
