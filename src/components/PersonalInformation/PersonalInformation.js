@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import axios from 'axios';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
 
@@ -75,7 +74,7 @@ class PersonalInformation extends Component {
                     </select>
                     <br />
                     <p>Students with student id recieve discount</p>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Next" />
                 </form>
             );
         }

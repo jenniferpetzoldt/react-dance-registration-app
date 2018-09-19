@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
+import { Grid, FormHelperText, MenuItem, Select, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -78,18 +79,22 @@ class DanceRegistrationPage extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div>
-          <label>select registration month</label>
-          <select onChange={this.handleChange} value={this.props.state.formReducer.month} >
-            <option value="">Select Registration Month</option>
-            {this.props.state.formReducer.map((formMonth, i) => {
-              return <option key={i} value={formMonth.id}>{formMonth.form_month + ' ' + formMonth.form_year}</option>
-            })}
-          </select>
-          <button onClick={this.handleClick}>Next</button>
-          {/* {JSON.stringify(this.props.state.formReducer)} */}
-
-        </div>
+        <Grid container justify="center">
+          <Grid item xs={6}>
+              <Select 
+              className="formSelect"
+              value={this.state.selectedFormId} 
+              onChange={this.handleChange}
+               >
+                <MenuItem value=""><em></em></MenuItem>
+                {this.props.state.formReducer.map((formMonth, i) => {
+                  return <MenuItem key={i} value={formMonth.id}>{formMonth.form_month + ' ' + formMonth.form_year}</MenuItem>
+                })}
+              </Select>
+              <FormHelperText>Select Registration Month</FormHelperText>
+              <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+          </Grid>
+        </Grid>
       );
     }
 
