@@ -1,9 +1,9 @@
-const userInputReducer = (state = [], action) => {
+const userInputReducer = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_PERSONAL_INFO':
-            return [...state, action.payload];
+            return {...state, personalInfo: action.payload};
         case 'ADD_LESSONS':
-            return[...state, action.payload];
+            return {...state, lessons: action.payload};
         default:
             return state;
     }
