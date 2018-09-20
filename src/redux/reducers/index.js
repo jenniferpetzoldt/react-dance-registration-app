@@ -4,6 +4,7 @@ import login from './loginReducer';
 import createFormReducer from './createFormReducer';
 import formReducer from './formReducer';
 import registrationReducer from './registrationReducer';
+import userInputReducer from './userInputReducer';
 
 const store = combineReducers({
   user,
@@ -11,6 +12,7 @@ const store = combineReducers({
   createFormReducer,
   formReducer,
   registrationReducer,
+  userInputReducer,
 });
 
 export default store;

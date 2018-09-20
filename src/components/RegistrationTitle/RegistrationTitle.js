@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 class RegistrationTitle extends Component {
     render() {
         let content = null;
-        if (this.props.user.userName && this.props.state.registrationReducer) {
+        if (this.props.user.userName) {
             content = (
                 <div>
                     {this.props.state.registrationReducer.map((registration, i) => {

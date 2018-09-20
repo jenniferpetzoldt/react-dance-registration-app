@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import {TextField, Button, MenuItem, Select} from '@material-ui/core';
+import {TextField, InputLabel, Button, MenuItem, Select} from '@material-ui/core';
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -33,9 +33,12 @@ class PersonalInformation extends Component {
         });
     }
     
-    addPersonalInformation = event => {
-        event.preventDefault();
+    addPersonalInformation = () => {
         this.props.dispatch({type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation});
+    }
+
+    handleClick = (event) => {
+        this.addPersonalInformation();
         this.props.history.push('/lessons');
     }
 
@@ -55,23 +58,26 @@ class PersonalInformation extends Component {
                     <br />
                     <TextField label="Email Address" name="email" onChange={this.handleChange}/>
                     <br />
+                    <InputLabel>Role</InputLabel>
                     <Select 
                     className="formSelect"
-                    label="Role" 
-                    name="role" 
+                    name="role"
+                    value={this.state.personalInformation.role}
                     onChange={this.handleChange} 
-                    value={this.state.personalInformation.role}>
+                    >
                     <MenuItem value="">Select Role</MenuItem>
                     {this.state.roles.map((role, i) => {
                         return <MenuItem key={i} value={role}>{role}</MenuItem>
                     })}
                     </Select>
                     <br />
+                    <InputLabel>Admission</InputLabel>
                     <Select 
                     className="formSelect"
-                    label= "Admission"
+                    name= "admission"
                     onChange={this.handleChange} 
-                    value={this.state.personalInformation.admission}>
+                    value={this.state.personalInformation.admission}
+                    >
                     <MenuItem value="">Select Admission</MenuItem>
                     {this.state.admissions.map((admission, i)=>{
                         return <MenuItem key={i} value={admission}>{admission}</MenuItem>
@@ -79,7 +85,7 @@ class PersonalInformation extends Component {
                     </Select>
                     <br />
                     <p>Students with student id recieve discount</p>
-                    <Button className="next" varient="raised" onClick={this.addPersonalInformation}>Next</Button>
+                    <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                 </form>
             );
         }
