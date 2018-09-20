@@ -24,13 +24,19 @@ class Lessons extends Component {
 
     handleFirstHourChange = (event) => {
         this.setState({
-            firstHour: event.target.value,
+            lessons: {
+                ...this.state.lessons,
+                firstHour: event.target.value,
+            }
         });
     }
 
     handleSecondHourChange = (event) => {
         this.setState({
-            secondHour: event.target.value,
+            lessons: {
+                ...this.state.lessons,
+                secondHour: event.target.value,
+            }
         });
     }
 
@@ -57,7 +63,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="7:00pm - 8:15pm"
                                     name="firstHour"
-                                    // value={this.state.props.}
+                                    value={this.state.lessons.firstHour}
                                     onChange={this.handleFirstHourChange}
                                 >
                                     <FormControlLabel value={this.props.state.registrationReducer[0].level_one} control={<Radio color="primary" />} label={this.props.state.registrationReducer[0].level_one} />
@@ -72,7 +78,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="8:30pm - 9:45pm"
                                     name="secondHour"
-                                    // value={this.state.props.}
+                                    value={this.state.lessons.secondHour}
                                     onChange={this.handleSecondHourChange}
                                 >
                                     <FormControlLabel value={this.props.state.registrationReducer[0].level_two} control={<Radio color="primary" />} label={this.props.state.registrationReducer[0].level_two} />
@@ -81,7 +87,7 @@ class Lessons extends Component {
                                 </RadioGroup>
                             </FormControl>
                         </div>
-                        <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+                        <Button className="next" varient="raised" onClick={this.handleNextClick}>Next</Button>
                     </form>
                 </div>
             )
