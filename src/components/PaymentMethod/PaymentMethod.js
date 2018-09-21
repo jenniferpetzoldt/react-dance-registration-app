@@ -22,10 +22,10 @@ class PaymentMethod extends Component {
 
     componentDidMount() {
         this.calculateTotal();
-      }
+    }
 
     addPayment = () => {
-        this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment});
+        this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
     }
 
     calculateTotal = () => {
@@ -34,7 +34,7 @@ class PaymentMethod extends Component {
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
         this.setState({
-            payment: { 
+            payment: {
                 ...this.state.payment,
                 totalCost: stringTotal,
             },
@@ -59,7 +59,7 @@ class PaymentMethod extends Component {
         if (this.props.user.userName) {
             content = (
                 <div className="Payment Method">
-                <RegistrationTitle />
+                    <RegistrationTitle />
                     <h3>3. Payment Method</h3>
                     <FormControl>
                         <RadioGroup
@@ -73,8 +73,8 @@ class PaymentMethod extends Component {
                                 label="Pay at the Door" />
                         </RadioGroup>
                     </FormControl>
-                    <Button className="next" varient="raised" 
-                    onClick={this.handleConfirmClick}>Confirm</Button>
+                    <Button className="next" varient="raised"
+                        onClick={this.handleConfirmClick}>Confirm</Button>
                 </div>
             )
         }
