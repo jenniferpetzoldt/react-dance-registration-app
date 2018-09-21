@@ -73,6 +73,7 @@ class PaymentMethod extends Component {
                                 label="Pay at the Door" />
                         </RadioGroup>
                     </FormControl>
+                    <br />
                     <Button className="next" varient="raised"
                         onClick={this.handleConfirmClick}>Confirm</Button>
                 </div>

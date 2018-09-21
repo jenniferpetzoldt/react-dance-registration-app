@@ -38,7 +38,7 @@ class ClassNameInput extends Component {
             },
         }
     }
-
+//javascript date class
     createDate = event => {
         event.preventDefault();
         const selectedMonth = this.state.selectedMonth;
@@ -51,7 +51,7 @@ class ClassNameInput extends Component {
             }
         });
     }
-
+//currying
     handleMonthChange = (event) => {
         this.setState({
             newForm: {
@@ -84,7 +84,6 @@ class ClassNameInput extends Component {
     addNewForm = event => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_FORM', payload: this.state.newForm });
-        event.target.reset();
         axios({
             method: 'POST',
             url: '/api/form',
@@ -93,7 +92,7 @@ class ClassNameInput extends Component {
             console.log('Success with form POST');
             this.props.dispatch({ type: 'CLEAR_FORM' });
         }).catch((error) => {
-            console.log('Post error', error);
+            console.log('Form Post error', error);
             alert('Unable to add form');
         })
     }

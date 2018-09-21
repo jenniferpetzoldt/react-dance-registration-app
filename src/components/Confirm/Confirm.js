@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
-// import { withStyles } from '@material-ui/core/styles';
-// import { Typography, Modal, Button } from '@material-ui/core';
+import axios from 'axios';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -10,17 +9,20 @@ const mapStateToProps = state => ({
 });
 
 class Confirm extends Component {
-    // state = {
-    //     open: true,
-    // };
 
-    // handleOpen = () => {
-    //     this.setState({ open: true });
-    // };
-
-    // handleClose = () => {
-    //     this.setState({ open: false });
-    // };
+    sendRegistration = () => {
+        axios({
+            method: 'POST', 
+            url: '/api/registration',
+            data: { newRegistration: this.props.state.userInputReducer}
+        }).then((response) => {
+            console.log('Success with registration POST');
+            this.props.dispatch({ type: 'CLEAR_USER_INPUT'});
+        }).catch((error)=>{
+            console.log('Registration POST error', error);
+            alert('Unable to add registration');
+        })
+    }
 
     render() {
         let content = null;
