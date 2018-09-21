@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancer from '../AddDancer/AddDancer';
 import AttendanceTable from '../AttendanceTable/AttendanceTable';
+import axios from 'axios';
 // import {Select, Button, TextField, Table,  } from '@material-ui/core';
 
 const mapStateToProps = state => ({
@@ -23,9 +24,24 @@ class AttendancePage extends Component {
     }
 
     componentDidMount(){
-        
+        this.getAttendMonths();
     }
 
+    getAttendMonths = () => {
+        axios({
+            method: 'GET',
+            url: 'api/attendance'
+        }).then((response) => {
+            console.log('GET attend months:', response.data);
+            const attendMonths = response.data;
+            const action = { type: 'UPDATE_ATTEND_MONTHS', payload: attendMonths};
+            this.props.dispatch(action);
+        }).catch((error)=>{
+            console.log('GET attend error', error);
+            alert('Unable to get attend');
+        })
+    }
+    
     render() {
         let content = null;
 
