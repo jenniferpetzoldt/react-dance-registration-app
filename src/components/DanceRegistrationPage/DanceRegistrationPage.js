@@ -102,7 +102,7 @@ class DanceRegistrationPage extends Component {
               inputProps={{ name: 'formSelect', id: "formSelect" }}
               value={this.state.formId}
               onChange={this.handleChange}>
-              {this.props.state.formReducer.map((formMonth, i) => {
+              {this.props.state.form.map((formMonth, i) => {
                 return (<MenuItem key={i} value={formMonth.id}>{formMonth.form_month + space + formMonth.form_year}</MenuItem>)
               })}
             </Select>

@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import user from './userReducer';
 import login from './loginReducer';
-import createFormReducer from './createFormReducer';
-import formReducer from './formReducer';
-import registrationReducer from './registrationReducer';
-import userInputReducer from './userInputReducer';
+import createForm from './createFormReducer';
+import form from './formReducer';
+import userInput from './userInputReducer';
+import attend from './attendanceReducer.js';
 
 const store = combineReducers({
   user,
   login,
-  createFormReducer,
-  formReducer,
-  registrationReducer,
-  userInputReducer,
+  createForm,
+  form,
+  userInput,
+  attend
 });
 
 export default store;

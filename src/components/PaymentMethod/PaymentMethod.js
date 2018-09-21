@@ -19,14 +19,15 @@ class PaymentMethod extends Component {
             },
         }
     }
+    
 
     addPayment = () => {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
     }
 
     calculateTotal = () => {
-        const firstHourCost = Number(this.props.state.userInputReducer.firstHour.cost);
-        const secondHourCost = Number(this.props.state.userInputReducer.secondHour.cost);
+        const firstHourCost = Number(this.props.state.userInput.firstHour.cost);
+        const secondHourCost = Number(this.props.state.userInput.secondHour.cost);
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
         this.setState({
@@ -35,10 +36,11 @@ class PaymentMethod extends Component {
                 totalCost: stringTotal,
             },
         });
+        this.props.history.push('/confirm');
+        console.log('in calculateTotal', stringTotal);
     }
 
     handleChange = (event) => {
-        this.calculateTotal();
         this.setState({
             payment: {
                 ...this.state.payment,
@@ -49,8 +51,10 @@ class PaymentMethod extends Component {
 
     handleConfirmClick = (event) => {
         this.addPayment();
-        this.props.history.push('/confirm');
+        this.calculateTotal();
+        console.log('in handleConfirmClick', this.state.payment);
     }
+
     render() {
         let content = null;
         if (this.props.user.userName) {

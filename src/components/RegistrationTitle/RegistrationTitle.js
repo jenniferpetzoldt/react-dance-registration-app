@@ -15,7 +15,7 @@ class RegistrationTitle extends Component {
             content = (
                 <div>
                     {/* loops over available forms in the reducer to populate the dropdown menu */}
-                    {this.props.state.registrationReducer.map((registration, i) => {
+                    {this.props.state.form.map((registration, i) => {
                         return <h2 key={i} value={registration.id}>
                             {registration.form_month + space + registration.form_year} Wednesday Session</h2>
                     })}
