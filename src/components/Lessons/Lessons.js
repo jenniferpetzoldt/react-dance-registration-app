@@ -29,7 +29,7 @@ class Lessons extends Component {
 
 
     handleFirstHourChange = (event) => {
-        if (this.props.state.userInputReducer.personalInfo.admission === "general") {
+        if (this.props.state.userInputReducer.userInfo.admission === "general") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
@@ -39,7 +39,7 @@ class Lessons extends Component {
                     },
                 }
             });
-        } else if (this.props.state.userInputReducer.personalInfo.admission === "student") {
+        } else if (this.props.state.userInputReducer.userInfo.admission === "student") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
@@ -65,7 +65,9 @@ class Lessons extends Component {
     }
 
     addLessons = () => {
-        this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
+        this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
+        this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
+
     }
 
     handleNextClick = (event) => {
@@ -90,17 +92,17 @@ class Lessons extends Component {
                                     value={this.state.lessons.firstHour.className}
                                     onChange={this.handleFirstHourChange}>
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].level_one}
+                                        value={this.props.state.formReducer[0].level_one}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].level_one} />
+                                        label={this.props.state.formReducer[0].level_one} />
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].level_four}
+                                        value={this.props.state.formReducer[0].level_four}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].level_four} />
+                                        label={this.props.state.formReducer[0].level_four} />
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].solo_jazz}
+                                        value={this.props.state.formReducer[0].solo_jazz}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].solo_jazz} />
+                                        label={this.props.state.formReducer[0].solo_jazz} />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -113,17 +115,17 @@ class Lessons extends Component {
                                     value={this.state.lessons.secondHour.className}
                                     onChange={this.handleSecondHourChange}>
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].level_two}
+                                        value={this.props.state.formReducer[0].level_two}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].level_two} />
+                                        label={this.props.state.formReducer[0].level_two} />
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].level_three}
+                                        value={this.props.state.formReducer[0].level_three}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].level_three} />
+                                        label={this.props.state.formReducer[0].level_three} />
                                     <FormControlLabel
-                                        value={this.props.state.registrationReducer[0].level_five}
+                                        value={this.props.state.formReducer[0].level_five}
                                         control={<Radio color="primary" />}
-                                        label={this.props.state.registrationReducer[0].level_five} />
+                                        label={this.props.state.formReducer[0].level_five} />
                                 </RadioGroup>
                             </FormControl>
                         </div>

@@ -13,6 +13,7 @@ class PersonalInformation extends Component {
         super(props);
         this.state = {
             personalInformation: {
+                userId: this.props.state.user.id,
                 firstName: '',
                 lastName: '',
                 email: '',

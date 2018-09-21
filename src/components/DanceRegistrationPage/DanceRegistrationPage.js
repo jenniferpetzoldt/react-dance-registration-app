@@ -24,7 +24,7 @@ class DanceRegistrationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFormId: '', //stores id of selected form to later send to redux
+      formId: '', //stores id of selected form to later send to redux
     }
   }
 
@@ -59,10 +59,10 @@ class DanceRegistrationPage extends Component {
   // retrieves all the information assosiated with the selected form's id. 
   // then send's it to redux, and sends the user to the next page of the form
   getSpecificFormData = () => {
-    console.log('selected id:', this.state.selectedFormId)
+    console.log('selected id:', this.state.formId)
     axios({
       method: 'GET',
-      url: '/api/form/' + this.state.selectedFormId
+      url: '/api/form/' + this.state.formId
     }).then((response) => {
       console.log('GET specific form:', response.data);
       const selectedForm = response.data;
@@ -78,13 +78,13 @@ class DanceRegistrationPage extends Component {
   // sets local state variable 'selectedFormId' to the id of the form 
   handleChange = (event) => {
     this.setState({
-      selectedFormId: event.target.value,
+      formId: event.target.value,
     });
   }
   
   // adds the form id to redux and pulls thinformation
   handleClick = (event) => {
-    console.log('selectedFormID', this.state.selectedFormId);
+    console.log('selectedFormID', this.state.formId);
     this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state });
     this.getSpecificFormData();
   }
@@ -100,7 +100,7 @@ class DanceRegistrationPage extends Component {
             <InputLabel htmlFor="formSelect">Select Month</InputLabel>
             <Select
               inputProps={{ name: 'formSelect', id: "formSelect" }}
-              value={this.state.selectedFormId}
+              value={this.state.formId}
               onChange={this.handleChange}>
               {this.props.state.formReducer.map((formMonth, i) => {
                 return (<MenuItem key={i} value={formMonth.id}>{formMonth.form_month + space + formMonth.form_year}</MenuItem>)
