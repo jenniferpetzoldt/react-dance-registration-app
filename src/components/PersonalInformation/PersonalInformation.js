@@ -47,13 +47,27 @@ class PersonalInformation extends Component {
             content = (
                 <form onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
-                    {JSON.stringify(this.state.personalInformation)}
                     <h3>1. Personal Information:</h3>
-                    <TextField label="First Name" name="firstName" onChange={this.handleChange} />
+                    <FormControl>
+                    <TextField 
+                    label="First Name" 
+                    name="firstName" 
+                    onChange={this.handleChange} />
+                    </FormControl>
                     <br />
-                    <TextField label="Last Name" name="lastName" onChange={this.handleChange} />
+                    <FormControl>
+                    <TextField 
+                    label="Last Name" 
+                    name="lastName" 
+                    onChange={this.handleChange} />
+                    </FormControl>
                     <br />
-                    <TextField label="Email Address" name="email" onChange={this.handleChange} />
+                    <FormControl> 
+                    <TextField 
+                    label="Email Address" 
+                    name="email" 
+                    onChange={this.handleChange} />
+                    </FormControl>
                     <br />
                     <FormControl>
                         <FormLabel>Role</FormLabel>
@@ -88,8 +102,7 @@ class PersonalInformation extends Component {
                                 label='Student' />
                         </RadioGroup>
                     </FormControl>
-                    <br />
-                    <p>Students with student id recieve discount</p>
+                    <p>* Comment about student discount</p>
                     <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                 </form>
             );

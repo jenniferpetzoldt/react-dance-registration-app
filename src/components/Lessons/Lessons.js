@@ -81,7 +81,6 @@ class Lessons extends Component {
                     <RegistrationTitle />
                     <form>
                         <h3>2. Lessons</h3>
-                        {JSON.stringify(this.props.state.userInputReducer.personalInfo.admission)}
                         <div>
                             <FormControl>
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>

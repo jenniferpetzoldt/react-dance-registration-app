@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { InputLabel, FormControl, MenuItem, Select, TextField, Button } from '@material-ui/core';
+
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -8,6 +10,12 @@ const mapStateToProps = state => ({
 });
 
 const space = " ";
+
+const styles = {
+    formControl: {
+      display: 'flex',
+    },
+  }
 
 class ClassNameInput extends Component {
     constructor(props) {
@@ -96,45 +104,69 @@ class ClassNameInput extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <form onSubmit={this.createDate}>
-                        <div>
+                    <form>
                             <h2>Create a new class session:</h2>
-                        </div>
-                        <div>
-                            <select name="month" onChange={this.handleMonthChange} value={this.state.value}>
-                                <option value="">Select Month</option>
+                        <FormControl style={styles.formControl}>
+                            <InputLabel htmlFor="monthSelect">Select Month</InputLabel>
+                            <Select 
+                            inputProps={{ name: 'monthSelect', id: "monthSelect" }}
+                            onChange={this.handleMonthChange} 
+                            value={this.state.newForm.month}>
                                 {this.state.months.map((month, i) => {
-                                    return <option key={i} value={month}>{month}</option>
+                                    return <MenuItem key={i} value={month}>{month}</MenuItem>
                                 })}
-                            </select>
-                            <select name="year" onChange={this.handleYearChange} value={this.state.value}>
-                                <option value="">Select Year</option>
+                            </Select>
+                            </FormControl>
+                            <FormControl style={styles.formControl}>
+                            <InputLabel htmlFor= "yearSelect">Select Year</InputLabel>
+                            <Select 
+                            inputProps={{ name: 'yearSelect', id: "yearSelect" }}
+                            onChange={this.handleYearChange} 
+                            value={this.state.newForm.year}>
                                 {this.state.years.map((year, i) => {
-                                    return <option key={i} value={year}>{year}</option>
+                                    return <MenuItem key={i} value={year}>{year}</MenuItem>
                                 })}
-                            </select>
-                            <input type="submit" value="Submit" />
-                        </div>
+                            </Select>
+                            <Button className="next" varient="raised" onClick={this.createDate}>Next</Button>
+                        </FormControl>
                     </form>
-                    <form onSubmit={this.addNewForm}>
+                    <form>
                         <h2>Class Names:</h2>
                         <p>Input class names including level below:</p>
                         <div>
                             <h3>07:00pm</h3>
-                            <label>Level 1</label>
-                            <input name="levelOne" onChange={this.handleChange} />
-                            <label>Level 4</label>
-                            <input name="levelFour" onChange={this.handleChange} />
-                            <label>Solo Jazz</label>
-                            <input name="soloJazz" onChange={this.handleChange} />
+                            <TextField 
+                            label="Level 1"
+                            name="levelOne" 
+                            value="Level 1"
+                            onChange={this.handleChange} />
+                            <TextField 
+                            label="Level 4"
+                            name="levelFour"
+                            value="Level 4" 
+                            onChange={this.handleChange} />
+                            <TextField 
+                            label="Solo Jazz"
+                            name="soloJazz" 
+                            value="Solo Jazz"
+                            onChange={this.handleChange} />
                             <h3>08:30pm</h3>
-                            <label>Level 2</label>
-                            <input name="levelTwo" onChange={this.handleChange} />
-                            <label>Level 3</label>
-                            <input name="levelThree" onChange={this.handleChange} />
-                            <label>Level 5</label>
-                            <input name="levelFive" onChange={this.handleChange} />
-                            <input type="submit" value="Submit" />
+                            <TextField 
+                            label="Level 2"
+                            name="levelTwo"
+                            value="Level 2" 
+                            onChange={this.handleChange} />
+                            <TextField 
+                            label="Level 3"
+                            name="levelThree"
+                            value="Level 3" 
+                            onChange={this.handleChange} />
+                            <TextField 
+                            label="Level 5"
+                            name="levelFive"
+                            value="Level 5" 
+                            onChange={this.handleChange} />
+                            <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
                         {/* add another button to send back to add another month's classes */}
                         </div>
                     </form>
