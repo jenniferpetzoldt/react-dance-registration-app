@@ -24,7 +24,7 @@ import './styles/main.css';
 
 const App = () => (
   <div>
-    <Header title="Dance Plan It" />
+    <Header title="attenDance" />
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />

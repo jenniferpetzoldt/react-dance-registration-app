@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import { TextField, InputLabel, Button, MenuItem, Select, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
+import { TextField, Button, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 const mapStateToProps = state => ({
     user: state.user,
     state,

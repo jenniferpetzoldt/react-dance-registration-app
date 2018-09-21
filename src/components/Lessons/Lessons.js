@@ -15,8 +15,12 @@ class Lessons extends Component {
         super(props);
         this.state = {
             lessons: {
-                firstHour: '',
-                secondHour: '',
+                firstHour: {
+                    className:'',
+                    cost: ''},
+                secondHour: {
+                    className:'',
+                    cost: ''},
             }
         }
     }
@@ -26,7 +30,10 @@ class Lessons extends Component {
         this.setState({
             lessons: {
                 ...this.state.lessons,
-                firstHour: event.target.value,
+                firstHour: {
+                    className: event.target.value,
+                    cost: '$40',
+                },
             }
         });
     }
@@ -35,7 +42,10 @@ class Lessons extends Component {
         this.setState({
             lessons: {
                 ...this.state.lessons,
-                secondHour: event.target.value,
+                secondHour: {
+                    className: event.target.value,
+                    cost: '$40',
+                },
             }
         });
     }
@@ -63,7 +73,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="7:00pm - 8:15pm"
                                     name="firstHour"
-                                    value={this.state.lessons.firstHour}
+                                    value={this.state.lessons.firstHour.className}
                                     onChange={this.handleFirstHourChange}>
                                     <FormControlLabel
                                         value={this.props.state.registrationReducer[0].level_one}
@@ -86,7 +96,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="8:30pm - 9:45pm"
                                     name="secondHour"
-                                    value={this.state.lessons.secondHour}
+                                    value={this.state.lessons.secondHour.className}
                                     onChange={this.handleSecondHourChange}>
                                     <FormControlLabel
                                         value={this.props.state.registrationReducer[0].level_two}
