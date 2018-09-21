@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Nav from '../Nav/Nav';
+
 
 const mapStateToProps = state => ({
+    user: state.user,
+    state,
 });
 
 class AttendanceTable extends Component {
     render() {
-        return (
-            <table>
+        let content = null;
+
+        if (this.props.user.userName) {
+            content = (
+                <table>
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -31,7 +38,14 @@ class AttendanceTable extends Component {
                     <tr></tr>
                 </tbody>
             </table>
-        )
+            );
+        }
+        return (
+            <div>
+                <Nav />
+                {content}
+            </div>
+        );
     }
 }
 
