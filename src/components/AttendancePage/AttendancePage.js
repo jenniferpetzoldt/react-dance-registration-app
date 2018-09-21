@@ -12,7 +12,7 @@ class AttendancePage extends Component {
     render() {
         return (
             <div>
-                 <Nav />
+                <Nav />
                 <div>
                     <select></select>
                 </div>

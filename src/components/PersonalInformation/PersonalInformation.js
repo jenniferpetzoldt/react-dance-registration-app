@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import {TextField, InputLabel, Button, MenuItem, Select, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
+import { TextField, InputLabel, Button, MenuItem, Select, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -30,9 +30,9 @@ class PersonalInformation extends Component {
             },
         });
     }
-    
+
     addPersonalInformation = () => {
-        this.props.dispatch({type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation});
+        this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
     }
 
     handleClick = (event) => {
@@ -45,7 +45,7 @@ class PersonalInformation extends Component {
 
         if (this.props.user.userName) {
             content = (
-               
+
                 <form onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
                     {JSON.stringify(this.state.personalInformation)}
@@ -54,41 +54,41 @@ class PersonalInformation extends Component {
                     <br />
                     <TextField label="Last Name" name="lastName" onChange={this.handleChange} />
                     <br />
-                    <TextField label="Email Address" name="email" onChange={this.handleChange}/>
+                    <TextField label="Email Address" name="email" onChange={this.handleChange} />
                     <br />
                     <FormControl>
                         <FormLabel>Role</FormLabel>
                         <RadioGroup
-                        name="role"
-                        value={this.state.personalInformation.role}
-                        onChange={this.handleChange}
+                            name="role"
+                            value={this.state.personalInformation.role}
+                            onChange={this.handleChange}
                         >
-                        <FormControlLabel
-                        value='Leader'
-                        control={<Radio color="primary" />}
-                        label='Leader'/>
-                        <FormControlLabel
-                        value='Follower'
-                        control={<Radio color="primary" />}
-                        label='Follower' />
+                            <FormControlLabel
+                                value='Leader'
+                                control={<Radio color="primary" />}
+                                label='Leader' />
+                            <FormControlLabel
+                                value='Follower'
+                                control={<Radio color="primary" />}
+                                label='Follower' />
                         </RadioGroup>
                     </FormControl>
                     <br />
                     <FormControl>
                         <FormLabel>Admission</FormLabel>
                         <RadioGroup
-                        name="admission"
-                        value={this.state.personalInformation.admission}
-                        onChange={this.handleChange}
+                            name="admission"
+                            value={this.state.personalInformation.admission}
+                            onChange={this.handleChange}
                         >
-                        <FormControlLabel
-                        value='General'
-                        control={<Radio color="primary" />}
-                        label='General'/>
-                        <FormControlLabel
-                        value='Student'
-                        control={<Radio color="primary" />}
-                        label='Student' />
+                            <FormControlLabel
+                                value='General'
+                                control={<Radio color="primary" />}
+                                label='General' />
+                            <FormControlLabel
+                                value='Student'
+                                control={<Radio color="primary" />}
+                                label='Student' />
                         </RadioGroup>
                     </FormControl>
                     <br />

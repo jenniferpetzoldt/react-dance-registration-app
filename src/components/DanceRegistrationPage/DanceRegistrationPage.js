@@ -12,8 +12,8 @@ const mapStateToProps = state => ({
 
 const styles = {
   formControl: {
-      display: 'flex',
-      flexWrap: 'wrap',
+    display: 'flex',
+    flexWrap: 'wrap',
 
   },
 }
@@ -90,23 +90,23 @@ class DanceRegistrationPage extends Component {
     if (this.props.user.userName) {
       content = (
         <form>
-        <FormControl style={styles.formControl}>
-          <InputLabel htmlFor="formSelect">Select Month</InputLabel>
-              <Select 
-             inputProps={{name: 'formSelect', id: "formSelect"}}
-              value={this.state.selectedFormId} 
+          <FormControl style={styles.formControl}>
+            <InputLabel htmlFor="formSelect">Select Month</InputLabel>
+            <Select
+              inputProps={{ name: 'formSelect', id: "formSelect" }}
+              value={this.state.selectedFormId}
               onChange={this.handleChange}
-               >
-                {this.props.state.formReducer.map((formMonth, i) => {
-                  return (<MenuItem key={i} value={formMonth.id}>{formMonth.form_month + space + formMonth.form_year}</MenuItem>)
-                })}
-              </Select>
-              <FormHelperText>Select Registration Month</FormHelperText>
-              </FormControl>
-             
-              <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
-             
-              </form>
+            >
+              {this.props.state.formReducer.map((formMonth, i) => {
+                return (<MenuItem key={i} value={formMonth.id}>{formMonth.form_month + space + formMonth.form_year}</MenuItem>)
+              })}
+            </Select>
+            <FormHelperText>Select Registration Month</FormHelperText>
+          </FormControl>
+
+          <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+
+        </form>
       );
     }
 

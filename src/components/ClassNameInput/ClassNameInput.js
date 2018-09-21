@@ -44,20 +44,20 @@ class ClassNameInput extends Component {
     }
 
     handleMonthChange = (event) => {
-            this.setState({
-                newForm: {
-                    ...this.state.newForm,
-                    month: event.target.value, 
-                },
-                selectedMonth: event.target.value,
-            });
+        this.setState({
+            newForm: {
+                ...this.state.newForm,
+                month: event.target.value,
+            },
+            selectedMonth: event.target.value,
+        });
     }
 
     handleYearChange = (event) => {
         this.setState({
             newForm: {
                 ...this.state.newForm,
-                year: event.target.value, 
+                year: event.target.value,
             },
             selectedYear: event.target.value,
         });
