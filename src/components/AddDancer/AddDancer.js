@@ -39,20 +39,19 @@ class AddDancer extends Component {
                                     name="firstName"
                                     onChange={this.handleChange} />
                             </FormControl>
-                            <br />
                             <FormControl>
                                 <TextField
                                     label="Last Name"
                                     name="lastName"
                                     onChange={this.handleChange} />
                             </FormControl>
-                            <br />
                             <FormControl>
                                 <TextField
                                     label="Email Address"
                                     name="email"
                                     onChange={this.handleChange} />
                             </FormControl>
+                            <br />
                             <br />
                             <FormControl>
                                 <FormLabel>Role</FormLabel>
@@ -70,7 +69,6 @@ class AddDancer extends Component {
                                         label='Follower' />
                                 </RadioGroup>
                             </FormControl>
-                            <br />
                             <FormControl>
                                 <FormLabel>Admission</FormLabel>
                                 <RadioGroup
@@ -88,7 +86,7 @@ class AddDancer extends Component {
                                 </RadioGroup>
                             </FormControl>
                             <br />
-                            <FormControl>
+                            {/* <FormControl>
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>
                                 <RadioGroup
                                     aria-label="7:00pm - 8:15pm"
@@ -129,7 +127,7 @@ class AddDancer extends Component {
                                         control={<Radio color="primary" />}
                                         label={this.props.state.attend[0].level_five} />
                                 </RadioGroup>
-                            </FormControl>
+                            </FormControl> */}
                             <br />
                             <Button>Add</Button>
                             <Button>Cancel</Button>
