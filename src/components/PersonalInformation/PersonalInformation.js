@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import {TextField, InputLabel, Button, MenuItem, Select} from '@material-ui/core';
+import {TextField, InputLabel, Button, MenuItem, Select, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -12,8 +12,6 @@ class PersonalInformation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            roles: ['Leader', 'Follower'],
-            admissions: ['General', 'Student'],
             personalInformation: {
                 firstName: '',
                 lastName: '',
@@ -58,31 +56,41 @@ class PersonalInformation extends Component {
                     <br />
                     <TextField label="Email Address" name="email" onChange={this.handleChange}/>
                     <br />
-                    <InputLabel>Role</InputLabel>
-                    <Select 
-                    className="formSelect"
-                    name="role"
-                    value={this.state.personalInformation.role}
-                    onChange={this.handleChange} 
-                    >
-                    <MenuItem value="">Select Role</MenuItem>
-                    {this.state.roles.map((role, i) => {
-                        return <MenuItem key={i} value={role}>{role}</MenuItem>
-                    })}
-                    </Select>
+                    <FormControl>
+                        <FormLabel>Role</FormLabel>
+                        <RadioGroup
+                        name="role"
+                        value={this.state.personalInformation.role}
+                        onChange={this.handleChange}
+                        >
+                        <FormControlLabel
+                        value='Leader'
+                        control={<Radio color="primary" />}
+                        label='Leader'/>
+                        <FormControlLabel
+                        value='Follower'
+                        control={<Radio color="primary" />}
+                        label='Follower' />
+                        </RadioGroup>
+                    </FormControl>
                     <br />
-                    <InputLabel>Admission</InputLabel>
-                    <Select 
-                    className="formSelect"
-                    name= "admission"
-                    onChange={this.handleChange} 
-                    value={this.state.personalInformation.admission}
-                    >
-                    <MenuItem value="">Select Admission</MenuItem>
-                    {this.state.admissions.map((admission, i)=>{
-                        return <MenuItem key={i} value={admission}>{admission}</MenuItem>
-                    })}
-                    </Select>
+                    <FormControl>
+                        <FormLabel>Admission</FormLabel>
+                        <RadioGroup
+                        name="admission"
+                        value={this.state.personalInformation.admission}
+                        onChange={this.handleChange}
+                        >
+                        <FormControlLabel
+                        value='General'
+                        control={<Radio color="primary" />}
+                        label='General'/>
+                        <FormControlLabel
+                        value='Student'
+                        control={<Radio color="primary" />}
+                        label='Student' />
+                        </RadioGroup>
+                    </FormControl>
                     <br />
                     <p>Students with student id recieve discount</p>
                     <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>

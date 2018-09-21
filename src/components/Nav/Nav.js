@@ -5,22 +5,22 @@ const Nav = () => (
   <div className="navbar">
     <div>
       <ul>
-        <li>
+        <li className="nav">
           <Link to="/profile">
             Profile
           </Link>
         </li>
-        <li>
+        <li className="nav">
           <Link to="/registration">
             Registration
           </Link>
         </li>
-        <li>
+        <li className="nav">
           <Link to="/attendance">
             Attendance
           </Link>
         </li>
-        <li>
+        <li className="nav">
           <Link to="/form">
             CreateForm
           </Link>

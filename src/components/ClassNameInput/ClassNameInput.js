@@ -6,6 +6,8 @@ const mapStateToProps = state => ({
     state,
 });
 
+const space = " ";
+
 class ClassNameInput extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +34,7 @@ class ClassNameInput extends Component {
         event.preventDefault();
         const selectedMonth = this.state.selectedMonth;
         const selectedYear = this.state.selectedYear;
-        const wholeDate = selectedMonth + ' ' + '1,' + ' ' + selectedYear;
+        const wholeDate = selectedMonth + space + '1,' + space + selectedYear;
         this.setState({
             newForm: {
                 ...this.state.newForm,
