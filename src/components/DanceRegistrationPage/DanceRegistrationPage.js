@@ -14,20 +14,21 @@ const styles = {
   formControl: {
     display: 'flex',
     flexWrap: 'wrap',
-
   },
 }
 
+// needed for concatinating menu item
 const space = " ";
 
 class DanceRegistrationPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFormId: '',
+      selectedFormId: '', //stores id of selected form to later send to redux
     }
   }
 
+  // on page load retrieves form options from database
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     this.getFormMonths();
@@ -39,6 +40,7 @@ class DanceRegistrationPage extends Component {
     }
   }
 
+  // retrieves the id, month, and year for each form in the wed_form table
   getFormMonths = () => {
     axios({
       method: 'GET',
@@ -54,6 +56,8 @@ class DanceRegistrationPage extends Component {
     })
   }
 
+  // retrieves all the information assosiated with the selected form's id. 
+  // then send's it to redux, and sends the user to the next page of the form
   getSpecificFormData = () => {
     console.log('selected id:', this.state.selectedFormId)
     axios({
@@ -71,12 +75,14 @@ class DanceRegistrationPage extends Component {
     })
   }
 
+  // sets local state variable 'selectedFormId' to the id of the form 
   handleChange = (event) => {
     this.setState({
       selectedFormId: event.target.value,
     });
   }
-
+  
+  // adds the form id to redux and pulls thinformation
   handleClick = (event) => {
     console.log('selectedFormID', this.state.selectedFormId);
     this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state });
@@ -86,7 +92,7 @@ class DanceRegistrationPage extends Component {
 
   render() {
     let content = null;
-
+    //only loads page content if user is logged in
     if (this.props.user.userName) {
       content = (
         <form>
@@ -103,9 +109,7 @@ class DanceRegistrationPage extends Component {
             </Select>
             <FormHelperText>Select Registration Month</FormHelperText>
           </FormControl>
-
           <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
-
         </form>
       );
     }

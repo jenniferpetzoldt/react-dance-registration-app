@@ -6,6 +6,8 @@ const mapStateToProps = state => ({
     state,
 });
 
+const space = " ";
+
 class RegistrationTitle extends Component {
     render() {
         let content = null;
@@ -14,7 +16,7 @@ class RegistrationTitle extends Component {
                 <div>
                     {this.props.state.registrationReducer.map((registration, i) => {
                         return <h2 key={i} value={registration.id}>
-                            {registration.form_month + ' ' + registration.form_year} Wednesday Session
+                            {registration.form_month + space + registration.form_year} Wednesday Session
                                 </h2>
                     })}
                 </div>

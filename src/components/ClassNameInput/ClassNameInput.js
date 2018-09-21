@@ -94,7 +94,7 @@ class ClassNameInput extends Component {
             <div>
                 <form onSubmit={this.createDate}>
                     <div>
-                        <h2>Input Month/Year for new class session:</h2>
+                        <h2>Create a new class session:</h2>
                     </div>
                     <div>
                         <select name="month" onChange={this.handleMonthChange} value={this.state.value}>
