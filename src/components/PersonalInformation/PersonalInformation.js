@@ -62,11 +62,11 @@ class PersonalInformation extends Component {
                             value={this.state.personalInformation.role}
                             onChange={this.handleChange}>
                             <FormControlLabel
-                                value='Leader'
+                                value='leader'
                                 control={<Radio color="primary" />}
                                 label='Leader' />
                             <FormControlLabel
-                                value='Follower'
+                                value='follower'
                                 control={<Radio color="primary" />}
                                 label='Follower' />
                         </RadioGroup>
@@ -79,11 +79,11 @@ class PersonalInformation extends Component {
                             value={this.state.personalInformation.admission}
                             onChange={this.handleChange}>
                             <FormControlLabel
-                                value='General'
+                                value='general'
                                 control={<Radio color="primary" />}
                                 label='General' />
                             <FormControlLabel
-                                value='Student'
+                                value='student'
                                 control={<Radio color="primary" />}
                                 label='Student' />
                         </RadioGroup>

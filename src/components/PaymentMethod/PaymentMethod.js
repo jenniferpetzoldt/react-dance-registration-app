@@ -13,17 +13,40 @@ class PaymentMethod extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            payment: '',
+            payment: {
+                paymentMethod: '',
+                totalCost: '',
+            },
         }
     }
+
+    componentDidMount() {
+        this.calculateTotal();
+      }
 
     addPayment = () => {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment});
     }
 
+    calculateTotal = () => {
+        const firstHourCost = Number(this.props.state.userInputReducer.lessons.firstHour.cost);
+        const secondHourCost = Number(this.props.state.userInputReducer.lessons.secondHour.cost);
+        const total = firstHourCost + secondHourCost;
+        const stringTotal = String(total);
+        this.setState({
+            payment: { 
+                ...this.state.payment,
+                totalCost: stringTotal,
+            },
+        });
+    }
+
     handleChange = (event) => {
         this.setState({
-            payment: event.target.value,
+            payment: {
+                ...this.state.payment,
+                paymentMethod: event.target.value,
+            },
         })
     }
 
@@ -42,7 +65,7 @@ class PaymentMethod extends Component {
                         <RadioGroup
                             aria-label="7:00pm - 8:15pm"
                             name="payment"
-                            value={this.state.payment}
+                            value={this.state.payment.paymentMethod}
                             onChange={this.handleChange}>
                             <FormControlLabel
                                 value="Pay at the Door"
@@ -55,7 +78,6 @@ class PaymentMethod extends Component {
                 </div>
             )
         }
-
 
         return (
             <div>

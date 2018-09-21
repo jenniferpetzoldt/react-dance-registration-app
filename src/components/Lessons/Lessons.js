@@ -16,26 +16,40 @@ class Lessons extends Component {
         this.state = {
             lessons: {
                 firstHour: {
-                    className:'',
-                    cost: ''},
+                    className: '',
+                    cost: '0'
+                },
                 secondHour: {
-                    className:'',
-                    cost: ''},
+                    className: '',
+                    cost: '0'
+                },
             }
         }
     }
 
 
     handleFirstHourChange = (event) => {
-        this.setState({
-            lessons: {
-                ...this.state.lessons,
-                firstHour: {
-                    className: event.target.value,
-                    cost: '$40',
-                },
-            }
-        });
+        if (this.props.state.userInputReducer.personalInfo.admission === "general") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHour: {
+                        className: event.target.value,
+                        cost: '40',
+                    },
+                }
+            });
+        } else if (this.props.state.userInputReducer.personalInfo.admission === "student") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHour: {
+                        className: event.target.value,
+                        cost: '35',
+                    },
+                }
+            });
+        }
     }
 
     handleSecondHourChange = (event) => {
@@ -44,7 +58,7 @@ class Lessons extends Component {
                 ...this.state.lessons,
                 secondHour: {
                     className: event.target.value,
-                    cost: '$40',
+                    cost: '40',
                 },
             }
         });
@@ -67,6 +81,7 @@ class Lessons extends Component {
                     <RegistrationTitle />
                     <form>
                         <h3>2. Lessons</h3>
+                        {JSON.stringify(this.props.state.userInputReducer.personalInfo.admission)}
                         <div>
                             <FormControl>
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>
