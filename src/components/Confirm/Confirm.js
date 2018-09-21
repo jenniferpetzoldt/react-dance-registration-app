@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { Typography, Modal, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
+    state,
 });
 
 class Confirm extends Component {
@@ -23,7 +24,6 @@ class Confirm extends Component {
 
         return (
             <div>
-                <button onClick={this.handleOpen}>Confirm</button>
                 <div id="confirmModal" className="modal">
                     <div className="modal-content">
                         <h1>Confirm Registration Information</h1>

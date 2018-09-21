@@ -45,7 +45,6 @@ class PersonalInformation extends Component {
 
         if (this.props.user.userName) {
             content = (
-
                 <form onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
                     {JSON.stringify(this.state.personalInformation)}
@@ -61,8 +60,7 @@ class PersonalInformation extends Component {
                         <RadioGroup
                             name="role"
                             value={this.state.personalInformation.role}
-                            onChange={this.handleChange}
-                        >
+                            onChange={this.handleChange}>
                             <FormControlLabel
                                 value='Leader'
                                 control={<Radio color="primary" />}
@@ -79,8 +77,7 @@ class PersonalInformation extends Component {
                         <RadioGroup
                             name="admission"
                             value={this.state.personalInformation.admission}
-                            onChange={this.handleChange}
-                        >
+                            onChange={this.handleChange}>
                             <FormControlLabel
                                 value='General'
                                 control={<Radio color="primary" />}
@@ -97,7 +94,6 @@ class PersonalInformation extends Component {
                 </form>
             );
         }
-
         return (
             <div>
                 <Nav />

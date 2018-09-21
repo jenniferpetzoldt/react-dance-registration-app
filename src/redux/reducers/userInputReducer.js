@@ -4,6 +4,8 @@ const userInputReducer = (state = {}, action) => {
             return { ...state, personalInfo: action.payload };
         case 'ADD_LESSONS':
             return { ...state, lessons: action.payload };
+        case 'ADD_PAYMENT':
+            return { ...state, payment: action.payload };
         default:
             return state;
     }

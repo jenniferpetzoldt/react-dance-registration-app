@@ -56,7 +56,7 @@ class Lessons extends Component {
                 <div>
                     <RegistrationTitle />
                     <form>
-                        <h3>Lessons</h3>
+                        <h3>2. Lessons</h3>
                         <div>
                             <FormControl>
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>

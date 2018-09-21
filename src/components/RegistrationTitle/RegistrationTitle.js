@@ -14,10 +14,10 @@ class RegistrationTitle extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
+                    {/* loops over available forms in the reducer to populate the dropdown menu */}
                     {this.props.state.registrationReducer.map((registration, i) => {
                         return <h2 key={i} value={registration.id}>
-                            {registration.form_month + space + registration.form_year} Wednesday Session
-                                </h2>
+                            {registration.form_month + space + registration.form_year} Wednesday Session</h2>
                     })}
                 </div>
             );
