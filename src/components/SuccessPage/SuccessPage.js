@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Nav from '../Nav/Nav';
+
 
 const mapStateToProps = state => ({
+    user: state.user,
+    state,
 });
 
 class SuccessPage extends Component {
     render() {
+        let content = null;
+
+        if (this.props.user.userName) {
+            content = (
+                <div>
+                    <p>Success message here!</p>
+                </div>
+            );
+        }
         return (
             <div>
-                <p>Success message here!</p>
+                <Nav />
+                {content}
             </div>
         )
     }
