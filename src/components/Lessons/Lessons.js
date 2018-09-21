@@ -23,10 +23,20 @@ class Lessons extends Component {
                     className: '',
                     cost: '0'
                 },
-            }
+            },
         }
     }
 
+
+
+    calculateTotal = () => {
+        const firstHourCost = Number(this.state.lessons.firstHour.cost);
+        const secondHourCost = Number(this.state.lessons.secondHour.cost);
+        const total = firstHourCost + secondHourCost;
+        const stringTotal = String(total);
+        this.props.dispatch({type: 'ADD_TOTAL', payload: stringTotal});
+        console.log('in calculateTotal', stringTotal);
+    }
 
     handleFirstHourChange = (event) => {
         if (this.props.state.userInput.userInfo.admission === "general") {
@@ -79,6 +89,7 @@ class Lessons extends Component {
     addLessons = () => {
         this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
         this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
+       this.calculateTotal();
 
     }
 

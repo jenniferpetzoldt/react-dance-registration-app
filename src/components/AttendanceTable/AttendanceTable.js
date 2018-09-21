@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -12,30 +13,32 @@ class AttendanceTable extends Component {
 
         if (this.props.user.userName) {
             content = (
-                <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Admission</th>
-                        <th>First Class</th>
-                        <th>Second Class</th>
-                        <th>Paid</th>
-                        <th>Owed</th>
-                        <th>Payment Method</th>
-                        <th>Week 1</th>
-                        <th>Week 2</th>
-                        <th>Week 3</th>
-                        <th>Week 4</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr></tr>
-                </tbody>
-            </table>
+                <Paper>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>First Name</TableCell>
+                                <TableCell>Last Name</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Role</TableCell>
+                                <TableCell>Admission</TableCell>
+                                <TableCell>First Class</TableCell>
+                                <TableCell>Second Class</TableCell>
+                                <TableCell>Paid</TableCell>
+                                <TableCell>Owed</TableCell>
+                                <TableCell>Payment Method</TableCell>
+                                <TableCell>Week 1</TableCell>
+                                <TableCell>Week 2</TableCell>
+                                <TableCell>Week 3</TableCell>
+                                <TableCell>Week 4</TableCell>
+                                <TableCell>Notes</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow></TableRow>
+                        </TableBody>
+                    </Table>
+                </Paper>
             );
         }
         return (

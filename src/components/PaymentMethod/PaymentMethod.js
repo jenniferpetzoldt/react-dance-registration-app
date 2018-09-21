@@ -15,7 +15,6 @@ class PaymentMethod extends Component {
         this.state = {
             payment: {
                 paymentMethod: '',
-                totalCost: '',
             },
         }
     }
@@ -23,24 +22,27 @@ class PaymentMethod extends Component {
 
     addPayment = () => {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
+        this.props.history.push('/confirm');
     }
 
-    calculateTotal = () => {
-        const firstHourCost = Number(this.props.state.userInput.firstHour.cost);
-        const secondHourCost = Number(this.props.state.userInput.secondHour.cost);
-        const total = firstHourCost + secondHourCost;
-        const stringTotal = String(total);
-        this.setState({
-            payment: {
-                ...this.state.payment,
-                totalCost: stringTotal,
-            },
-        });
-        this.props.history.push('/confirm');
-        console.log('in calculateTotal', stringTotal);
-    }
+    // calculateTotal = () => {
+    //     const firstHourCost = Number(this.props.state.userInput.firstHour.cost);
+    //     const secondHourCost = Number(this.props.state.userInput.secondHour.cost);
+    //     const total = firstHourCost + secondHourCost;
+    //     const stringTotal = String(total);
+    //     this.setState({
+    //         payment: {
+    //             ...this.state.payment,
+    //             totalCost: stringTotal,
+    //         },
+    //     });
+    //     this.props.history.push('/confirm');
+    //     console.log('in calculateTotal', stringTotal);
+    // }
 
     handleChange = (event) => {
+        // this.calculateTotal();
+        // console.log('in handleConfirmClick', this.props.state.userInput.payment);
         this.setState({
             payment: {
                 ...this.state.payment,
@@ -51,8 +53,7 @@ class PaymentMethod extends Component {
 
     handleConfirmClick = (event) => {
         this.addPayment();
-        this.calculateTotal();
-        console.log('in handleConfirmClick', this.state.payment);
+        
     }
 
     render() {

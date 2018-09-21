@@ -8,6 +8,8 @@ const userInputReducer = (state = {}, action) => {
             return { ...state, firstHour: action.payload };
         case 'ADD_SECOND_HOUR':
             return { ...state, secondHour: action.payload };
+        case 'ADD_TOTAL':
+            return{ ...state, total: action.payload};
         case 'ADD_PAYMENT':
             return { ...state, payment: action.payload };
         default:
