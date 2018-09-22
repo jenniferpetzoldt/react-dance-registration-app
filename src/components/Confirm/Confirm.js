@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EditDialog from '../EditDialog/EditDialog';
 import axios from 'axios';
-
+import { Dialog}  from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -9,6 +10,12 @@ const mapStateToProps = state => ({
 });
 
 class Confirm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        }
+    }
 
     sendRegistration = () => {
         axios({
@@ -28,27 +35,39 @@ class Confirm extends Component {
         this.sendRegistration();
     }
 
+    handleEditClick = (event) => {
+        this.setState({
+            open: true,
+        });
+    }
+
     render() {
         let content = null;
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <h1>Confirm Registration Information</h1>
-                    <h3>PersonalInformation:</h3>
-                    <p>Name: {this.props.state.userInput.userInfo.firstName} {this.props.state.userInput.userInfo.lastName}</p>
-                    <p>Email: {this.props.state.userInput.userInfo.email}</p>
-                    <p>Role: {this.props.state.userInput.userInfo.role}</p>
-                    <p>Admission: {this.props.state.userInput.userInfo.admission}</p>
-                    <h3>Lessons:</h3>
-                    <p>7:00pm-8:15pm {this.props.state.userInput.firstHour.className}</p>
-                    <p>8:30pm-9:45pm {this.props.state.userInput.secondHour.className}</p>
-                    <h3>Payment Method:</h3>
-                    {this.props.state.userInput.payment.paymentMethod}
-                    <h3>Total Cost:</h3>
-                    <p>${this.props.state.userInput.total}.00</p>
-                    <br />
-                    <button onClick={this.submitRegistration}>Submit</button>
-                    <button >Edit</button>
+                    <div>
+                        <h1>Confirm Registration Information</h1>
+                        <h3>PersonalInformation:</h3>
+                        <p>Name: {this.props.state.userInput.userInfo.firstName} {this.props.state.userInput.userInfo.lastName}</p>
+                        <p>Email: {this.props.state.userInput.userInfo.email}</p>
+                        <p>Role: {this.props.state.userInput.userInfo.role}</p>
+                        <p>Admission: {this.props.state.userInput.userInfo.admission}</p>
+                        <h3>Lessons:</h3>
+                        <p>7:00pm-8:15pm {this.props.state.userInput.firstHour.className}</p>
+                        <p>8:30pm-9:45pm {this.props.state.userInput.secondHour.className}</p>
+                        <h3>Payment Method:</h3>
+                        {this.props.state.userInput.payment.paymentMethod}
+                        <h3>Total Cost:</h3>
+                        <p>${this.props.state.userInput.total}.00</p>
+                        <br />
+                        <button onClick={this.submitRegistration}>Submit</button>
+                        <button onClick={this.handleEditClick}>Edit</button>
+                    </div>
+                    <Dialog
+                        open={this.state.open}>
+                        <EditDialog />
+                    </Dialog>
                 </div>
             );
         }
@@ -62,5 +81,3 @@ class Confirm extends Component {
 
 
 export default connect(mapStateToProps)(Confirm);
-
-// https://material-ui.com/utils/modal/ 
