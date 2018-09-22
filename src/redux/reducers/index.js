@@ -5,6 +5,7 @@ import createForm from './createFormReducer';
 import form from './formReducer';
 import userInput from './userInputReducer';
 import attend from './attendanceReducer.js';
+import adminInput from './adminInputReducer.js';
 
 const store = combineReducers({
   user,
@@ -12,7 +13,8 @@ const store = combineReducers({
   createForm,
   form,
   userInput,
-  attend
+  attend,
+  adminInput
 });
 
 export default store;

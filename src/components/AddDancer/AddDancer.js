@@ -23,6 +23,7 @@ class AddDancer extends Component {
             }
         }
     }
+    
     render() {
         let content = null;
         if (this.props.user.userName) {

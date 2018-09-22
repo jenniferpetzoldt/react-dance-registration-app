@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
 const styles = {
   formControl: {
     display: 'flex',
-    flexWrap: 'wrap',
   },
 }
 

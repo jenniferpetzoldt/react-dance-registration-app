@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
 const styles = {
     formControl: {
       display: 'flex',
-      flexWrap: 'wrap',
     },
   }
 
@@ -53,10 +52,12 @@ class AttendancePage extends Component {
         this.setState({
           attendId: event.target.value,
         });
+        console.log('attendID:', this.state.attendId);
       }
 
     handleClick = (event) => {
-        this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state})
+        console.log('attendID:', this.state.attendId);
+        this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state})
     }
 
     render() {
@@ -68,19 +69,16 @@ class AttendancePage extends Component {
                     <form>
                         <FormControl style={styles.formControl}>
                             <InputLabel htmlFor="attendSelect">Select Month</InputLabel>
-                            <Select
-                                inputProps={{ name: 'attendSelect', id: "attendSelect" }}
-                                value={this.state.attendId}
-                                onChange={this.handleChange}
-                                >
-                                {this.props.state.attend.map((attendMonth, i) => {
-                                    return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
-                                })}
-                            </Select>
-                            <FormHelperText>Select Registration Month</FormHelperText>
+                            <Select inputProps={{name: 'attendSelect', id: "formSelect" }}
+                            value={this.state.attendId}
+                            onChange={this.handleChange}>
+                            {this.props.state.attend.map((attendMonth, i) => {
+                                return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
+                            })}</Select>
                         </FormControl>
                         <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                     </form>
+                   
                     <div>
                         <AddDancer />
                     </div>

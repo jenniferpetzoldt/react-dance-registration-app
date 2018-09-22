@@ -1,8 +1,10 @@
 const attendanceReducer = (state = [], action) => {
     switch (action.type) {
-        case 'UPDATE_ATTEND_MONTHS': 
-            return action.payload;  
-    default:
+        case 'UPDATE_ATTEND_MONTHS':
+            return action.payload;
+        case 'UPDATE_ATTEND_MONTHS':
+            return action.payload;
+        default:
             return state;
     }
 };
