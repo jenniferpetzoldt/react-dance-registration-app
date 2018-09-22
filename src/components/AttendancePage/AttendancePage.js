@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
-import AddDancer from '../AddDancer/AddDancer';
-import AttendanceTable from '../AttendanceTable/AttendanceTable';
 import axios from 'axios';
-import { InputLabel, FormControl, FormHelperText, MenuItem, Select, Button } from '@material-ui/core';
+import { InputLabel, FormControl, MenuItem, Select, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -13,9 +11,9 @@ const mapStateToProps = state => ({
 
 const styles = {
     formControl: {
-      display: 'flex',
+        display: 'flex',
     },
-  }
+}
 
 // needed for concatinating menu item
 const space = " ";
@@ -29,7 +27,7 @@ class AttendancePage extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getAttendMonths();
     }
 
@@ -40,9 +38,9 @@ class AttendancePage extends Component {
         }).then((response) => {
             console.log('GET attend months:', response.data);
             const attendMonths = response.data;
-            const action = { type: 'UPDATE_ATTEND_MONTHS', payload: attendMonths};
+            const action = { type: 'UPDATE_ATTEND_MONTHS', payload: attendMonths };
             this.props.dispatch(action);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('GET attend error', error);
             alert('Unable to get attend');
         })
@@ -50,14 +48,14 @@ class AttendancePage extends Component {
 
     handleChange = (event) => {
         this.setState({
-          attendId: event.target.value,
+            attendId: event.target.value,
         });
         console.log('attendID:', this.state.attendId);
-      }
+    }
 
     handleClick = (event) => {
         console.log('attendID:', this.state.attendId);
-        this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state})
+        this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state })
     }
 
     render() {
@@ -65,27 +63,18 @@ class AttendancePage extends Component {
 
         if (this.props.user.userName) {
             content = (
-                <div>
-                    <form>
-                        <FormControl style={styles.formControl}>
-                            <InputLabel htmlFor="attendSelect">Select Month</InputLabel>
-                            <Select inputProps={{name: 'attendSelect', id: "formSelect" }}
+                <form>
+                    <FormControl style={styles.formControl}>
+                        <InputLabel htmlFor="attendSelect">Select Month</InputLabel>
+                        <Select inputProps={{ name: 'attendSelect', id: "formSelect" }}
                             value={this.state.attendId}
                             onChange={this.handleChange}>
                             {this.props.state.attend.map((attendMonth, i) => {
                                 return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
                             })}</Select>
-                        </FormControl>
-                        <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
-                    </form>
-                   
-                    <div>
-                        <AddDancer />
-                    </div>
-                    <div>
-                        <AttendanceTable />
-                    </div>
-                </div>
+                    </FormControl>
+                    <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+                </form>
             );
         }
         return (
