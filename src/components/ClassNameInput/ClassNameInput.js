@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { InputLabel, FormControl, MenuItem, Select, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 
 const mapStateToProps = state => ({
@@ -9,24 +9,12 @@ const mapStateToProps = state => ({
     state,
 });
 
-const space = " ";
-
-const styles = {
-    formControl: {
-      display: 'flex',
-    },
-  }
-
 class ClassNameInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            years: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'],
-            selectedMonth: '',
-            selectedYear: '',
             newForm: {
-                startDate: '',
+                startDate: this.props.state.createForm,
                 month: '',
                 year: '',
                 levelOne: '',
@@ -37,39 +25,6 @@ class ClassNameInput extends Component {
                 levelFive: '',
             },
         }
-    }
-//javascript date class
-    createDate = event => {
-        event.preventDefault();
-        const selectedMonth = this.state.selectedMonth;
-        const selectedYear = this.state.selectedYear;
-        const wholeDate = selectedMonth + space + '1,' + space + selectedYear;
-        this.setState({
-            newForm: {
-                ...this.state.newForm,
-                startDate: wholeDate,
-            }
-        });
-    }
-//currying
-    handleMonthChange = (event) => {
-        this.setState({
-            newForm: {
-                ...this.state.newForm,
-                month: event.target.value,
-            },
-            selectedMonth: event.target.value,
-        });
-    }
-
-    handleYearChange = (event) => {
-        this.setState({
-            newForm: {
-                ...this.state.newForm,
-                year: event.target.value,
-            },
-            selectedYear: event.target.value,
-        });
     }
 
     handleChange = (event) => {
@@ -103,32 +58,6 @@ class ClassNameInput extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <form>
-                            <h2>Create a new class session:</h2>
-                        <FormControl style={styles.formControl}>
-                            <InputLabel htmlFor="monthSelect">Select Month</InputLabel>
-                            <Select 
-                            inputProps={{ name: 'monthSelect', id: "monthSelect" }}
-                            onChange={this.handleMonthChange} 
-                            value={this.state.newForm.month}>
-                                {this.state.months.map((month, i) => {
-                                    return <MenuItem key={i} value={month}>{month}</MenuItem>
-                                })}
-                            </Select>
-                            </FormControl>
-                            <FormControl style={styles.formControl}>
-                            <InputLabel htmlFor= "yearSelect">Select Year</InputLabel>
-                            <Select 
-                            inputProps={{ name: 'yearSelect', id: "yearSelect" }}
-                            onChange={this.handleYearChange} 
-                            value={this.state.newForm.year}>
-                                {this.state.years.map((year, i) => {
-                                    return <MenuItem key={i} value={year}>{year}</MenuItem>
-                                })}
-                            </Select>
-                            <Button className="next" varient="raised" onClick={this.createDate}>Next</Button>
-                        </FormControl>
-                    </form>
                     <form>
                         <h2>Class Names:</h2>
                         <p>Input class names including level below:</p>

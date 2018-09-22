@@ -18,6 +18,7 @@ import PersonalInformation from './components/PersonalInformation/PersonalInform
 import Lessons from './components/Lessons/Lessons';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
 import Confirm from './components/Confirm/Confirm';
+import ClassNameInput from './components/ClassNameInput/ClassNameInput';
 
 
 import './styles/main.css';
@@ -31,6 +32,10 @@ const App = () => (
         <Route
           path="/home"
           component={LoginPage}
+        />
+        <Route
+          path="/profile"
+          component={Profile}
         />
         <Route
           path="/register"
@@ -61,16 +66,16 @@ const App = () => (
           component={SuccessPage}
         />
         <Route
-          path="/profile"
-          component={Profile}
-        />
-        <Route
           path="/attendance"
           component={AttendancePage}
         />
         <Route
           path="/form"
           component={CreateFormPage}
+        />
+         <Route
+          path="/classnames"
+          component={ClassNameInput}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
