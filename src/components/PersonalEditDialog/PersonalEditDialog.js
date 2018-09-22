@@ -53,55 +53,78 @@ class EditDialog extends Component {
         });
     }
 
-    handleFirstHourChange = (event) => {
-        if (this.props.state.userInput.userInfo.admission === "general") {
+    handleAdmissionChange = (event) => {
+        if (this.state.personalInformation.admission === "general" && this.state.lessons.firstHour.cost === "35") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
                     firstHour: {
-                        className: event.target.value,
+                        ...this.state.lessons.firstHour,
                         cost: '40',
                     },
                 }
             });
-        } else if (this.props.state.userInput.userInfo.admission === "student") {
+        } else if (this.state.personalInformation.admission === "general" && this.state.lessons.secondHour.cost === "35") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHour: {
-                        className: event.target.value,
+                    secondHour: {
+                       ...this.state.lessons.secondHour,
+                        cost: '40',
+                    },
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.firstHour.cost === "40") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHour: {
+                       ...this.state.lessons.secondHour,
+                        cost: '35',
+                    },
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.secondHour.cost === "40") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHour: {
+                       ...this.state.lessons.secondHour,
                         cost: '35',
                     },
                 }
             });
         }
+    }
+
+    handleFirstHourChange = (event) => {
+       this.setState({
+           lessons: {
+               ...this.state.lessons,
+               firstHour: {
+                   ...this.state.lessons.firsthour,
+                   className: event.target.value,
+               }
+           }
+       })
     }
 
     handleSecondHourChange = (event) => {
-        if (this.props.state.userInput.userInfo.admission === "general") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: {
-                        className: event.target.value,
-                        cost: '40',
-                    },
+        this.setState({
+            lessons: {
+                ...this.state.lessons,
+                secondHour: {
+                    ...this.state.lessons.secondhour,
+                    className: event.target.value,
                 }
-            });
-        } else if (this.props.state.userInput.userInfo.admission === "student") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: {
-                        className: event.target.value,
-                        cost: '35',
-                    },
-                }
-            });
-        }
+            }
+        })
     }
 
     UpdateRegistraiton = () => {
+        this.handleAdmissionChange();
+        console.log('updateRegistration Admission:', this.state.personalInformation.admission);
+        console.log()
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
         this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
         this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
