@@ -3,11 +3,11 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET months for select on main user registration page
+ * GET months for select on admin attendance page
  */
 router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
-        const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" > now();`;
+        const query = `SELECT "form_month", "form_year" FROM "wed_form" WHERE "start_date" < now();`;
         pool.query(query)
             .then((response) => {
                 res.send(response.rows);

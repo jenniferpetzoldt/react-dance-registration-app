@@ -30,9 +30,9 @@ class AttendancePage extends Component {
         }
     }
 
-    // componentDidMount(){
-    //     this.getAttendMonths();
-    // }
+    componentDidMount(){
+        this.getAttendMonths();
+    }
 
     getAttendMonths = () => {
         axios({
@@ -49,6 +49,16 @@ class AttendancePage extends Component {
         })
     }
 
+    handleChange = (event) => {
+        this.setState({
+          attendId: event.target.value,
+        });
+      }
+
+    handleClick = (event) => {
+        this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state})
+    }
+
     render() {
         let content = null;
 
@@ -59,13 +69,13 @@ class AttendancePage extends Component {
                         <FormControl style={styles.formControl}>
                             <InputLabel htmlFor="attendSelect">Select Month</InputLabel>
                             <Select
-                                // inputProps={{ name: 'attendSelect', id: "attendSelect" }}
-                                // value={this.state.attendId}
-                                // onChange={this.handleChange}
+                                inputProps={{ name: 'attendSelect', id: "attendSelect" }}
+                                value={this.state.attendId}
+                                onChange={this.handleChange}
                                 >
-                                {/* {this.props.state.attend.map((attendMonth, i) => {
+                                {this.props.state.attend.map((attendMonth, i) => {
                                     return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
-                                })} */}
+                                })}
                             </Select>
                             <FormHelperText>Select Registration Month</FormHelperText>
                         </FormControl>
