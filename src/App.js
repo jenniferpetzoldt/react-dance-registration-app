@@ -13,6 +13,7 @@ import DanceRegistrationPage from './components/DanceRegistrationPage/DanceRegis
 import Profile from './components/Profile/Profile';
 import SuccessPage from './components/SuccessPage/SuccessPage';
 import AttendancePage from './components/AttendancePage/AttendancePage';
+import AttendanceTable from './components/AttendanceTable/AttendanceTable';
 import CreateFormPage from './components/CreateFormPage/CreateFormPage';
 import PersonalInformation from './components/PersonalInformation/PersonalInformation';
 import Lessons from './components/Lessons/Lessons';
@@ -63,6 +64,10 @@ const App = () => (
         <Route
           path="/attendance"
           component={AttendancePage}
+        />
+        <Route
+          path="/checkin"
+          component={AttendanceTable}
         />
         <Route
           path="/form"

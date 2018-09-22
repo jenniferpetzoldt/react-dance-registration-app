@@ -56,6 +56,7 @@ class AttendancePage extends Component {
     handleClick = (event) => {
         console.log('attendID:', this.state.attendId);
         this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state })
+        this.props.history.push('/checkin')
     }
 
     render() {

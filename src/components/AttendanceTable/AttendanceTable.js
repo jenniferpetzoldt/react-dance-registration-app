@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AddDancer from '../AddDancer/AddDancer';
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
+import Nav from '../Nav/Nav';
+import AddDancerButton from '../AddDancerButton/AddDancerButton';
+import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
+import { Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -15,9 +17,8 @@ class AttendanceTable extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <div>
-                        <AddDancer />
-                    </div>
+                    <AttendanceTitle />
+                    <AddDancerButton />
                     <Paper>
                         <Table>
                             <TableHead>
@@ -49,6 +50,7 @@ class AttendanceTable extends Component {
         }
         return (
             <div>
+                <Nav />
                 {content}
             </div>
         );
