@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -138,7 +139,7 @@ class AddDancerDialog extends Component {
                             name="note"
                             onChange={this.handleChange} />
                     </FormControl>
-                    <Button onClick={this.addNewDancer}>Edit</Button>
+                    <Button onClick={this.addNewDancer}>Submit</Button>
                 </form>
             );
         }

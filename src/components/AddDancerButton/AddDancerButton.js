@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField, Button, FormLabel, FormControl, Radio, RadioGroup, FormControlLabel, Dialog } from '@material-ui/core';
+import { Button, Dialog } from '@material-ui/core';
 import AddDancerDialog from '../AddDancerDialog/AddDancerDialog';
 const mapStateToProps = state => ({
     user: state.user,

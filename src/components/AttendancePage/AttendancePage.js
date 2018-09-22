@@ -46,6 +46,21 @@ class AttendancePage extends Component {
         })
     }
 
+    getSpecificAttendanceData = () => {
+        axios({
+            method: 'GET',
+            url: '/api/attendance/' + this.state.attendId
+        }).then((response) => {
+            const selectedAttendance = response.data;
+            const action = {type: 'SET_ATTENDANCE_DATA', payload: selectedAttendance};
+            this.props.dispatch(action);
+            this.props.history.push('/checkin')
+        }).catch((error) => {
+            console.log('GET specific attendance ERROR', error);
+            alert('Unable to get specific attendnace');
+        })
+    }
+
     handleChange = (event) => {
         this.setState({
             attendId: event.target.value,
@@ -56,7 +71,7 @@ class AttendancePage extends Component {
     handleClick = (event) => {
         console.log('attendID:', this.state.attendId);
         this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state })
-        this.props.history.push('/checkin')
+        this.getSpecificAttendanceData();
     }
 
     render() {
