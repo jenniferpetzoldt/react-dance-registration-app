@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EditDialog from '../EditDialog/EditDialog';
+import PersonalEditDialog from '../PersonalEditDialog/PersonalEditDialog';
+// import LessonsEditDialog from '../LessonsEditDialog/LessonsEditDialog';
 import axios from 'axios';
-import { Dialog}  from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -13,11 +14,12 @@ class Confirm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            editOpen: false,
+            // lessonsOpen: false,
         }
     }
 
-    sendRegistration = () => {
+    submitRegistration = (event) => {
         axios({
             method: 'POST',
             url: '/api/registration',
@@ -31,13 +33,15 @@ class Confirm extends Component {
         })
     }
 
-    submitRegistration = (event) => {
-        this.sendRegistration();
+    editClick = (event) => {
+        this.setState({
+            editOpen: true,
+        });
     }
 
-    handleEditClick = (event) => {
+    lessonsEditClick = (event) => {
         this.setState({
-            open: true,
+            lessonsOpen: true,
         });
     }
 
@@ -56,18 +60,23 @@ class Confirm extends Component {
                         <h3>Lessons:</h3>
                         <p>7:00pm-8:15pm {this.props.state.userInput.firstHour.className}</p>
                         <p>8:30pm-9:45pm {this.props.state.userInput.secondHour.className}</p>
+                        <button onClick={this.lessonsEditClick}>Edit</button>
                         <h3>Payment Method:</h3>
                         {this.props.state.userInput.payment.paymentMethod}
                         <h3>Total Cost:</h3>
                         <p>${this.props.state.userInput.total}.00</p>
                         <br />
                         <button onClick={this.submitRegistration}>Submit</button>
-                        <button onClick={this.handleEditClick}>Edit</button>
+                        <button onClick={this.editClick}>Edit</button>
                     </div>
                     <Dialog
-                        open={this.state.open}>
-                        <EditDialog />
+                        open={this.state.editOpen}>
+                        <PersonalEditDialog />
                     </Dialog>
+                    {/* <Dialog
+                        open={this.state.lessonsOpen}>
+                        <LessonsEditDialog />
+                    </Dialog> */}
                 </div>
             );
         }

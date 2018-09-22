@@ -17,7 +17,6 @@ import CreateFormPage from './components/CreateFormPage/CreateFormPage';
 import PersonalInformation from './components/PersonalInformation/PersonalInformation';
 import Lessons from './components/Lessons/Lessons';
 import PaymentMethod from './components/PaymentMethod/PaymentMethod';
-import Confirm from './components/Confirm/Confirm';
 import ClassNameInput from './components/ClassNameInput/ClassNameInput';
 
 
@@ -56,10 +55,6 @@ const App = () => (
         <Route
           path="/payment"
           component={PaymentMethod}
-          />
-        <Route
-          path="/confirm"
-          component={Confirm}
           />
         <Route
           path="/success"
