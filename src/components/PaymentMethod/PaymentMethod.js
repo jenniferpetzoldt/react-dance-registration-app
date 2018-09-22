@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
+import Confirm from '../Confirm/Confirm';
 import RegistrationTitle from '../RegistrationTitle/RegistrationTitle';
-import { FormControl, Radio, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
+import { FormControl, Radio, RadioGroup, Dialog, FormControlLabel, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -16,36 +17,18 @@ class PaymentMethod extends Component {
             payment: {
                 paymentMethod: '',
             },
+            open: false,
         }
     }
     
 
     addPayment = () => {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
-        this.props.history.push('/confirm');
     }
 
-    // calculateTotal = () => {
-    //     const firstHourCost = Number(this.props.state.userInput.firstHour.cost);
-    //     const secondHourCost = Number(this.props.state.userInput.secondHour.cost);
-    //     const total = firstHourCost + secondHourCost;
-    //     const stringTotal = String(total);
-    //     this.setState({
-    //         payment: {
-    //             ...this.state.payment,
-    //             totalCost: stringTotal,
-    //         },
-    //     });
-    //     this.props.history.push('/confirm');
-    //     console.log('in calculateTotal', stringTotal);
-    // }
-
     handleChange = (event) => {
-        // this.calculateTotal();
-        // console.log('in handleConfirmClick', this.props.state.userInput.payment);
         this.setState({
             payment: {
-                ...this.state.payment,
                 paymentMethod: event.target.value,
             },
         });
@@ -53,6 +36,9 @@ class PaymentMethod extends Component {
 
     handleConfirmClick = (event) => {
         this.addPayment();
+        this.setState({
+            open: true,
+        })
         
     }
 
@@ -78,6 +64,11 @@ class PaymentMethod extends Component {
                     <br />
                     <Button className="next" varient="raised"
                         onClick={this.handleConfirmClick}>Confirm</Button>
+
+                    <Dialog 
+                        open={this.state.open}>
+                        <Confirm />
+                    </Dialog>
                 </div>
             )
         }

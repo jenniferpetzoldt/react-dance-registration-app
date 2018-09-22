@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { TextField, Button } from '@material-ui/core';
-
+import Nav from '../Nav/Nav';
+import { TextField, FormControl, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -14,9 +14,9 @@ class ClassNameInput extends Component {
         super(props);
         this.state = {
             newForm: {
-                startDate: this.props.state.createForm,
-                month: '',
-                year: '',
+                startDate: this.props.state.createForm.date,
+                month: this.props.state.createForm.month,
+                year: this.props.state.createForm.year,
                 levelOne: '',
                 levelFour: '',
                 soloJazz: '',
@@ -46,6 +46,7 @@ class ClassNameInput extends Component {
         }).then((response) => {
             console.log('Success with form POST');
             this.props.dispatch({ type: 'CLEAR_FORM' });
+            this.props.history.push('/form');
         }).catch((error) => {
             console.log('Form Post error', error);
             alert('Unable to add form');
@@ -62,40 +63,52 @@ class ClassNameInput extends Component {
                         <h2>Class Names:</h2>
                         <p>Input class names including level below:</p>
                         <div>
-                            <h3>07:00pm</h3>
-                            <TextField 
-                            label="Level 1"
-                            name="levelOne" 
-                            value="Level 1"
-                            onChange={this.handleChange} />
-                            <TextField 
-                            label="Level 4"
-                            name="levelFour"
-                            value="Level 4" 
-                            onChange={this.handleChange} />
-                            <TextField 
-                            label="Solo Jazz"
-                            name="soloJazz" 
-                            value="Solo Jazz"
-                            onChange={this.handleChange} />
-                            <h3>08:30pm</h3>
-                            <TextField 
-                            label="Level 2"
-                            name="levelTwo"
-                            value="Level 2" 
-                            onChange={this.handleChange} />
-                            <TextField 
-                            label="Level 3"
-                            name="levelThree"
-                            value="Level 3" 
-                            onChange={this.handleChange} />
-                            <TextField 
-                            label="Level 5"
-                            name="levelFive"
-                            value="Level 5" 
-                            onChange={this.handleChange} />
+                            <FormControl>
+                                <TextField
+                                    label="Level 1"
+                                    name="levelOne"
+                                    value={this.state.newForm.levelOne}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <FormControl>
+                                <TextField
+                                    label="Level 2"
+                                    name="levelTwo"
+                                    value={this.state.newForm.levelTwo}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <FormControl>
+                                <TextField
+                                    label="Level 3"
+                                    name="levelThree"
+                                    value={this.state.newForm.levelThree}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <br />
+                            <FormControl>
+                                <TextField
+                                    label="Level 4"
+                                    name="levelFour"
+                                    value={this.state.newForm.levelFour}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <FormControl>
+                                <TextField
+                                    label="Level 5"
+                                    name="levelFive"
+                                    value={this.state.newForm.levelFive}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <FormControl>
+                                <TextField
+                                    label="Solo Jazz"
+                                    name="soloJazz"
+                                    value={this.state.newForm.soloJazz}
+                                    onChange={this.handleChange} />
+                            </FormControl>
+                            <br />
                             <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
-                        {/* add another button to send back to add another month's classes */}
+                            <Button className="cancel" varient="raised">Cancel</Button>
                         </div>
                     </form>
                 </div >
@@ -103,6 +116,7 @@ class ClassNameInput extends Component {
         }
         return (
             <div>
+                <Nav />
                 {content}
             </div>
         );

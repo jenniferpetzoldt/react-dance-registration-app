@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import { InputLabel, FormControl, MenuItem, Select, Button } from '@material-ui/core';
 
-
-
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -18,7 +16,6 @@ const styles = {
     },
 }
 
-
 class CreateFormPage extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +26,7 @@ class CreateFormPage extends Component {
             selectedYear: '',
         }
     }
+
     handleMonthChange = (event) => {
         this.setState({
             selectedMonth: event.target.value,
@@ -47,6 +45,8 @@ class CreateFormPage extends Component {
         const selectedYear = this.state.selectedYear;
         const wholeDate = selectedMonth + space + '1,' + space + selectedYear;
         this.props.dispatch({ type: 'ADD_WHOLE_DATE', payload: wholeDate });
+        this.props.dispatch({ type: 'ADD_MONTH', payload: this.state.selectedMonth });
+        this.props.dispatch({ type: 'ADD_YEAR', payload: this.state.selectedYear });
     }
 
     handleClick = (event) => {
@@ -85,6 +85,7 @@ class CreateFormPage extends Component {
                     </FormControl>
                     <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                 </form>
+                //add table to see created forms below and delete or edit forms
             );
         }
 
