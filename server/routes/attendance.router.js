@@ -20,13 +20,14 @@ router.get('/', (req, res) => {
     }
 });
 
-// GET specific Form data for selected month
+// GET specific Attendance data for selected month
 router.get('/:id', (req, res) => {
-    console.log('specific form GET req.body', req.params);
+    console.log('specific attendance title info GET req.body', req.params);
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "wed_form" WHERE "id" = $1;`;
         pool.query(query, [req.params.id])
             .then((response) => {
+                console.log('specific attendance get response', response.rows);
                 res.send(response.rows);
             }).catch((error) => {
                 console.log('GET specific form failed', error);

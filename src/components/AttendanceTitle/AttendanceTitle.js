@@ -15,9 +15,9 @@ class AttendanceTitle extends Component {
             content = (
                 <div>
                     {/* loops over available forms in the reducer to populate the dropdown menu */}
-                    {this.props.state.attend.map((attendMonth, i) => {
-                        return <h2 key={i} value={attendMonth.id}>
-                            {attendMonth.form_month + space + attendMonth.form_year} Wednesday Session</h2>
+                    {this.props.state.attend.map((attendance, i) => {
+                        return <h2 key={i} value={attendance.id}>
+                            {attendance.form_month + space + attendance.form_year} Wednesday Session</h2>
                     })}
                 </div>
             );
