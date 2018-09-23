@@ -56,7 +56,18 @@ class FormTable extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow></TableRow>
+                            {this.state.createdForms.map((form, i) => {
+                                return <TableRow key={i} value={form}>
+                                <TableCell>{form.form_month}</TableCell>
+                                <TableCell>{form.form_year}</TableCell>
+                                <TableCell>{form.level_one}</TableCell>
+                                <TableCell>{form.level_two}</TableCell>
+                                <TableCell>{form.level_three}</TableCell>
+                                <TableCell>{form.level_four}</TableCell>
+                                <TableCell>{form.level_five}</TableCell>
+                                <TableCell>{form.solo_jazz}</TableCell>
+                                </TableRow>
+                            })}
                         </TableBody>
                     </Table>
                 </Paper>
