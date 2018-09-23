@@ -10,14 +10,18 @@ const mapStateToProps = state => ({
 class AddDancer extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-        }
+        this.state = { isHidden: false };
     }
-    
-    addDancer = (event) => {
+
+    toggleToForm = (event) => {
         this.setState({
-            open: true,
+            isHidden: true,
+        })
+    }
+
+    toggleFromForm = (event) => {
+        this.setState({
+            isHidden: !this.state.isHidden,
         })
     }
 
@@ -26,14 +30,15 @@ class AddDancer extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <div>
-                        <Button onClick={this.addDancer}>Add Dancer</Button>
+                    <div onClick={this.toggleToForm}>
+                        {this.state.isHidden ?
+                            <div>
+                                <AddDancerDialog />
+                            </div>
+                            : <Button>Add Dancer</Button>}
                     </div>
-                    <Dialog
-                    open={this.state.open}>
-                        <AddDancerDialog />
-                    </Dialog>
                 </div>
+
             );
         }
         return (

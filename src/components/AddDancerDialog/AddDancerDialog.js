@@ -34,30 +34,32 @@ class AddDancerDialog extends Component {
         });
     }
 
-    addDancer = () => {
-        this.props.dispatch({ type: 'ADD_NEW_DANCER', payload: this.state });
-    }
-
-    onClose = () => {
-        console.log('adminInput:', this.props.state.adminInput);
+    handleClick = (event) => {
         axios({
             method: 'POST',
             url: '/api/admin',
-            data: { newReg: this.props.state.adminInput }
+            data: { newReg: this.state }
         }).then((response) => {
             console.log('success with registration POST');
-            this.props.dispatch({ type: 'CLEAR_ADMIN_INPUT' });
-            this.props.setState({
-                open: false,
+            this.setState({
+                firstName: '',
+                lastName: '',
+                email: '',
+                role: '',
+                admission: '',
+                first: '',
+                second: '',
+                paid: '',
+                week1: '',
+                week2: '',
+                week3: '',
+                week4: '',
+                note: '',
             });
         }).catch((error) => {
             console.log('Add Dancer Reg POST error', error);
             alert('Unable to add dancer reg from admin');
         })
-    }
-
-    handleClick = (event) => {
-        this.addDancer();
     }
 
     render() {
@@ -158,6 +160,12 @@ class AddDancerDialog extends Component {
                                 control={<Radio color="primary" />}
                                 label={this.props.state.attend[0].level_five} />
                         </RadioGroup>
+                    </FormControl>
+                    <FormControl>
+                        <TextField
+                            label="Note"
+                            name="note"
+                            onChange={this.handleChnage} />
                     </FormControl>
                     <Button onClick={this.handleClick}>Submit</Button>
                 </form>
