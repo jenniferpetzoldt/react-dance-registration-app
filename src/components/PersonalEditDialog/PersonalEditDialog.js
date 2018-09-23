@@ -124,7 +124,6 @@ class EditDialog extends Component {
     UpdateRegistraiton = () => {
         this.handleAdmissionChange();
         console.log('updateRegistration Admission:', this.state.personalInformation.admission);
-        console.log()
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
         this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
         this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });

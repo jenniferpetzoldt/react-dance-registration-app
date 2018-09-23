@@ -27,10 +27,12 @@ class Confirm extends Component {
         }).then((response) => {
             console.log('Success with registration POST');
             this.props.dispatch({ type: 'CLEAR_USER_INPUT' });
+            this.props.history.push('/success');
         }).catch((error) => {
             console.log('Registration POST error', error);
             alert('Unable to add registration');
         })
+
     }
 
     editClick = (event) => {
@@ -60,7 +62,6 @@ class Confirm extends Component {
                         <h3>Lessons:</h3>
                         <p>7:00pm-8:15pm {this.props.state.userInput.firstHour.className}</p>
                         <p>8:30pm-9:45pm {this.props.state.userInput.secondHour.className}</p>
-                        <button onClick={this.lessonsEditClick}>Edit</button>
                         <h3>Payment Method:</h3>
                         {this.props.state.userInput.payment.paymentMethod}
                         <h3>Total Cost:</h3>
@@ -73,10 +74,6 @@ class Confirm extends Component {
                         open={this.state.editOpen}>
                         <PersonalEditDialog />
                     </Dialog>
-                    {/* <Dialog
-                        open={this.state.lessonsOpen}>
-                        <LessonsEditDialog />
-                    </Dialog> */}
                 </div>
             );
         }
