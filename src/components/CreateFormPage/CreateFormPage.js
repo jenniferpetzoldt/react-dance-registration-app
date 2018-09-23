@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
+import FormTable from '../FormTable/FormTable';
 import { InputLabel, FormControl, MenuItem, Select, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
@@ -59,33 +60,35 @@ class CreateFormPage extends Component {
 
         if (this.props.user.userName) {
             content = (
-                <form>
-                    <h2>Create a new class session:</h2>
-                    <FormControl style={styles.formControl}>
-                        <InputLabel htmlFor="monthSelect">Select Month</InputLabel>
-                        <Select
-                            inputProps={{ name: 'monthSelect', id: "monthSelect" }}
-                            onChange={this.handleMonthChange}
-                            value={this.state.selectedMonth}>
-                            {this.state.months.map((month, i) => {
-                                return <MenuItem key={i} value={month}>{month}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <InputLabel htmlFor="yearSelect">Select Year</InputLabel>
-                        <Select
-                            inputProps={{ name: 'yearSelect', id: "yearSelect" }}
-                            onChange={this.handleYearChange}
-                            value={this.state.selectedYear}>
-                            {this.state.years.map((year, i) => {
-                                return <MenuItem key={i} value={year}>{year}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-                    <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
-                </form>
-                //add table to see created forms below and delete or edit forms
+                <div>
+                    <form>
+                        <h2>Create a new class session:</h2>
+                        <FormControl style={styles.formControl}>
+                            <InputLabel htmlFor="monthSelect">Select Month</InputLabel>
+                            <Select
+                                inputProps={{ name: 'monthSelect', id: "monthSelect" }}
+                                onChange={this.handleMonthChange}
+                                value={this.state.selectedMonth}>
+                                {this.state.months.map((month, i) => {
+                                    return <MenuItem key={i} value={month}>{month}</MenuItem>
+                                })}
+                            </Select>
+                        </FormControl>
+                        <FormControl style={styles.formControl}>
+                            <InputLabel htmlFor="yearSelect">Select Year</InputLabel>
+                            <Select
+                                inputProps={{ name: 'yearSelect', id: "yearSelect" }}
+                                onChange={this.handleYearChange}
+                                value={this.state.selectedYear}>
+                                {this.state.years.map((year, i) => {
+                                    return <MenuItem key={i} value={year}>{year}</MenuItem>
+                                })}
+                            </Select>
+                        </FormControl>
+                        <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+                    </form>
+                    <FormTable />
+                </div>
             );
         }
 
