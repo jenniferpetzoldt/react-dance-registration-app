@@ -12,7 +12,6 @@ class AttendanceTableHead extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <div>
                     <TableHead>
                         <TableRow>
                             <TableCell>First Name</TableCell>
@@ -32,7 +31,6 @@ class AttendanceTableHead extends Component {
                             <TableCell>Notes</TableCell>
                         </TableRow>
                     </TableHead>
-                </div>
             );
         }
         return (

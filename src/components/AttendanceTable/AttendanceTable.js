@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-import { Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, Paper } from '@material-ui/core';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
@@ -21,7 +21,7 @@ class AttendanceTable extends Component {
     }
 
     componentDidMount(){
-        this.getRegistrations();
+        // this.getRegistrations();
     }
 
     getRegistrations = () => {
@@ -30,13 +30,11 @@ class AttendanceTable extends Component {
             url: '/api/registration/' + this.state.attendId
         }).then((response) => {
             this.setState({registrations: response.data,});
-            console.log('getRegistrations response:', response.data);
         }).catch((error) => {
             console.log('Registrations GET error', error);
             alert('Unable to GET registrations');
         })
     }
-
 
     render() {
         let content = null;
@@ -65,6 +63,7 @@ class AttendanceTable extends Component {
                                     <TableCell>Week 3</TableCell>
                                     <TableCell>Week 4</TableCell>
                                     <TableCell>Notes</TableCell>
+                                    <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -85,9 +84,12 @@ class AttendanceTable extends Component {
                                     <TableCell>{registration.week_three}</TableCell>
                                     <TableCell>{registration.week_four}</TableCell>
                                     <TableCell>notes</TableCell>
+                                    <TableCell>
+                                        <Button>Delete</Button>
+                                        <Button>Update</Button>
+                                    </TableCell>
                                     </TableRow>
                                 })}
-                            
                             </TableBody>
                         </Table>
                     </Paper>

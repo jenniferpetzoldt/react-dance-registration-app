@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Paper, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -47,6 +47,7 @@ class FormTable extends Component {
                                 <TableCell>Level 4</TableCell>
                                 <TableCell>Level 5</TableCell>
                                 <TableCell>Solo Jazz</TableCell>
+                                <TableCell>Delete</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -60,6 +61,7 @@ class FormTable extends Component {
                                 <TableCell>{form.level_four}</TableCell>
                                 <TableCell>{form.level_five}</TableCell>
                                 <TableCell>{form.solo_jazz}</TableCell>
+                                <TableCell><Button>Delete</Button></TableCell>
                                 </TableRow>
                             })}
                         </TableBody>
