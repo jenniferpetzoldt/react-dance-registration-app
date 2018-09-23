@@ -13,6 +13,8 @@ const userRouter = require('./routes/user.router');
 const formRouter = require('./routes/form.router');
 const registrationRouter = require('./routes/registration.router');
 const attendanceRouter = require('./routes/attendance.router');
+const adminRouter = require('./routes/admin.router');
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/form', formRouter);
 app.use('/api/registration', registrationRouter);
 app.use('/api/attendance', attendanceRouter);
+app.use('/api/admin', adminRouter);
 
 // Serve static files
 app.use(express.static('build'));

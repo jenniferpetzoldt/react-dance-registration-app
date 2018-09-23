@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
@@ -31,6 +32,32 @@ class AddDancerDialog extends Component {
         this.setState({
             [event.target.name]: event.target.value,
         });
+    }
+
+    addDancer = () => {
+        this.props.dispatch({ type: 'ADD_NEW_DANCER', payload: this.state });
+    }
+
+    onClose = () => {
+        console.log('adminInput:', this.props.state.adminInput);
+        axios({
+            method: 'POST',
+            url: '/api/admin',
+            data: { newReg: this.props.state.adminInput }
+        }).then((response) => {
+            console.log('success with registration POST');
+            this.props.dispatch({ type: 'CLEAR_ADMIN_INPUT' });
+            this.props.setState({
+                open: false,
+            });
+        }).catch((error) => {
+            console.log('Add Dancer Reg POST error', error);
+            alert('Unable to add dancer reg from admin');
+        })
+    }
+
+    handleClick = (event) => {
+        this.addDancer();
     }
 
     render() {
@@ -115,7 +142,7 @@ class AddDancerDialog extends Component {
                     <FormControl>
                         <RadioGroup
                             aria-label="8:30pm - 9:45pm"
-                            name="secondHour"
+                            name="second"
                             value={this.state.second}
                             onChange={this.handleChange}>
                             <FormControlLabel
@@ -132,14 +159,7 @@ class AddDancerDialog extends Component {
                                 label={this.props.state.attend[0].level_five} />
                         </RadioGroup>
                     </FormControl>
-                    <br />
-                    <FormControl>
-                        <TextField
-                            label="Note"
-                            name="note"
-                            onChange={this.handleChange} />
-                    </FormControl>
-                    <Button onClick={this.addNewDancer}>Submit</Button>
+                    <Button onClick={this.handleClick}>Submit</Button>
                 </form>
             );
         }

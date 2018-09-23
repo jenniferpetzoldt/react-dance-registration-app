@@ -32,7 +32,6 @@ class Confirm extends Component {
             console.log('Registration POST error', error);
             alert('Unable to add registration');
         })
-
     }
 
     editClick = (event) => {

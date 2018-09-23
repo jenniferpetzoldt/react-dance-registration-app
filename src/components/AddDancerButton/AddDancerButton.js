@@ -27,7 +27,7 @@ class AddDancer extends Component {
             content = (
                 <div>
                     <div>
-                        <Button>Add Dancer</Button>
+                        <Button onClick={this.addDancer}>Add Dancer</Button>
                     </div>
                     <Dialog
                     open={this.state.open}>
