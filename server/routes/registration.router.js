@@ -30,4 +30,20 @@ router.post('/', (req, res) => {
     }
 });
 
+router.get('/:id', (req, res) => {
+    console.log('registration GET req.params.id', req.params.id);
+    if(req.isAuthenticated()) {
+        const query = `SELECT * FROM "registration" LEFT JOIN "attendance" ON "registration"."wed_form_id"="attendance"."wed_form_id" WHERE "registration"."wed_form_id" = $1;`;
+        pool.query(query, [req.params.id])
+        .then((response) => {
+            res.send(response.rows);
+        }).catch((error) =>{
+            console.log('Registration GET error', error);
+            res.sendStatus(500);
+        });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 module.exports = router;

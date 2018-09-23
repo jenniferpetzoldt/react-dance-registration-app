@@ -89,7 +89,7 @@ class AttendancePage extends Component {
                                 return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
                             })}</Select>
                     </FormControl>
-                    <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
+                    <Button className="next" varient="raised" onClick={this.handleClick}>Select</Button>
                 </form>
             );
         }

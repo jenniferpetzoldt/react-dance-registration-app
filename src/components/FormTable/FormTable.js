@@ -19,18 +19,12 @@ class FormTable extends Component {
         this.getCreatedForms();
     }
 
-    checkState = () => {
-        console.log('in checkState:', this.state.createdForms);
-    }
     getCreatedForms = () => {
         axios({
             method: 'GET',
             url: '/api/created'
         }).then((response) => {
-            this.setState({
-                createdForms: response.data,
-            });
-            this.checkState();
+            this.setState({createdForms: response.data,});
         }).catch((error) => {
             console.log('Created Forms GET error', error);
             alert('Unable to GET created forms');

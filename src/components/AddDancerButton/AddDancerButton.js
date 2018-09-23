@@ -26,8 +26,8 @@ class AddDancer extends Component {
 
         if (isHidden) {
             addDancer = <div>
-                            <AddDancerForm />
-                            <Button onClick={this.toggleAddDancer}>Close Form</Button>
+                        <AddDancerForm />
+                        <Button onClick={this.toggleAddDancer}>Close Form</Button>
                         </div>
         } else {
             addDancer = <Button onClick={this.toggleAddDancer}>Add Dancer</Button>
@@ -38,7 +38,6 @@ class AddDancer extends Component {
                 <div>
                     {addDancer}
                 </div>
-
             );
         }
         return (

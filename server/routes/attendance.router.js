@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
     } else {
         res.sendStatus(403);
     }
-})
+});
 
 
 module.exports = router;

@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
 import { Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import axios from 'axios';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -11,6 +12,32 @@ const mapStateToProps = state => ({
 });
 
 class AttendanceTable extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            registrations: [],
+            attendId: this.props.state.adminInput.attendId,
+        }
+    }
+
+    componentDidMount(){
+        this.getRegistrations();
+    }
+
+    getRegistrations = () => {
+        axios({
+            method: 'GET',
+            url: '/api/registration/' + this.state.attendId
+        }).then((response) => {
+            this.setState({registrations: response.data,});
+            console.log('getRegistrations response:', response.data);
+        }).catch((error) => {
+            console.log('Registrations GET error', error);
+            alert('Unable to GET registrations');
+        })
+    }
+
+
     render() {
         let content = null;
 
@@ -41,7 +68,26 @@ class AttendanceTable extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                <TableRow></TableRow>
+                                {this.state.registrations.map((registration, i) => {
+                                    return     <TableRow key={i} value={registration}>
+                                    <TableCell>{registration.first_name}</TableCell>
+                                    <TableCell>{registration.last_name}</TableCell>
+                                    <TableCell>{registration.email}</TableCell>
+                                    <TableCell>{registration.dancer_role}</TableCell>
+                                    <TableCell>{registration.admission}</TableCell>
+                                    <TableCell>{registration.first_hour}</TableCell>
+                                    <TableCell>{registration.second_hour}</TableCell>
+                                    <TableCell>{registration.paid}</TableCell>
+                                    <TableCell>{registration.oweds}</TableCell>
+                                    <TableCell>{registration.payment_type}</TableCell>
+                                    <TableCell>{registration.week_one}</TableCell>
+                                    <TableCell>{registration.week_two}</TableCell>
+                                    <TableCell>{registration.week_three}</TableCell>
+                                    <TableCell>{registration.week_four}</TableCell>
+                                    <TableCell>notes</TableCell>
+                                    </TableRow>
+                                })}
+                            
                             </TableBody>
                         </Table>
                     </Paper>

@@ -73,21 +73,18 @@ class AddDancerDialog extends Component {
                             name="firstName"
                             onChange={this.handleChange} />
                     </FormControl>
-                    <br />
                     <FormControl>
                         <TextField
                             label="Last Name"
                             name="lastName"
                             onChange={this.handleChange} />
                     </FormControl>
-                    <br />
                     <FormControl>
                         <TextField
                             label="Email Address"
                             name="email"
                             onChange={this.handleChnage} />
                     </FormControl>
-                    <br />
                     <FormControl>
                         <FormLabel>Role</FormLabel>
                         <RadioGroup
@@ -120,8 +117,8 @@ class AddDancerDialog extends Component {
                                 label='Student' />
                         </RadioGroup>
                     </FormControl>
-                    <br />
                     <FormControl>
+                    <FormLabel>7:00 pm</FormLabel>
                         <RadioGroup
                             aria-label="7:00pm - 8:15pm"
                             name="first"
@@ -142,6 +139,7 @@ class AddDancerDialog extends Component {
                         </RadioGroup>
                     </FormControl>
                     <FormControl>
+                    <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup
                             aria-label="8:30pm - 9:45pm"
                             name="second"
@@ -167,6 +165,7 @@ class AddDancerDialog extends Component {
                             name="note"
                             onChange={this.handleChnage} />
                     </FormControl>
+                    <br />
                     <Button onClick={this.handleClick}>Submit</Button>
                 </form>
             );
