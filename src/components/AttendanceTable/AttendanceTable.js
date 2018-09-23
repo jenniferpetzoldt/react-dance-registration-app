@@ -45,12 +45,11 @@ class AttendanceTable extends Component {
                     <AttendanceTitle />
                     <AddDancerButton />
                     <Paper>
-                        <Table>
+                        <Table id="attendanceTable">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
-                                    <TableCell>Email</TableCell>
                                     <TableCell>Role</TableCell>
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
@@ -71,7 +70,6 @@ class AttendanceTable extends Component {
                                     return     <TableRow key={i} value={registration}>
                                     <TableCell>{registration.first_name}</TableCell>
                                     <TableCell>{registration.last_name}</TableCell>
-                                    <TableCell>{registration.email}</TableCell>
                                     <TableCell>{registration.dancer_role}</TableCell>
                                     <TableCell>{registration.admission}</TableCell>
                                     <TableCell>{registration.first_hour}</TableCell>
