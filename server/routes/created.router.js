@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     if(req.isAuthenticated()) {
-        const query = `SELECT * FROM "wed_form";`;
+        const query = `SELECT * FROM "wed_form" ORDER BY "start_date" ASC;`;
         pool.query(query)
         .then((response) => {
             console.log('created forms GET:', response.rows);
