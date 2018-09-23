@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Dialog } from '@material-ui/core';
-import AddDancerDialog from '../AddDancerDialog/AddDancerDialog';
+import { Button} from '@material-ui/core';
+import AddDancerForm from '../AddDancerForm/AddDancerForm';
 const mapStateToProps = state => ({
     user: state.user,
     state,
@@ -27,16 +27,19 @@ class AddDancer extends Component {
 
     render() {
         let content = null;
+        const isHidden = this.state.isHidden;
+        let addDancer;
+
+        if(isHidden) {
+            addDancer = <AddDancerForm />
+        } else {
+            addDancer = <Button onClick={this.toggleToForm}>Add Dancer</Button>
+        }
+
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <div onClick={this.toggleToForm}>
-                        {this.state.isHidden ?
-                            <div>
-                                <AddDancerDialog />
-                            </div>
-                            : <Button>Add Dancer</Button>}
-                    </div>
+                    {addDancer}
                 </div>
 
             );
