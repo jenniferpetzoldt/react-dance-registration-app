@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PersonalEditDialog from '../PersonalEditDialog/PersonalEditDialog';
-// import LessonsEditDialog from '../LessonsEditDialog/LessonsEditDialog';
 import axios from 'axios';
 import { Dialog } from '@material-ui/core';
 
@@ -15,7 +14,6 @@ class Confirm extends Component {
         super(props);
         this.state = {
             editOpen: false,
-            // lessonsOpen: false,
         }
     }
 
@@ -27,11 +25,11 @@ class Confirm extends Component {
         }).then((response) => {
             console.log('Success with registration POST');
             this.props.dispatch({ type: 'CLEAR_USER_INPUT' });
-            this.props.history.push('/success');
         }).catch((error) => {
             console.log('Registration POST error', error);
             alert('Unable to add registration');
         })
+        this.props.closeConfirm();
     }
 
     editClick = (event) => {
@@ -43,7 +41,6 @@ class Confirm extends Component {
 
     closeClick = (event) => {
         console.log('in closeClick');
-        this.props.closeConfirm();
         this.setState({
             editOpen: false,
         });

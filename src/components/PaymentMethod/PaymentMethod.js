@@ -72,7 +72,7 @@ class PaymentMethod extends Component {
 
                     <Dialog 
                         open={this.state.open}>
-                        <Confirm open={this.state.open} />
+                        <Confirm open={this.state.open} closeConfirm={this.closeConfirm}/>
                     </Dialog>
                 </div>
             )

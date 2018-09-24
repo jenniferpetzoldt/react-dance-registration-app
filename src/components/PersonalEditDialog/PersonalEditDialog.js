@@ -12,7 +12,6 @@ class EditDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
             personalInformation: {
                 userId: this.props.state.user.id,
                 firstName: this.props.state.userInput.userInfo.firstName,
@@ -94,7 +93,9 @@ class EditDialog extends Component {
                     },
                 }
             });
-        }
+        } else {
+
+        };
     }
 
     handleFirstHourChange = (event) => {
@@ -121,16 +122,14 @@ class EditDialog extends Component {
         })
     }
 
-    UpdateRegistraiton = () => {
+    updateRegistraiton = () => {
         this.handleAdmissionChange();
         console.log('updateRegistration Admission:', this.state.personalInformation.admission);
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
         this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
         this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
         this.calculateTotal();
-        this.setState({
-            open: true,
-        });
+        this.props.closeClick();
     }
 
     render() {
@@ -241,12 +240,8 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button onClick={this.UpdateRegistraiton}>Save</Button>
-                        <Button onClick={this.props.closeClick}>Close</Button>
-                        <Dialog
-                            open={this.state.open}>
-                            <Confirm />
-                        </Dialog>
+                        <Button onClick={this.updateRegistraiton}>Save</Button>
+                        {/* <Button onClick={this.props.closeClick}>Close</Button> */}
                     </div>
                 </div>
             );
