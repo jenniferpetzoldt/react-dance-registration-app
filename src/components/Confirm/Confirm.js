@@ -14,11 +14,9 @@ class Confirm extends Component {
         super(props);
         this.state = {
             editOpen: false,
+            total: '',
         }
     }
-componentDidMount() {
-    this.dispatchTotal();
-}
 
 dispatchTotal = () => {
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
@@ -29,15 +27,14 @@ dispatchTotal = () => {
         console.log('in calculateTotal', stringTotal);
     }
 
-    calculateTotal = () => {
-        const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
-        const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
-        const total = firstHourCost + secondHourCost;
-        const stringTotal = String(total);
+    submitRegistration = (event) => {
+        this.dispatchTotal();
+        setTimeout(() => {
+            this.sendTotal();
+        }, 1); 
     }
 
-    submitRegistration = (event) => {
-        this.calculateTotal();
+    sendTotal = () => {
         axios({
             method: 'POST',
             url: '/api/registration',
@@ -71,6 +68,7 @@ dispatchTotal = () => {
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
+       
         if (this.props.user.userName) {
             content = (
                 <div>

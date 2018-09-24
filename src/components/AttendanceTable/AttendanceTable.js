@@ -50,7 +50,6 @@ class AttendanceTable extends Component {
                                 <TableRow>
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
-                                    <TableCell>Email</TableCell>
                                     <TableCell>Role</TableCell>
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
