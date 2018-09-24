@@ -40,9 +40,12 @@ class Confirm extends Component {
         });
     }
 
-    lessonsEditClick = (event) => {
+
+    closeClick = (event) => {
+        console.log('in closeClick');
+        this.props.closeConfirm();
         this.setState({
-            lessonsOpen: true,
+            editOpen: false,
         });
     }
 
@@ -70,8 +73,8 @@ class Confirm extends Component {
                         <button onClick={this.editClick}>Edit</button>
                     </div>
                     <Dialog
-                        open={this.state.editOpen}>
-                        <PersonalEditDialog />
+                        open={this.state.editOpen} >
+                        <PersonalEditDialog editOpen={this.state.editOpen} closeClick={this.closeClick}/>
                     </Dialog>
                 </div>
             );

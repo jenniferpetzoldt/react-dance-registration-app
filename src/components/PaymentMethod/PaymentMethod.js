@@ -19,8 +19,7 @@ class PaymentMethod extends Component {
             },
             open: false,
         }
-    }
-    
+    }   
 
     addPayment = () => {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
@@ -40,6 +39,12 @@ class PaymentMethod extends Component {
             open: true,
         })
         
+    }
+
+    closeConfirm = () => {
+        this.setState({
+            open: false,
+        })
     }
 
     render() {
@@ -67,7 +72,7 @@ class PaymentMethod extends Component {
 
                     <Dialog 
                         open={this.state.open}>
-                        <Confirm />
+                        <Confirm open={this.state.open} />
                     </Dialog>
                 </div>
             )

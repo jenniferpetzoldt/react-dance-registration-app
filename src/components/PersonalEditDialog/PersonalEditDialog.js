@@ -241,7 +241,8 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button onClick={this.UpdateRegistraiton}>Edit</Button>
+                        <Button onClick={this.UpdateRegistraiton}>Save</Button>
+                        <Button onClick={this.props.closeClick}>Close</Button>
                         <Dialog
                             open={this.state.open}>
                             <Confirm />
