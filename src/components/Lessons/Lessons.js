@@ -15,82 +15,66 @@ class Lessons extends Component {
         super(props);
         this.state = {
             lessons: {
-                firstHour: {
-                    className: '',
-                    cost: '0'
-                },
-                secondHour: {
-                    className: '',
-                    cost: '0'
-                },
+                firstHour: '',
+                firstHourCost: '0',
+                secondHour: '',
+                secondHourCost: '0',
             },
         }
     }
 
-
-
     calculateTotal = () => {
-        const firstHourCost = Number(this.state.lessons.firstHour.cost);
-        const secondHourCost = Number(this.state.lessons.secondHour.cost);
+        const firstHourCost = Number(this.state.lessons.firstHourCost);
+        const secondHourCost = Number(this.state.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
-        this.props.dispatch({type: 'ADD_TOTAL', payload: stringTotal});
+        this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
         console.log('in calculateTotal', stringTotal);
     }
 
     handleFirstHourChange = (event) => {
-        if (this.props.state.userInput.userInfo.admission === "general") {
+        if (this.props.state.userInput.personalInfo.admission === "general") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHour: {
-                        className: event.target.value,
-                        cost: '40',
-                    },
+                    firstHour: event.target.value,
+                    firstHourCost: '40',
                 }
             });
-        } else if (this.props.state.userInput.userInfo.admission === "student") {
+        } else if (this.props.state.userInput.personalInfo.admission === "student") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHour: {
-                        className: event.target.value,
-                        cost: '35',
-                    },
+                    firstHour: event.target.value,
+                    firstHourCost: '35',
                 }
             });
         }
     }
 
     handleSecondHourChange = (event) => {
-        if (this.props.state.userInput.userInfo.admission === "general") {
+        if (this.props.state.userInput.personalInfo.admission === "general") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    secondHour: {
-                        className: event.target.value,
-                        cost: '40',
-                    },
+                    secondHour: event.target.value,
+                    secondHourCost: '40',
                 }
             });
-        } else if (this.props.state.userInput.userInfo.admission === "student") {
+        } else if (this.props.state.userInput.personalInfo.admission === "student") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    secondHour: {
-                        className: event.target.value,
-                        cost: '35',
-                    },
+                    secondHour: event.target.value,
+                    secondHourCost: '35',
                 }
             });
         }
     }
 
     addLessons = () => {
-        this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
-        this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
-       this.calculateTotal();
-
+        this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
+        this.calculateTotal();
     }
 
     handleNextClick = (event) => {
@@ -112,7 +96,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="7:00pm - 8:15pm"
                                     name="firstHour"
-                                    value={this.state.lessons.firstHour.className}
+                                    value={this.state.lessons.firstHour}
                                     onChange={this.handleFirstHourChange}>
                                     <FormControlLabel
                                         value={this.props.state.form[0].level_one}
@@ -135,7 +119,7 @@ class Lessons extends Component {
                                 <RadioGroup
                                     aria-label="8:30pm - 9:45pm"
                                     name="secondHour"
-                                    value={this.state.lessons.secondHour.className}
+                                    value={this.state.lessons.secondHour}
                                     onChange={this.handleSecondHourChange}>
                                     <FormControlLabel
                                         value={this.props.state.form[0].level_two}

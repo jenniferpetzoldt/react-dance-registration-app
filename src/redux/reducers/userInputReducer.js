@@ -3,11 +3,9 @@ const userInputReducer = (state = {}, action) => {
         case 'ADD_FORM_ID':
             return { ...state, formId: action.payload };
         case 'ADD_PERSONAL_INFO':
-            return { ...state, userInfo: action.payload };
-        case 'ADD_FIRST_HOUR':
-            return { ...state, firstHour: action.payload };
-        case 'ADD_SECOND_HOUR':
-            return { ...state, secondHour: action.payload };
+            return { ...state, personalInfo: action.payload };
+        case 'ADD_LESSONS':
+            return { ...state, lessons: action.payload };
         case 'ADD_TOTAL':
             return{ ...state, total: action.payload};
         case 'ADD_PAYMENT':

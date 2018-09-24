@@ -16,6 +16,17 @@ class Confirm extends Component {
             editOpen: false,
         }
     }
+componentDidMount() {
+    this.calculateTotal();
+}
+    calculateTotal = () => {
+        const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
+        const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
+        const total = firstHourCost + secondHourCost;
+        const stringTotal = String(total);
+        this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
+        console.log('in calculateTotal', stringTotal);
+    }
 
     submitRegistration = (event) => {
         axios({
@@ -25,11 +36,11 @@ class Confirm extends Component {
         }).then((response) => {
             console.log('Success with registration POST');
             this.props.dispatch({ type: 'CLEAR_USER_INPUT' });
+            this.props.closeConfirm();
         }).catch((error) => {
             console.log('Registration POST error', error);
             alert('Unable to add registration');
         })
-        this.props.closeConfirm();
     }
 
     editClick = (event) => {
@@ -40,7 +51,6 @@ class Confirm extends Component {
 
 
     closeClick = (event) => {
-        console.log('in closeClick');
         this.setState({
             editOpen: false,
         });
@@ -54,13 +64,13 @@ class Confirm extends Component {
                     <div>
                         <h1>Confirm Registration Information</h1>
                         <h3>PersonalInformation:</h3>
-                        <p>Name: {this.props.state.userInput.userInfo.firstName} {this.props.state.userInput.userInfo.lastName}</p>
-                        <p>Email: {this.props.state.userInput.userInfo.email}</p>
-                        <p>Role: {this.props.state.userInput.userInfo.role}</p>
-                        <p>Admission: {this.props.state.userInput.userInfo.admission}</p>
+                        <p>Name: {this.props.state.userInput.personalInfo.firstName} {this.props.state.userInput.personalInfo.lastName}</p>
+                        <p>Email: {this.props.state.userInput.personalInfo.email}</p>
+                        <p>Role: {this.props.state.userInput.personalInfo.role}</p>
+                        <p>Admission: {this.props.state.userInput.personalInfo.admission}</p>
                         <h3>Lessons:</h3>
-                        <p>7:00pm-8:15pm {this.props.state.userInput.firstHour.className}</p>
-                        <p>8:30pm-9:45pm {this.props.state.userInput.secondHour.className}</p>
+                        <p>7:00pm-8:15pm {this.props.state.userInput.lessons.firstHour}</p>
+                        <p>8:30pm-9:45pm {this.props.state.userInput.lessons.secondHour}</p>
                         <h3>Payment Method:</h3>
                         {this.props.state.userInput.payment.paymentMethod}
                         <h3>Total Cost:</h3>

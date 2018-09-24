@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Confirm from '../Confirm/Confirm';
 import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button, Dialog } from '@material-ui/core';
 
 const mapStateToProps = state => ({
@@ -13,35 +12,55 @@ class EditDialog extends Component {
         super(props);
         this.state = {
             personalInformation: {
-                userId: this.props.state.user.id,
-                firstName: this.props.state.userInput.userInfo.firstName,
-                lastName: this.props.state.userInput.userInfo.lastName,
-                email: this.props.state.userInput.userInfo.email,
-                role: this.props.state.userInput.userInfo.role,
-                admission: this.props.state.userInput.userInfo.admission,
+                userId: this.props.state.userInput.personalInfo.userId,
+                firstName: this.props.state.userInput.personalInfo.firstName,
+                lastName: this.props.state.userInput.personalInfo.lastName,
+                email: this.props.state.userInput.personalInfo.email,
+                role: this.props.state.userInput.personalInfo.role,
+                admission: this.props.state.userInput.personalInfo.admission,
             },
             lessons: {
-                firstHour: {
-                    className: this.props.state.userInput.firstHour.className,
-                    cost: this.props.state.userInput.firstHour.cost
-                },
-                secondHour: {
-                    className: this.props.state.userInput.secondHour.className,
-                    cost: this.props.state.userInput.secondHour.cost
-                },
+                firstHour: this.props.state.userInput.lessons.firstHour,
+                firstHourCost: this.props.state.userInput.lessons.firstHourCost,
+                secondHour: this.props.state.userInput.lessons.secondHour,
+                secondHourCost: this.props.state.userInput.lessons.secondHourCost,
             },
         }
     }
 
-    calculateTotal = () => {
-        const firstHourCost = Number(this.state.lessons.firstHour.cost);
-        const secondHourCost = Number(this.state.lessons.secondHour.cost);
-        const total = firstHourCost + secondHourCost;
-        const stringTotal = String(total);
-        this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
-        console.log('in calculateTotal in edit', stringTotal);
-    }
+    handleAdmissionChange = (event) => {
+        if (this.state.personalInformation.admission === "general" && this.state.lessons.firstHourCost === "35") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHourCost: '40',
+                }
+            });
+        } else if (this.state.personalInformation.admission === "general" && this.state.lessons.secondHouCost === "35") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHourCost: '40',
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.firstHourCost === "40") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHourCost: '35',
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.secondHourCost === "40") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHourCost: '35',
+                }
+            });
+        } else {
 
+        };
+    }
 
     handlePersonalInformationChange = (event) => {
         this.setState({
@@ -52,83 +71,18 @@ class EditDialog extends Component {
         });
     }
 
-    handleAdmissionChange = (event) => {
-        if (this.state.personalInformation.admission === "general" && this.state.lessons.firstHour.cost === "35") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    firstHour: {
-                        ...this.state.lessons.firstHour,
-                        cost: '40',
-                    },
-                }
-            });
-        } else if (this.state.personalInformation.admission === "general" && this.state.lessons.secondHour.cost === "35") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: {
-                       ...this.state.lessons.secondHour,
-                        cost: '40',
-                    },
-                }
-            });
-        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.firstHour.cost === "40") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: {
-                       ...this.state.lessons.secondHour,
-                        cost: '35',
-                    },
-                }
-            });
-        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.secondHour.cost === "40") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: {
-                       ...this.state.lessons.secondHour,
-                        cost: '35',
-                    },
-                }
-            });
-        } else {
-
-        };
-    }
-
-    handleFirstHourChange = (event) => {
+    handleLessonChange = (event) => {
        this.setState({
            lessons: {
                ...this.state.lessons,
-               firstHour: {
-                   ...this.state.lessons.firsthour,
-                   className: event.target.value,
-               }
+               [event.target.name]: event.target.value,
            }
        })
     }
 
-    handleSecondHourChange = (event) => {
-        this.setState({
-            lessons: {
-                ...this.state.lessons,
-                secondHour: {
-                    ...this.state.lessons.secondhour,
-                    className: event.target.value,
-                }
-            }
-        })
-    }
-
     updateRegistraiton = () => {
-        this.handleAdmissionChange();
-        console.log('updateRegistration Admission:', this.state.personalInformation.admission);
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
-        this.props.dispatch({ type: 'ADD_FIRST_HOUR', payload: this.state.lessons.firstHour });
-        this.props.dispatch({ type: 'ADD_SECOND_HOUR', payload: this.state.lessons.secondHour });
-        this.calculateTotal();
+        this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.personalInformation });
         this.props.closeClick();
     }
 
@@ -202,8 +156,8 @@ class EditDialog extends Component {
                             <RadioGroup
                                 aria-label="7:00pm - 8:15pm"
                                 name="firstHour"
-                                value={this.state.lessons.firstHour.className}
-                                onChange={this.handleFirstHourChange}>
+                                value={this.state.lessons.firstHour}
+                                onChange={this.handleLessonChange}>
                                 <FormControlLabel
                                     value={this.props.state.form[0].level_one}
                                     control={<Radio color="primary" />}
@@ -223,8 +177,8 @@ class EditDialog extends Component {
                             <RadioGroup
                                 aria-label="8:30pm - 9:45pm"
                                 name="secondHour"
-                                value={this.state.lessons.secondHour.className}
-                                onChange={this.handleSecondHourChange}>
+                                value={this.state.lessons.secondHour}
+                                onChange={this.handleLessonChange}>
                                 <FormControlLabel
                                     value={this.props.state.form[0].level_two}
                                     control={<Radio color="primary" />}
@@ -241,7 +195,6 @@ class EditDialog extends Component {
                         </FormControl>
                         <br />
                         <Button onClick={this.updateRegistraiton}>Save</Button>
-                        {/* <Button onClick={this.props.closeClick}>Close</Button> */}
                     </div>
                 </div>
             );
@@ -253,6 +206,5 @@ class EditDialog extends Component {
         );
     }
 }
-
 
 export default connect(mapStateToProps)(EditDialog);

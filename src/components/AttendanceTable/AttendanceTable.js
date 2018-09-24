@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-// import AttendanceTableHead from '../AttendanceTableHead/AttendanceTableHead';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button, Paper } from '@material-ui/core';
 import axios from 'axios';
 
