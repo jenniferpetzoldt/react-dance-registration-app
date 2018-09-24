@@ -17,11 +17,10 @@ class Confirm extends Component {
         }
     }
 componentDidMount() {
-    this.calculateTotal();
-    console.log('inComponentDidMount');
+    this.dispatchTotal();
 }
 
-calculateTotal = () => {
+dispatchTotal = () => {
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
@@ -30,7 +29,15 @@ calculateTotal = () => {
         console.log('in calculateTotal', stringTotal);
     }
 
+    calculateTotal = () => {
+        const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
+        const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
+        const total = firstHourCost + secondHourCost;
+        const stringTotal = String(total);
+    }
+
     submitRegistration = (event) => {
+        this.calculateTotal();
         axios({
             method: 'POST',
             url: '/api/registration',
@@ -60,6 +67,10 @@ calculateTotal = () => {
 
     render() {
         let content = null;
+        const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
+        const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
+        const total = firstHourCost + secondHourCost;
+        const stringTotal = String(total);
         if (this.props.user.userName) {
             content = (
                 <div>
@@ -76,7 +87,7 @@ calculateTotal = () => {
                         <h3>Payment Method:</h3>
                         {this.props.state.userInput.payment.paymentMethod}
                         <h3>Total Cost:</h3>
-                        <p>${this.props.state.userInput.total}.00</p>
+                        <p>${stringTotal}.00</p>
                         <br />
                         <button onClick={this.submitRegistration}>Submit</button>
                         <button onClick={this.editClick}>Edit</button>
