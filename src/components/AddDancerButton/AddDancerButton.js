@@ -26,8 +26,7 @@ class AddDancer extends Component {
 
         if (isHidden) {
             addDancer = <div>
-                        <AddDancerForm />
-                        <Button onClick={this.toggleAddDancer}>Close Form</Button>
+                        <AddDancerForm toggleAddDancer={this.toggleAddDancer}/>
                         </div>
         } else {
             addDancer = <Button onClick={this.toggleAddDancer}>Add Dancer</Button>

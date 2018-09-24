@@ -167,6 +167,7 @@ class AddDancerDialog extends Component {
                     </FormControl>
                     <br />
                     <Button onClick={this.handleClick}>Submit</Button>
+                    <Button onClick={this.props.toggleAddDancer}>Close Form</Button>
                 </form>
             );
         }

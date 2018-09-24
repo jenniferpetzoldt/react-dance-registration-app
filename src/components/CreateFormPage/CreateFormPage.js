@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import Nav from '../Nav/Nav';
 import FormTable from '../FormTable/FormTable';
 import { InputLabel, FormControl, MenuItem, Select, Button } from '@material-ui/core';
