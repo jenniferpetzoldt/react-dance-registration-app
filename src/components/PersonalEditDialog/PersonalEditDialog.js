@@ -28,46 +28,47 @@ class EditDialog extends Component {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.updateRegistraiton();
     }
+    
 
     handleAdmissionChange = (event) => {
-        console.log('in handleAdmissionChange', this.state.personalInformation.admission );
-        console.log('in handleAdmissionChange', this.state.lessons.firstHourCost );
-
-        if (this.state.personalInformation.admission === "general" && this.state.lessons.firstHourCost === "35") {
+        console.log('in handleAdmissionChange', this.state.personalInformation.admission);
+        const studentDiscount = '35';
+        const general = '40';
+        if (this.state.personalInformation.admission === "student") {
+            let firstHour = this.state.lessons.firstHourCost;
+            if (firstHour !== '0') {
+                firstHour = studentDiscount
+            }
+            let secondHour = this.state.lessons.secondHourCost;
+            if (secondHour !== '0') {
+                secondHour = studentDiscount
+            }
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHourCost: '40',
+                    firstHourCost: firstHour,
+                    secondHourCost: secondHour,
                 }
-            });
-            console.log('hurray!', )
-        } else if (this.state.personalInformation.admission === "general" && this.state.lessons.secondHouCost === "35") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHourCost: '40',
-                }
-            });
-        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.firstHourCost === "40") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    firstHourCost: '35',
-                }
-            });
-            console.log('please work!')
-        } else if (this.state.personalInformation.admission === "student" && this.state.lessons.secondHourCost === "40") {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHourCost: '35',
-                }
-            });
+            })
         } else {
-
+            let firstHour = this.state.lessons.firstHourCost;
+            if (firstHour !== '0') {
+                firstHour = general
+            }
+            let secondHour = this.state.lessons.secondHourCost;
+            if (secondHour !== '0') {
+                secondHour = general
+            }
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHourCost: firstHour,
+                    secondHourCost: secondHour,
+                }
+            })
         };
         this.props.closeClick();
     }
@@ -82,12 +83,12 @@ class EditDialog extends Component {
     }
 
     handleLessonChange = (event) => {
-       this.setState({
-           lessons: {
-               ...this.state.lessons,
-               [event.target.name]: event.target.value,
-           }
-       })
+        this.setState({
+            lessons: {
+                ...this.state.lessons,
+                [event.target.name]: event.target.value,
+            }
+        })
     }
 
     updateRegistraiton = () => {
