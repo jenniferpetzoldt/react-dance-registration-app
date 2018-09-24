@@ -18,8 +18,10 @@ class Confirm extends Component {
     }
 componentDidMount() {
     this.calculateTotal();
+    console.log('inComponentDidMount');
 }
-    calculateTotal = () => {
+
+calculateTotal = () => {
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;

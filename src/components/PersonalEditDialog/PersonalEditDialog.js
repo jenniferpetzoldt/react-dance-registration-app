@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button, Dialog } from '@material-ui/core';
+import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -28,7 +28,14 @@ class EditDialog extends Component {
         }
     }
 
+    componentWillUnmount(){
+        this.updateRegistraiton();
+    }
+
     handleAdmissionChange = (event) => {
+        console.log('in handleAdmissionChange', this.state.personalInformation.admission );
+        console.log('in handleAdmissionChange', this.state.lessons.firstHourCost );
+
         if (this.state.personalInformation.admission === "general" && this.state.lessons.firstHourCost === "35") {
             this.setState({
                 lessons: {
@@ -36,6 +43,7 @@ class EditDialog extends Component {
                     firstHourCost: '40',
                 }
             });
+            console.log('hurray!', )
         } else if (this.state.personalInformation.admission === "general" && this.state.lessons.secondHouCost === "35") {
             this.setState({
                 lessons: {
@@ -47,9 +55,10 @@ class EditDialog extends Component {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    secondHourCost: '35',
+                    firstHourCost: '35',
                 }
             });
+            console.log('please work!')
         } else if (this.state.personalInformation.admission === "student" && this.state.lessons.secondHourCost === "40") {
             this.setState({
                 lessons: {
@@ -60,6 +69,7 @@ class EditDialog extends Component {
         } else {
 
         };
+        this.props.closeClick();
     }
 
     handlePersonalInformationChange = (event) => {
@@ -81,9 +91,9 @@ class EditDialog extends Component {
     }
 
     updateRegistraiton = () => {
+        console.log('in updateRegistration', this.state.lessons);
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
-        this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.personalInformation });
-        this.props.closeClick();
+        this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
     }
 
     render() {
@@ -194,7 +204,7 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button onClick={this.updateRegistraiton}>Save</Button>
+                        <Button onClick={this.handleAdmissionChange}>Save</Button>
                     </div>
                 </div>
             );
