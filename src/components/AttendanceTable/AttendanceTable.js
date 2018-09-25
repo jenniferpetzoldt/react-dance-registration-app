@@ -17,7 +17,6 @@ class AttendanceTable extends Component {
         this.state = {
             registrations: [],
             attendId: this.props.state.adminInput.attendId,
-            idToDelete: '',
         }
     }
 
@@ -50,9 +49,29 @@ class AttendanceTable extends Component {
         })
     }
 
+    toggleWeek1 = (event) => {
+        this.setState({
+            isHidden: !this.state.isHidden,
+        })
+    }
 
     render() {
         let content = null;
+
+        const isHidden = this.state.isHidden;
+        const isHidden2 = this.state.isHidden2;
+        const isHidden3 = this.state.isHidden3;
+        const isHidden4 = this.state.isHidden4;
+        let week1;
+        let week2;
+        let week3;
+        let week4;
+
+        if (isHidden) {
+            week1 = <TableCell onClick={this.toggleWeek1}></TableCell>
+        } else {
+            week1 = <TableCell onClick={this.toggleWeek1}><TextField></TextField></TableCell>
+        }
 
         if (this.props.user.userName) {
             content = (
@@ -89,8 +108,7 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.second_hour}</TableCell>
                                         <TableCell>{registration.oweds}</TableCell>
                                         <TableCell>{registration.payment_type}</TableCell>
-                                        <TableCell><TextField>{registration.week_one}</TextField></TableCell>
-                                        <TableCell>{registration.week_two}</TableCell>
+                                        {week1}                                        <TableCell>{registration.week_two}</TableCell>
                                         <TableCell>{registration.week_three}</TableCell>
                                         <TableCell>{registration.week_four}</TableCell>
                                         <TableCell>
