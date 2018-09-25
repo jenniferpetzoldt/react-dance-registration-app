@@ -49,18 +49,18 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('registration DELETE req.params.id', req.params.id);
-    // if (req.isAuthenticated()) {
-    //     const query = ``;
-    //     pool.query(query, [req.params.id])
-    //     .then((response) => {
-    //         res.sendStatus(200);
-    //     }).catch((error) => {
-    //         console.log('Registration DELETE error', error);
-    //         res.sendStatus(500);
-    //     });
-    // } else {
-    //     res.sendStatus(403);
-    // }
+    if (req.isAuthenticated()) {
+        const query = `DELETE FROM "registration" WHERE "id" = $1;`;
+        pool.query(query, [req.params.id])
+        .then((response) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('Registration DELETE error', error);
+            res.sendStatus(500);
+        });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 module.exports = router;

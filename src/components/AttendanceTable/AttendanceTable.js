@@ -11,12 +11,6 @@ const mapStateToProps = state => ({
     state,
 });
 
-const styles = {
-    tableCell: {
-        width: '1rem'
-    }
-  }
-
 class AttendanceTable extends Component {
     constructor(props) {
         super(props);
@@ -43,19 +37,12 @@ class AttendanceTable extends Component {
         })
     }
 
-    handleDeleteClick = (event) => {
-        
-        console.log('in handle Delete Click', this.state.registrations);
-        // this.deleteRegistration(idToDelete);
-    }
-
-    deleteRegistration = (idToDelete) => {
-        console.log('Delete registration', idToDelete);
+    deleteRegistration = (id) => {
+        console.log('Delete registration', id);
         axios({
             method: 'DELETE',
-            url: '/api/registration/' + idToDelete
+            url: '/api/registration/' + id
         }).then((response) => {
-            console.log('delete:', response.data);
             this.getRegistrations();
         }).catch((error) => {
             console.log('Registration DELETE error', error);
@@ -82,37 +69,33 @@ class AttendanceTable extends Component {
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
                                     <TableCell>Second Class</TableCell>
-                                    {/* <TableCell style={styles.tableCell}>Paid</TableCell> */}
                                     <TableCell>Owed</TableCell>
                                     <TableCell>Payment Method</TableCell>
                                     <TableCell>Week 1</TableCell>
                                     <TableCell>Week 2</TableCell>
                                     <TableCell>Week 3</TableCell>
                                     <TableCell>Week 4</TableCell>
-                                    {/* <TableCell style={styles.tableCell}>Notes</TableCell> */}
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.state.registrations.map((registration, i) => {
-                                    return <TableRow key={i} value={registration}>
+                                {this.state.registrations.map((registration) => {
+                                    return <TableRow key={registration.id} value={registration}>
                                         <TableCell>{registration.first_name}</TableCell>
                                         <TableCell>{registration.last_name}</TableCell>
                                         <TableCell>{registration.dancer_role}</TableCell>
                                         <TableCell>{registration.admission}</TableCell>
                                         <TableCell>{registration.first_hour}</TableCell>
                                         <TableCell>{registration.second_hour}</TableCell>
-                                        {/* <TableCell>{registration.paid}</TableCell> */}
                                         <TableCell>{registration.oweds}</TableCell>
                                         <TableCell>{registration.payment_type}</TableCell>
                                         <TableCell><TextField>{registration.week_one}</TextField></TableCell>
                                         <TableCell>{registration.week_two}</TableCell>
                                         <TableCell>{registration.week_three}</TableCell>
                                         <TableCell>{registration.week_four}</TableCell>
-                                        {/* <TableCell>notes</TableCell> */}
                                         <TableCell>
-                                            <Button onClick={this.deleteRegistration}>Delete</Button>
-                                            <Button onClick={this.handleUpdateClick}>Update</Button>
+                                            <Button onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
+                                            <Button onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}

@@ -18,4 +18,20 @@ router.get('/', (req, res) => {
     }
 });
 
+router.delete('/:id', (req, res) => {
+    console.log('form DELETE req.params.id', req.params.id);
+    if (req.isAuthenticated()) {
+        const query = `DELETE FROM "wed_form" WHERE "id" = $1`;
+        pool.query(query, [req.params.id])
+        .then((response) => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('Registration DELETE error', error);
+            res.sendStatus(500);
+        });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 module.exports = router;

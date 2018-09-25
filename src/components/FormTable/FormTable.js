@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Table, TableHead, TableBody, TableRow, TableCell, Paper, Button } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -31,11 +31,25 @@ class FormTable extends Component {
         })
     }
 
+    deleteCreatedForm = (id) => {
+        console.log('delete createdForm id', id);
+       
+        axios({
+            method: 'DELETE',
+            url: '/api/created/' + id
+        }).then((response) => {
+            this.getCreatedForms();
+        }).catch((error) => {
+            console.log('DELETE form error', error);
+            alert('Unable to DELETE form');
+        })
+    }
+
     render() {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <Paper>
+                <div>
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -51,8 +65,8 @@ class FormTable extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.createdForms.map((form, i) => {
-                                return <TableRow key={i} value={form}>
+                            {this.state.createdForms.map((form) => {
+                                return <TableRow key={form.id} value={form}>
                                 <TableCell>{form.form_month}</TableCell>
                                 <TableCell>{form.form_year}</TableCell>
                                 <TableCell>{form.level_one}</TableCell>
@@ -61,12 +75,12 @@ class FormTable extends Component {
                                 <TableCell>{form.level_four}</TableCell>
                                 <TableCell>{form.level_five}</TableCell>
                                 <TableCell>{form.solo_jazz}</TableCell>
-                                <TableCell><Button>Delete</Button></TableCell>
+                                <TableCell><Button onClick={()=>this.deleteCreatedForm(form.id)}>Delete</Button></TableCell>
                                 </TableRow>
                             })}
                         </TableBody>
                     </Table>
-                </Paper>
+                </div>
             );
         }
         return (

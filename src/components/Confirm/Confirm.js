@@ -73,16 +73,14 @@ dispatchTotal = () => {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <div>
                         <h1>Confirm Registration Information</h1>
                         <h3>PersonalInformation:</h3>
                         <p>Name: {this.props.state.userInput.personalInfo.firstName} {this.props.state.userInput.personalInfo.lastName}</p>
                         <p>Email: {this.props.state.userInput.personalInfo.email}</p>
-                        <p>Role: {this.props.state.userInput.personalInfo.role}</p>
-                        <p>Admission: {this.props.state.userInput.personalInfo.admission}</p>
+                        <p>Role: {this.props.state.userInput.personalInfo.role} Admission: {this.props.state.userInput.personalInfo.admission}</p>
                         <h3>Lessons:</h3>
-                        <p>7:00pm-8:15pm {this.props.state.userInput.lessons.firstHour}</p>
-                        <p>8:30pm-9:45pm {this.props.state.userInput.lessons.secondHour}</p>
+                        <p>{this.props.state.userInput.lessons.firstHour}</p>
+                        <p>{this.props.state.userInput.lessons.secondHour}</p>
                         <h3>Payment Method:</h3>
                         {this.props.state.userInput.payment.paymentMethod}
                         <h3>Total Cost:</h3>
@@ -90,7 +88,6 @@ dispatchTotal = () => {
                         <br />
                         <button onClick={this.submitRegistration}>Submit</button>
                         <button onClick={this.editClick}>Edit</button>
-                    </div>
                     <Dialog
                         open={this.state.editOpen} >
                         <PersonalEditDialog editOpen={this.state.editOpen} closeClick={this.closeClick}/>

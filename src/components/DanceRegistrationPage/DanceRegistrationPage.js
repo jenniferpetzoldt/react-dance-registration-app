@@ -11,6 +11,9 @@ const mapStateToProps = state => ({
 });
 
 const styles = {
+  form: {
+    width: 300,
+  },
   formControl: {
     display: 'flex',
   },
@@ -94,7 +97,7 @@ class DanceRegistrationPage extends Component {
     //only loads page content if user is logged in
     if (this.props.user.userName) {
       content = (
-        <form>
+        <form style={styles.form}>
           <FormControl style={styles.formControl}>
             <InputLabel htmlFor="formSelect">Select Month</InputLabel>
             <Select
