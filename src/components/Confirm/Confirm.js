@@ -29,12 +29,13 @@ dispatchTotal = () => {
 
     submitRegistration = (event) => {
         this.dispatchTotal();
+        //need to find a betterway to do this
         setTimeout(() => {
-            this.sendTotal();
+            this.sendRegistration();
         }, 1); 
     }
 
-    sendTotal = () => {
+    sendRegistration = () => {
         axios({
             method: 'POST',
             url: '/api/registration',

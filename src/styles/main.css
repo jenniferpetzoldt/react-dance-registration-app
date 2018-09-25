@@ -81,6 +81,9 @@ li a:hover {
 
 .formSelect {
     width: 300px;
-    display: block,
+    display: block;
 }
 
+.attendanceTable {
+    width: 80%;
+}

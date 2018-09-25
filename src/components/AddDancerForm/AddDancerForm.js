@@ -12,6 +12,7 @@ class AddDancerDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            formId: this.props.state.adminInput.attendId,
             firstName: '',
             lastName: '',
             email: '',
@@ -19,12 +20,12 @@ class AddDancerDialog extends Component {
             admission: '',
             first: '',
             second: '',
-            paid: '',
+            paid: '0',
+            paymentMethod: 'Pay at the door',
             week1: '',
             week2: '',
             week3: '',
             week4: '',
-            note: '',
         };
     }
 
@@ -35,27 +36,37 @@ class AddDancerDialog extends Component {
     }
 
     handleClick = (event) => {
+     this.sendNewDancerInfo();
+    }
+
+    clearInputs = () => {
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            role: '',
+            admission: '',
+            first: '',
+            second: '',
+            paid: '0',
+            paymentMethod: '',
+            week1: '',
+            week2: '',
+            week3: '',
+            week4: '',
+        })
+    };
+
+
+
+    sendNewDancerInfo = () => {
         axios({
             method: 'POST',
             url: '/api/admin',
             data: { newReg: this.state }
         }).then((response) => {
             console.log('success with registration POST');
-            this.setState({
-                firstName: '',
-                lastName: '',
-                email: '',
-                role: '',
-                admission: '',
-                first: '',
-                second: '',
-                paid: '',
-                week1: '',
-                week2: '',
-                week3: '',
-                week4: '',
-                note: '',
-            });
+            this.clearInputs();
         }).catch((error) => {
             console.log('Add Dancer Reg POST error', error);
             alert('Unable to add dancer reg from admin');
@@ -66,7 +77,9 @@ class AddDancerDialog extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
+                
                 <form>
+                    {JSON.stringify(this.state.weekOne)}
                     <FormControl>
                         <TextField
                             label="First Name"
@@ -83,7 +96,7 @@ class AddDancerDialog extends Component {
                         <TextField
                             label="Email Address"
                             name="email"
-                            onChange={this.handleChnage} />
+                            onChange={this.handleChange} />
                     </FormControl>
                     <FormControl>
                         <FormLabel>Role</FormLabel>
@@ -118,7 +131,7 @@ class AddDancerDialog extends Component {
                         </RadioGroup>
                     </FormControl>
                     <FormControl>
-                    <FormLabel>7:00 pm</FormLabel>
+                        <FormLabel>7:00 pm</FormLabel>
                         <RadioGroup
                             aria-label="7:00pm - 8:15pm"
                             name="first"
@@ -139,7 +152,7 @@ class AddDancerDialog extends Component {
                         </RadioGroup>
                     </FormControl>
                     <FormControl>
-                    <FormLabel>8:30 pm</FormLabel>
+                        <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup
                             aria-label="8:30pm - 9:45pm"
                             name="second"
@@ -161,9 +174,27 @@ class AddDancerDialog extends Component {
                     </FormControl>
                     <FormControl>
                         <TextField
-                            label="Note"
-                            name="note"
-                            onChange={this.handleChnage} />
+                            label="Week 1"
+                            name="week1"
+                            onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl>
+                        <TextField
+                            label="Week 2"
+                            name="week2"
+                            onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl>
+                        <TextField
+                            label="Week 3"
+                            name="week3"
+                            onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl>
+                        <TextField
+                            label="Week 4"
+                            name="week4"
+                            onChange={this.handleChange} />
                     </FormControl>
                     <br />
                     <Button onClick={this.handleClick}>Submit</Button>

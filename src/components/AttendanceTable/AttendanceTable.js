@@ -3,13 +3,19 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-import { Table, TableHead, TableBody, TableRow, TableCell, Button, Paper } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, TextField } from '@material-ui/core';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
     user: state.user,
     state,
 });
+
+const styles = {
+    tableCell: {
+        width: '1rem'
+    }
+  }
 
 class AttendanceTable extends Component {
     constructor(props) {
@@ -38,16 +44,16 @@ class AttendanceTable extends Component {
     }
 
     handleDeleteClick = (event) => {
-       this.setState({
-           idToDelete: event.target.value.id
-       })
-       this.deleteRegistration();
+        
+        console.log('in handle Delete Click', this.state.registrations);
+        // this.deleteRegistration(idToDelete);
     }
 
-    deleteRegistration = () => {
+    deleteRegistration = (idToDelete) => {
+        console.log('Delete registration', idToDelete);
         axios({
             method: 'DELETE',
-            url: '/api/registration' + this.state.idToDelete
+            url: '/api/registration/' + idToDelete
         }).then((response) => {
             console.log('delete:', response.data);
             this.getRegistrations();
@@ -66,8 +72,8 @@ class AttendanceTable extends Component {
                 <div>
                     <AttendanceTitle />
                     <AddDancerButton />
-                    <Paper>
-                        <Table id="attendanceTable">
+                    <div>
+                        <Table>
                             <TableHead>
                                 <TableRow>
                                     <TableCell>First Name</TableCell>
@@ -76,14 +82,15 @@ class AttendanceTable extends Component {
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
                                     <TableCell>Second Class</TableCell>
-                                    <TableCell>Paid</TableCell>
+                                    {/* <TableCell style={styles.tableCell}>Paid</TableCell> */}
                                     <TableCell>Owed</TableCell>
                                     <TableCell>Payment Method</TableCell>
                                     <TableCell>Week 1</TableCell>
                                     <TableCell>Week 2</TableCell>
                                     <TableCell>Week 3</TableCell>
                                     <TableCell>Week 4</TableCell>
-                                    <TableCell>Notes</TableCell>
+                                    {/* <TableCell style={styles.tableCell}>Notes</TableCell> */}
+                                    <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -95,23 +102,23 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.admission}</TableCell>
                                         <TableCell>{registration.first_hour}</TableCell>
                                         <TableCell>{registration.second_hour}</TableCell>
-                                        <TableCell>{registration.paid}</TableCell>
+                                        {/* <TableCell>{registration.paid}</TableCell> */}
                                         <TableCell>{registration.oweds}</TableCell>
                                         <TableCell>{registration.payment_type}</TableCell>
-                                        <TableCell>{registration.week_one}</TableCell>
+                                        <TableCell><TextField>{registration.week_one}</TextField></TableCell>
                                         <TableCell>{registration.week_two}</TableCell>
                                         <TableCell>{registration.week_three}</TableCell>
                                         <TableCell>{registration.week_four}</TableCell>
-                                        <TableCell>notes</TableCell>
+                                        {/* <TableCell>notes</TableCell> */}
                                         <TableCell>
                                             <Button onClick={this.deleteRegistration}>Delete</Button>
-                                            <Button>Update</Button>
+                                            <Button onClick={this.handleUpdateClick}>Update</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
                             </TableBody>
                         </Table>
-                    </Paper>
+                    </div>
                 </div>
             );
         }

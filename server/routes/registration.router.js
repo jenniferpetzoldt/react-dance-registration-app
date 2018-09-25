@@ -3,7 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    console.log('registration POST req.body', req.body);
     if (req.isAuthenticated()) {
         const regToAdd = req.body;
         const query = `INSERT INTO "registration" 
@@ -35,9 +34,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('registration GET req.params.id', req.params.id);
     if (req.isAuthenticated()) {
-        const query = `SELECT * FROM "registration" LEFT JOIN "attendance" 
-        ON "registration"."wed_form_id"="attendance"."wed_form_id" 
-        WHERE "registration"."wed_form_id" = $1;`;
+        const query = `SELECT * FROM "registration" WHERE "registration"."wed_form_id" = $1;`;
         pool.query(query, [req.params.id])
             .then((response) => {
                 res.send(response.rows);
@@ -52,18 +49,18 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('registration DELETE req.params.id', req.params.id);
-    if (req.isAuthenticated()) {
-        const query = ``;
-        pool.query(query, [req.params.id])
-        .then((response) => {
-            res.sendStatus(200);
-        }).catch((error) => {
-            console.log('Registration DELETE error', error);
-            res.sendStatus(500);
-        });
-    } else {
-        res.sendStatus(403);
-    }
+    // if (req.isAuthenticated()) {
+    //     const query = ``;
+    //     pool.query(query, [req.params.id])
+    //     .then((response) => {
+    //         res.sendStatus(200);
+    //     }).catch((error) => {
+    //         console.log('Registration DELETE error', error);
+    //         res.sendStatus(500);
+    //     });
+    // } else {
+    //     res.sendStatus(403);
+    // }
 });
 
 module.exports = router;
