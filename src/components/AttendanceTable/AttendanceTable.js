@@ -17,6 +17,7 @@ class AttendanceTable extends Component {
         this.state = {
             registrations: [],
             attendId: this.props.state.adminInput.attendId,
+            idToDelete: '',
         }
     }
 
@@ -35,6 +36,27 @@ class AttendanceTable extends Component {
             alert('Unable to GET registrations');
         })
     }
+
+    handleDeleteClick = (event) => {
+       this.setState({
+           idToDelete: event.target.value.id
+       })
+       this.deleteRegistration();
+    }
+
+    deleteRegistration = () => {
+        axios({
+            method: 'DELETE',
+            url: '/api/registration' + this.state.idToDelete
+        }).then((response) => {
+            console.log('delete:', response.data);
+            this.getRegistrations();
+        }).catch((error) => {
+            console.log('Registration DELETE error', error);
+            alert('Unable to DELETE registration');
+        })
+    }
+
 
     render() {
         let content = null;
@@ -82,7 +104,7 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.week_four}</TableCell>
                                         <TableCell>notes</TableCell>
                                         <TableCell>
-                                            <Button>Delete</Button>
+                                            <Button onClick={this.deleteRegistration}>Delete</Button>
                                             <Button>Update</Button>
                                         </TableCell>
                                     </TableRow>

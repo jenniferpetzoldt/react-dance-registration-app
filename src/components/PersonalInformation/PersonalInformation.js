@@ -50,21 +50,21 @@ class PersonalInformation extends Component {
                     <RegistrationTitle />
                     <h3>1. Personal Information:</h3>
                     <FormControl>
-                    <TextField 
+                    <TextField
                     label="First Name" 
                     name="firstName" 
                     onChange={this.handleChange} />
                     </FormControl>
                     <br />
                     <FormControl>
-                    <TextField 
+                    <TextField
                     label="Last Name" 
                     name="lastName" 
                     onChange={this.handleChange} />
                     </FormControl>
                     <br />
                     <FormControl> 
-                    <TextField 
+                    <TextField
                     label="Email Address" 
                     name="email" 
                     onChange={this.handleChange} />
