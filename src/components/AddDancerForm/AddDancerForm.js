@@ -69,7 +69,7 @@ class AddDancerDialog extends Component {
             url: '/api/admin',
             data: { newReg: this.state }
         }).then((response) => {
-            console.log('success with registration POST');
+            console.log('success with addDancer POST');
             this.clearInputs();
             this.getRegistrations();
         }).catch((error) => {

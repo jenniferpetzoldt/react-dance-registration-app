@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-import { Table, TableHead, TableBody, TableRow, TableCell, Button, TextField } from '@material-ui/core';
+import UpdateDancerModal from '../UpdateDancerModal/UpdateDancerModal';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, Dialog } from '@material-ui/core';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
@@ -21,6 +22,8 @@ class AttendanceTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
+            registrationId: '',
             registrations: this.props.state.attenTableData,
             attendId: this.props.state.adminInput.attendId,
             attendance: {
@@ -35,6 +38,13 @@ class AttendanceTable extends Component {
     componentDidMount() {
         this.getRegistrations();
 
+    }
+
+    handleUpdateClick(id){
+        this.setState({
+            open: true,
+            registrationId: id,
+        });
     }
 
     //retrieves registration information associated with specific form id
@@ -117,26 +127,11 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.oweds}</TableCell>
                                         <TableCell>{registration.payment_type}</TableCell>
                                         {/* Add function to update the registration */}
-                                        <TableCell>
-                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
-                                                {registration.week_one}
-                                            </TextField>
-                                        </TableCell>
-                                        <TableCell>
-                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
-                                                {registration.week_two}
-                                            </TextField>
-                                        </TableCell>
-                                        <TableCell>
-                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
-                                                {registration.week_three}
-                                            </TextField>
-                                        </TableCell>
-                                        <TableCell>
-                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
-                                                {registration.week_four}
-                                            </TextField>
-                                        </TableCell>
+                                        {/* add a model that pops up with that registrations information to edit the attendance and submit the update*/}
+                                        <TableCell>{registration.week_one}</TableCell>
+                                        <TableCell>{registration.week_two}</TableCell>
+                                        <TableCell>{registration.week_three}</TableCell>
+                                        <TableCell>{registration.week_four}</TableCell>
                                         <TableCell>
                                             <Button className="delete" varient="raised" 
                                                     onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
@@ -148,6 +143,10 @@ class AttendanceTable extends Component {
                             </TableBody>
                         </Table>
                     </div>
+                    <Dialog 
+                        open={this.state.open}>
+                        <UpdateDancerModal registrationId={this.state.registrationId}/>
+                    </Dialog>
                 </div>
             );
         }
