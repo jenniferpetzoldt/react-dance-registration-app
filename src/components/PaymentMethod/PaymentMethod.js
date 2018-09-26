@@ -45,6 +45,7 @@ class PaymentMethod extends Component {
         this.setState({
             open: false,
         })
+        this.props.history.push('/success');
     }
 
     render() {

@@ -31,42 +31,41 @@ class EditDialog extends Component {
     componentWillUnmount() {
         this.updateRegistraiton();
     }
-    
 
     handleAdmissionChange = (event) => {
         console.log('in handleAdmissionChange', this.state.personalInformation.admission);
         const studentDiscount = '35';
         const general = '40';
         if (this.state.personalInformation.admission === "student") {
-            let firstHour = this.state.lessons.firstHourCost;
-            if (firstHour !== '0') {
-                firstHour = studentDiscount
-            }
-            let secondHour = this.state.lessons.secondHourCost;
-            if (secondHour !== '0') {
-                secondHour = studentDiscount
+            let firstHourCost = this.state.lessons.firstHourCost;
+            if (firstHourCost !== '0') {
+                firstHourCost = studentDiscount
+            } 
+            let secondHourCost = this.state.lessons.secondHourCost;
+            if (secondHourCost !== '0') {
+                secondHourCost = studentDiscount
             }
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHourCost: firstHour,
-                    secondHourCost: secondHour,
+                    firstHourCost: firstHourCost,
+                    secondHourCost: secondHourCost,
                 }
             })
         } else {
-            let firstHour = this.state.lessons.firstHourCost;
-            if (firstHour !== '0') {
-                firstHour = general
+            let firstHourCost = this.state.lessons.firstHourCost;
+            if (firstHourCost !== '0') {
+                firstHourCost = general
             }
-            let secondHour = this.state.lessons.secondHourCost;
-            if (secondHour !== '0') {
-                secondHour = general
+            let secondHourCost = this.state.lessons.secondHourCost;
+            if (secondHourCost !== '0') {
+                secondHourCost = general
             }
             this.setState({
                 lessons: {
                     ...this.state.lessons,
-                    firstHourCost: firstHour,
-                    secondHourCost: secondHour,
+                    firstHourCost: firstHourCost,
+                    secondHourCost: secondHourCost,
                 }
             })
         };
@@ -82,13 +81,52 @@ class EditDialog extends Component {
         });
     }
 
-    handleLessonChange = (event) => {
-        this.setState({
-            lessons: {
-                ...this.state.lessons,
-                [event.target.name]: event.target.value,
-            }
-        })
+    handleFirstHourChange = (event) => {
+        if (this.state.personalInformation.admission === "general") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHour: event.target.value,
+                    firstHourCost: '40',
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    firstHour: event.target.value,
+                    firstHourCost: '35',
+                }
+            });
+        } 
+    }
+
+    handleSecondHourChange = (event) => {
+        if (this.state.personalInformation.admission === "general") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHour: event.target.value,
+                    secondHourCost: '40',
+                }
+            });
+        } else if (this.state.personalInformation.admission === "student") {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHour: event.target.value,
+                    secondHourCost: '35',
+                }
+            });
+        } else {
+            this.setState({
+                lessons: {
+                    ...this.state.lessons,
+                    secondHour: '',
+                    secondHourCost: '35',
+                }
+            });
+        }
     }
 
     updateRegistraiton = () => {
@@ -168,7 +206,7 @@ class EditDialog extends Component {
                                 aria-label="7:00pm - 8:15pm"
                                 name="firstHour"
                                 value={this.state.lessons.firstHour}
-                                onChange={this.handleLessonChange}>
+                                onChange={this.handleFirstHourChange}>
                                 <FormControlLabel
                                     value={this.props.state.form[0].level_one}
                                     control={<Radio color="primary" />}
@@ -181,6 +219,10 @@ class EditDialog extends Component {
                                     value={this.props.state.form[0].solo_jazz}
                                     control={<Radio color="primary" />}
                                     label={this.props.state.form[0].solo_jazz} />
+                                <FormControlLabel
+                                    value=''
+                                    control={<Radio color="primary" />}
+                                    label="None" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl>
@@ -189,7 +231,7 @@ class EditDialog extends Component {
                                 aria-label="8:30pm - 9:45pm"
                                 name="secondHour"
                                 value={this.state.lessons.secondHour}
-                                onChange={this.handleLessonChange}>
+                                onChange={this.handleSecondHourChange}>
                                 <FormControlLabel
                                     value={this.props.state.form[0].level_two}
                                     control={<Radio color="primary" />}
@@ -202,10 +244,14 @@ class EditDialog extends Component {
                                     value={this.props.state.form[0].level_five}
                                     control={<Radio color="primary" />}
                                     label={this.props.state.form[0].level_five} />
+                                <FormControlLabel
+                                    value=''
+                                    control={<Radio color="primary" />}
+                                    label="None" />
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button  className="submit" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
+                        <Button className="submit" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
                     </div>
                 </div>
             );

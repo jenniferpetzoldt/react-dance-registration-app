@@ -110,6 +110,10 @@ class Lessons extends Component {
                                         value={this.props.state.form[0].solo_jazz}
                                         control={<Radio color="primary" />}
                                         label={this.props.state.form[0].solo_jazz} />
+                                    <FormControlLabel
+                                        value=''
+                                        control={<Radio color="primary" />}
+                                        label="None" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -133,6 +137,10 @@ class Lessons extends Component {
                                         value={this.props.state.form[0].level_five}
                                         control={<Radio color="primary" />}
                                         label={this.props.state.form[0].level_five} />
+                                    <FormControlLabel
+                                        value=''
+                                        control={<Radio color="primary" />}
+                                        label="None" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
