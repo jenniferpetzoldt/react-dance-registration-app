@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET months for select on main user registration page
- */
+// GET months for select on main user registration page
 router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
         const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" > now();`;
@@ -20,7 +18,7 @@ router.get('/', (req, res) => {
     }
 });
 
-// GET specific Form data for selected month
+// GET specific form data for selected month
 router.get('/:id', (req, res) => {
     console.log('specific form GET req.body', req.params);
     if (req.isAuthenticated()) {
@@ -38,9 +36,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-/**
- * POST route 
- */
+// post route to add forms created by they admin
 router.post('/', (req, res) => {
     console.log('form POST req.body', req.body);
     if (req.isAuthenticated()) {

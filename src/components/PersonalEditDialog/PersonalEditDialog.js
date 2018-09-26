@@ -80,7 +80,7 @@ class EditDialog extends Component {
             },
         });
     }
-
+// figure out how to set cost to 0 if their is no class selected
     handleFirstHourChange = (event) => {
         if (this.state.personalInformation.admission === "general") {
             this.setState({
@@ -118,15 +118,7 @@ class EditDialog extends Component {
                     secondHourCost: '35',
                 }
             });
-        } else {
-            this.setState({
-                lessons: {
-                    ...this.state.lessons,
-                    secondHour: '',
-                    secondHourCost: '35',
-                }
-            });
-        }
+        } 
     }
 
     updateRegistraiton = () => {

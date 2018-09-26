@@ -2,6 +2,8 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// Gets all the created forms and sorts them by date. Only gets forms for future months
+// to populate table of created registration forms
 router.get('/', (req, res) => {
     if(req.isAuthenticated()) {
         const query = `SELECT * FROM "wed_form" WHERE "start_date" > now() ORDER BY "start_date" ASC;`;
@@ -18,6 +20,7 @@ router.get('/', (req, res) => {
     }
 });
 
+// deletes the selected form based on it's id, removes from table and from database
 router.delete('/:id', (req, res) => {
     console.log('form DELETE req.params.id', req.params.id);
     if (req.isAuthenticated()) {

@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// post to add registration from add dancer form on admin log in
 router.post('/', (req, res) => {
     console.log('admin POST req.body', req.body);
     if (req.isAuthenticated()) {

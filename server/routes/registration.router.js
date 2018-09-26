@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// posts client side registrations to the database
 router.post('/', (req, res) => {
     if (req.isAuthenticated()) {
         const regToAdd = req.body;
@@ -31,6 +32,7 @@ router.post('/', (req, res) => {
     }
 });
 
+// gets all the registrations matching the selected registration form id
 router.get('/:id', (req, res) => {
     console.log('registration GET req.params.id', req.params.id);
     if (req.isAuthenticated()) {
@@ -47,6 +49,7 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// deletes the specific registration by its id
 router.delete('/:id', (req, res) => {
     console.log('registration DELETE req.params.id', req.params.id);
     if (req.isAuthenticated()) {

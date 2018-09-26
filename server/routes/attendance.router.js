@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
     }
 });
 
-// GET specific Attendance data for selected month
+// GET specific attendance data for selected month
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "wed_form" WHERE "id" = $1;`;
