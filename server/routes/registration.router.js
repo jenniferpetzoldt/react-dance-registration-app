@@ -66,4 +66,21 @@ router.delete('/:id', (req, res) => {
     }
 });
 
+// updates the attendance portion of a specific registration by its id
+// router.update('/:id', (req, res) => {
+//     console.log('attendance UPDATE req.params.id', req.params.id);
+//     if (req.isAuthenticated()) {
+//         const query = ``;
+//         pool.query(query, [])
+//         .then((response) => {
+//             res.sendStatus(200);
+//         }). catch((error) => {
+//             console.log('attendance UPDATE error', error);
+//             res.sendStatus(500);
+//         });
+//     } else {
+//         res.sendStatus(403);
+//     }
+// })
+
 module.exports = router;

@@ -15,21 +15,31 @@ class AttendanceTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            registrations: [],
+            registrations: this.props.state.attenTableData,
             attendId: this.props.state.adminInput.attendId,
+            attendance: {
+                wk1: '',
+                wk2: '',
+                wk3: '',
+                wk4: '',
+            }
         }
     }
     // retrieves registration information on page load
     componentDidMount() {
         this.getRegistrations();
+
     }
+
     //retrieves registration information associated with specific form id
     getRegistrations = () => {
         axios({
             method: 'GET',
             url: '/api/registration/' + this.state.attendId
         }).then((response) => {
-            this.setState({ registrations: response.data, });
+            const registrations = response.data;
+            const action = { type: 'ADD_ATTEND_DATA', payload: registrations };
+            this.props.dispatch(action);
         }).catch((error) => {
             console.log('Registrations GET error', error);
             alert('Unable to GET registrations');
@@ -90,7 +100,7 @@ class AttendanceTable extends Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.state.registrations.map((registration) => {
+                                {this.props.state.attenTableData.map((registration) => {
                                     return <TableRow key={registration.id} value={registration}>
                                         <TableCell>{registration.first_name}</TableCell>
                                         <TableCell>{registration.last_name}</TableCell>
