@@ -13,6 +13,7 @@ class AddDancer extends Component {
         this.state = { isHidden: false };
     }
 
+    // adjusts state to indicate if the add dancer button or the add dancer form should be shown
     toggleAddDancer = (event) => {
         this.setState({
             isHidden: !this.state.isHidden,
@@ -25,10 +26,12 @@ class AddDancer extends Component {
         let addDancer;
 
         if (isHidden) {
+            //if 'isHidden' is true will show the form
             addDancer = <div>
                         <AddDancerForm toggleAddDancer={this.toggleAddDancer}/>
                         </div>
         } else {
+            // if 'isHidden' is false will show the button
             addDancer = <Button  className="submit" varient="raised" onClick={this.toggleAddDancer}>Add Dancer</Button>
         }
 
