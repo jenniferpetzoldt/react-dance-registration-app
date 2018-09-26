@@ -12,7 +12,8 @@ class AddDancerDialog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formId: this.props.state.adminInput.attendId,
+            // ensures registration is linked to the correct from by using information from the redux state
+            formId: this.props.state.adminInput.attendId, 
             firstName: '',
             lastName: '',
             email: '',
@@ -28,17 +29,14 @@ class AddDancerDialog extends Component {
             week4: '',
         };
     }
-
+    //updates local state as admin inputs information
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         });
     }
 
-    handleClick = (event) => {
-     this.sendNewDancerInfo();
-    }
-
+    //resets the form so the admin does not need to clear the fields
     clearInputs = () => {
         this.setState({
             firstName: '',
@@ -48,8 +46,6 @@ class AddDancerDialog extends Component {
             admission: '',
             first: '',
             second: '',
-            paid: '0',
-            paymentMethod: '',
             week1: '',
             week2: '',
             week3: '',
@@ -57,6 +53,7 @@ class AddDancerDialog extends Component {
         })
     };
 
+    // submits new registration to server & database and calls clearInputs()
     sendNewDancerInfo = () => {
         axios({
             method: 'POST',
@@ -78,59 +75,38 @@ class AddDancerDialog extends Component {
                 <form>
                     <div>
                     <FormControl>
-                        <TextField className="formInput" label="First Name" 
-                        name="firstName" onChange={this.handleChange} />
+                        <TextField label="First Name" name="firstName" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Last Name"
-                            name="lastName"
-                            onChange={this.handleChange} />
+                        <TextField label="Last Name" name="lastName" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Email Address"
-                            name="email"
-                            onChange={this.handleChange} />
+                        <TextField label="Email Address" name="email" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
                         <FormLabel>Role</FormLabel>
-                        <RadioGroup
-                            name="role"
-                            value={this.state.role}
-                            onChange={this.handleChange}>
-                            <FormControlLabel
-                                value='leader'
-                                control={<Radio color="primary" />}
-                                label='Leader' />
-                            <FormControlLabel
-                                value='follower'
-                                control={<Radio color="primary" />}
-                                label='Follower' />
+                        <RadioGroup name="role" value={this.state.role} onChange={this.handleChange}>
+                            <FormControlLabel value='leader' control={<Radio color="primary" />}
+                                                label='Leader' />
+                            <FormControlLabel value='follower' control={<Radio color="primary" />} 
+                                                label='Follower' />
                         </RadioGroup>
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
                         <FormLabel>Admission</FormLabel>
-                        <RadioGroup
-                            name="admission"
-                            value={this.state.admission}
-                            onChange={this.handleChange}>
-                            <FormControlLabel
-                                value='general'
-                                control={<Radio color="primary" />}
-                                label='General' />
-                            <FormControlLabel
-                                value='student'
-                                control={<Radio color="primary" />}
-                                label='Student' />
+                        <RadioGroup name="admission" value={this.state.admission} onChange={this.handleChange}>
+                            <FormControlLabel value='general' control={<Radio color="primary" />} 
+                                                label='General' />
+                            <FormControlLabel value='student' control={<Radio color="primary" />} 
+                                                label='Student' />
                         </RadioGroup>
                     </FormControl>
                     </div>
@@ -183,38 +159,26 @@ class AddDancerDialog extends Component {
                     <br />
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Week 1"
-                            name="week1"
-                            onChange={this.handleChange} />
+                        <TextField label="Week 1" name="week1" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Week 2"
-                            name="week2"
-                            onChange={this.handleChange} />
+                        <TextField label="Week 2" name="week2" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Week 3"
-                            name="week3"
-                            onChange={this.handleChange} />
+                        <TextField label="Week 3" name="week3" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
                     <FormControl>
-                        <TextField
-                            label="Week 4"
-                            name="week4"
-                            onChange={this.handleChange} />
+                        <TextField label="Week 4" name="week4" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <br />
-                    <Button  className="submit" varient="raised" onClick={this.handleClick}>Submit</Button>
+                    <Button  className="submit" varient="raised" onClick={this.sendNewDancerInfo}>Submit</Button>
                     <Button  className="close" varient="raised"  onClick={this.props.toggleAddDancer}>Close Form</Button>
                 </form>
             );

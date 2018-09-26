@@ -26,11 +26,11 @@ class AttendancePage extends Component {
             attendId: '',
         }
     }
-
+    //retrieves the month options on page load
     componentDidMount() {
         this.getAttendMonths();
     }
-
+    // retireves the month and year to populate the select
     getAttendMonths = () => {
         axios({
             method: 'GET',
@@ -45,7 +45,7 @@ class AttendancePage extends Component {
             alert('Unable to get attend');
         })
     }
-
+    // retrieves the form data and registrations associated with the specific form id
     getSpecificAttendanceData = () => {
         axios({
             method: 'GET',
@@ -61,13 +61,14 @@ class AttendancePage extends Component {
         })
     }
 
+    //sets the form id in local state
     handleChange = (event) => {
         this.setState({
             attendId: event.target.value,
         });
         console.log('attendID:', this.state.attendId);
     }
-
+    // dispatches form id and calls for the attendance data
     handleClick = (event) => {
         console.log('attendID:', this.state.attendId);
         this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state })

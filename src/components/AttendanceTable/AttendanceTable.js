@@ -19,11 +19,11 @@ class AttendanceTable extends Component {
             attendId: this.props.state.adminInput.attendId,
         }
     }
-
+    // retrieves registration information on page load
     componentDidMount() {
         this.getRegistrations();
     }
-
+    //retrieves registration information associated with specific form id
     getRegistrations = () => {
         axios({
             method: 'GET',
@@ -35,7 +35,7 @@ class AttendanceTable extends Component {
             alert('Unable to GET registrations');
         })
     }
-
+    // deletes registration based on id 
     deleteRegistration = (id) => {
         console.log('Delete registration', id);
         axios({
@@ -48,7 +48,7 @@ class AttendanceTable extends Component {
             alert('Unable to DELETE registration');
         })
     }
-
+    //updates the attendance information
     updateAttendance = (id) => {
         console.log('Update registration', id);
         axios({
@@ -122,8 +122,10 @@ class AttendanceTable extends Component {
                                             </TextField>
                                         </TableCell>
                                         <TableCell>
-                                            <Button className="delete" varient="raised" onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
-                                            <Button className="update" varient="raised" onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
+                                            <Button className="delete" varient="raised" 
+                                                    onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
+                                            <Button className="update" varient="raised" 
+                                                    onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
