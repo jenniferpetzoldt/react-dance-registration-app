@@ -43,7 +43,7 @@ class EditDialog extends Component {
             open: true,
         })
     }
-
+//found bug! if they previously have not selected a class it does not calculate right and they can not fully unselect an hour!!!
     handleFirstHourChange = (event) => {
         if (this.props.state.userInput.userInfo.admission === "general") {
             this.setState({
@@ -142,7 +142,7 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button onClick={this.UpdateRegistraiton}>Edit</Button>
+                        <Button  className="edit" varient="raised" onClick={this.UpdateRegistraiton}>Edit</Button>
                         <Dialog
                             open={this.state.open}>
                             <Confirm />

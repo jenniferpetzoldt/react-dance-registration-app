@@ -75,7 +75,7 @@ class FormTable extends Component {
                                 <TableCell>{form.level_four}</TableCell>
                                 <TableCell>{form.level_five}</TableCell>
                                 <TableCell>{form.solo_jazz}</TableCell>
-                                <TableCell><Button onClick={()=>this.deleteCreatedForm(form.id)}>Delete</Button></TableCell>
+                                <TableCell><Button  className="delete" varient="raised" onClick={()=>this.deleteCreatedForm(form.id)}>Delete</Button></TableCell>
                                 </TableRow>
                             })}
                         </TableBody>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PersonalEditDialog from '../PersonalEditDialog/PersonalEditDialog';
 import axios from 'axios';
-import { Dialog } from '@material-ui/core';
+import { Dialog, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -18,7 +18,7 @@ class Confirm extends Component {
         }
     }
 
-dispatchTotal = () => {
+    dispatchTotal = () => {
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
@@ -32,7 +32,7 @@ dispatchTotal = () => {
         //need to find a betterway to do this
         setTimeout(() => {
             this.sendRegistration();
-        }, 1); 
+        }, 1);
     }
 
     sendRegistration = () => {
@@ -69,28 +69,29 @@ dispatchTotal = () => {
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
-       
+
         if (this.props.user.userName) {
             content = (
-                <div>
-                        <h1>Confirm Registration Information</h1>
-                        <h3>PersonalInformation:</h3>
-                        <p>Name: {this.props.state.userInput.personalInfo.firstName} {this.props.state.userInput.personalInfo.lastName}</p>
-                        <p>Email: {this.props.state.userInput.personalInfo.email}</p>
-                        <p>Role: {this.props.state.userInput.personalInfo.role} Admission: {this.props.state.userInput.personalInfo.admission}</p>
-                        <h3>Lessons:</h3>
-                        <p>{this.props.state.userInput.lessons.firstHour}</p>
-                        <p>{this.props.state.userInput.lessons.secondHour}</p>
-                        <h3>Payment Method:</h3>
-                        {this.props.state.userInput.payment.paymentMethod}
-                        <h3>Total Cost:</h3>
-                        <p>${stringTotal}.00</p>
-                        <br />
-                        <button onClick={this.submitRegistration}>Submit</button>
-                        <button onClick={this.editClick}>Edit</button>
+                <div className="confirm">
+                    <h3>Confirm Registration Information</h3>
+                    <h3>PersonalInformation:</h3>
+                    <p>Name: {this.props.state.userInput.personalInfo.firstName} {this.props.state.userInput.personalInfo.lastName}</p>
+                    <p>Email: {this.props.state.userInput.personalInfo.email}</p>
+                    <p>Role: {this.props.state.userInput.personalInfo.role} </p>
+                    <p>Admission: {this.props.state.userInput.personalInfo.admission}</p>
+                    <h3>Lessons:</h3>
+                    <p>{this.props.state.userInput.lessons.firstHour}</p>
+                    <p>{this.props.state.userInput.lessons.secondHour}</p>
+                    <h3>Payment Method:</h3>
+                    {this.props.state.userInput.payment.paymentMethod}
+                    <h3>Total Cost:</h3>
+                    <p>${stringTotal}.00</p>
+                    <br />
+                    <Button className="submit" varient="raised" onClick={this.submitRegistration}>Submit</Button>
+                    <Button className="edit" varient="raised" onClick={this.editClick}>Edit</Button>
                     <Dialog
                         open={this.state.editOpen} >
-                        <PersonalEditDialog editOpen={this.state.editOpen} closeClick={this.closeClick}/>
+                        <PersonalEditDialog editOpen={this.state.editOpen} closeClick={this.closeClick} />
                     </Dialog>
                 </div>
             );

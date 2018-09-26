@@ -205,7 +205,7 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button onClick={this.handleAdmissionChange}>Save</Button>
+                        <Button  className="submit" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
                     </div>
                 </div>
             );

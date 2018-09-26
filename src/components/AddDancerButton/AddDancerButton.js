@@ -29,7 +29,7 @@ class AddDancer extends Component {
                         <AddDancerForm toggleAddDancer={this.toggleAddDancer}/>
                         </div>
         } else {
-            addDancer = <Button onClick={this.toggleAddDancer}>Add Dancer</Button>
+            addDancer = <Button  className="submit" varient="raised" onClick={this.toggleAddDancer}>Add Dancer</Button>
         }
 
         if (this.props.user.userName) {

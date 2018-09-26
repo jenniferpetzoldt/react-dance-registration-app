@@ -78,10 +78,8 @@ class AddDancerDialog extends Component {
                 <form>
                     <div>
                     <FormControl>
-                        <TextField className="formInput"
-                            label="First Name"
-                            name="firstName"
-                            onChange={this.handleChange} />
+                        <TextField className="formInput" label="First Name" 
+                        name="firstName" onChange={this.handleChange} />
                     </FormControl>
                     </div>
                     <div>
@@ -216,8 +214,8 @@ class AddDancerDialog extends Component {
                     </FormControl>
                     </div>
                     <br />
-                    <Button onClick={this.handleClick}>Submit</Button>
-                    <Button onClick={this.props.toggleAddDancer}>Close Form</Button>
+                    <Button  className="submit" varient="raised" onClick={this.handleClick}>Submit</Button>
+                    <Button  className="close" varient="raised"  onClick={this.props.toggleAddDancer}>Close Form</Button>
                 </form>
             );
         }

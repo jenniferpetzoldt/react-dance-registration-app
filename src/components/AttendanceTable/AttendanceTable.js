@@ -17,6 +17,7 @@ class AttendanceTable extends Component {
         this.state = {
             registrations: [],
             attendId: this.props.state.adminInput.attendId,
+            // week2: this.state.registrations.week_one,
         }
     }
 
@@ -108,12 +109,13 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.second_hour}</TableCell>
                                         <TableCell>{registration.oweds}</TableCell>
                                         <TableCell>{registration.payment_type}</TableCell>
-                                        {week1}                                        <TableCell>{registration.week_two}</TableCell>
+                                        <TableCell>{registration.week_one}</TableCell>                           
+                                        <TableCell>{registration.week_two}</TableCell>
                                         <TableCell>{registration.week_three}</TableCell>
                                         <TableCell>{registration.week_four}</TableCell>
                                         <TableCell>
-                                            <Button onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
-                                            <Button onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
+                                            <Button  className="delete" varient="raised" onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
+                                            <Button  className="update" varient="raised" onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
