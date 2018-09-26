@@ -64,47 +64,29 @@ class ClassNameInput extends Component {
                         <p>Input class names including level below:</p>
                         <div>
                             <FormControl>
-                                <TextField
-                                    label="Level 1"
-                                    name="levelOne"
-                                    value={this.state.newForm.levelOne}
-                                    onChange={this.handleChange} />
+                                <TextField label="Level 1" name="levelOne" value={this.state.newForm.levelOne} 
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <FormControl>
-                                <TextField
-                                    label="Level 2"
-                                    name="levelTwo"
-                                    value={this.state.newForm.levelTwo}
-                                    onChange={this.handleChange} />
+                                <TextField label="Level 2" name="levelTwo" value={this.state.newForm.levelTwo}
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <FormControl>
-                                <TextField
-                                    label="Level 3"
-                                    name="levelThree"
-                                    value={this.state.newForm.levelThree}
-                                    onChange={this.handleChange} />
+                                <TextField label="Level 3"  name="levelThree" value={this.state.newForm.levelThree}
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <br />
                             <FormControl>
-                                <TextField
-                                    label="Level 4"
-                                    name="levelFour"
-                                    value={this.state.newForm.levelFour}
-                                    onChange={this.handleChange} />
+                                <TextField label="Level 4" name="levelFour"value={this.state.newForm.levelFour}
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <FormControl>
-                                <TextField
-                                    label="Level 5"
-                                    name="levelFive"
-                                    value={this.state.newForm.levelFive}
-                                    onChange={this.handleChange} />
+                                <TextField label="Level 5" name="levelFive" value={this.state.newForm.levelFive}
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <FormControl>
-                                <TextField
-                                    label="Solo Jazz"
-                                    name="soloJazz"
-                                    value={this.state.newForm.soloJazz}
-                                    onChange={this.handleChange} />
+                                <TextField label="Solo Jazz" name="soloJazz" value={this.state.newForm.soloJazz}
+                                            onChange={this.handleChange} />
                             </FormControl>
                             <br />
                             <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
