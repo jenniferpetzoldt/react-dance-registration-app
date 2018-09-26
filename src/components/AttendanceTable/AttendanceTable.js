@@ -11,6 +11,12 @@ const mapStateToProps = state => ({
     state,
 });
 
+const styles = {
+    textField: {
+        width: 55,
+    }
+  }
+
 class AttendanceTable extends Component {
     constructor(props) {
         super(props);
@@ -112,22 +118,22 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.payment_type}</TableCell>
                                         {/* Add function to update the registration */}
                                         <TableCell>
-                                            <TextField onChange={() => this.updateAttendance(registration.id)}>
+                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
                                                 {registration.week_one}
                                             </TextField>
                                         </TableCell>
                                         <TableCell>
-                                            <TextField onChange={() => this.updateAttendance(registration.id)}>
+                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
                                                 {registration.week_two}
                                             </TextField>
                                         </TableCell>
                                         <TableCell>
-                                            <TextField onChange={() => this.updateAttendance(registration.id)}>
+                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
                                                 {registration.week_three}
                                             </TextField>
                                         </TableCell>
                                         <TableCell>
-                                            <TextField onChange={() => this.updateAttendance(registration.id)}>
+                                            <TextField style={styles.textField} onChange={() => this.updateAttendance(registration.id)}>
                                                 {registration.week_four}
                                             </TextField>
                                         </TableCell>

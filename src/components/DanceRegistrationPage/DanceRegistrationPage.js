@@ -15,7 +15,7 @@ const styles = {
     width: 300,
   },
   formControl: {
-    display: 'flex',
+    width: 200,
   },
 }
 

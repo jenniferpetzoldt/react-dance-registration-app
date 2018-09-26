@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('specific form GET req.body', req.params);
     if (req.isAuthenticated()) {
-        const query = `SELECT * FROM "wed_form" WHERE "id" = $1;`;
+        const query = `SELECT * FROM "wed_form" WHERE "id" = $1 ORDER BY "start_date" ASC;`;
         pool.query(query, [req.params.id])
             .then((response) => {
                 res.send(response.rows);

@@ -14,8 +14,7 @@ body {
 }
 
 form {
-    background-color: #dbd5d5;
-    width: 60%;
+    width: 95%;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
@@ -78,10 +77,10 @@ li a:hover {
     color: #eee;
 }
 
-.formSelect {
+/* .formSelect {
     width: 300px;
     display: block;
-}
+} */
 
 .attendanceTable {
     width: 80%;

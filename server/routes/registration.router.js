@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('registration GET req.params.id', req.params.id);
     if (req.isAuthenticated()) {
-        const query = `SELECT * FROM "registration" WHERE "registration"."wed_form_id" = $1;`;
+        const query = `SELECT * FROM "registration" WHERE "wed_form_id" = $1 ORDER BY "last_name" ASC;`;
         pool.query(query, [req.params.id])
             .then((response) => {
                 res.send(response.rows);

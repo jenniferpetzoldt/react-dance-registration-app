@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
-        const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" < now();`;
+        const query = `SELECT "id", "form_month", "form_year" FROM "wed_form" WHERE "start_date" < now() ORDER BY "start_date" ASC;`;
         pool.query(query)
             .then((response) => {
                 res.send(response.rows);

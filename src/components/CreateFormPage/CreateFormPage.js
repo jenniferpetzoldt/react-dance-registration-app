@@ -13,7 +13,8 @@ const space = " ";
 
 const styles = {
     formControl: {
-        display: 'flex',
+        width: 200,
+        margin: 20,
     },
 }
 

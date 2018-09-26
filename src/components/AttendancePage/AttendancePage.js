@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const styles = {
     formControl: {
-        display: 'flex',
+        width: 200,
     },
 }
 
