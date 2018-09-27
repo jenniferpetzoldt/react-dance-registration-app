@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-import UpdateDancerModal from '../UpdateDancerModal/UpdateDancerModal';
+import UpdateWeekOne from '../UppdateWeekOne/UppdateWeekOne';
+import UpdateWeekTwo from '../UpdateWeekTwo/UpdateWeekTwo';
+import UpdateWeekThree from '../UpdateWeekThree/UpdateWeekThree';
+import UpdateWeekFour from '../UpdateWeekFour/UpdateWeekFour';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button, Dialog, } from '@material-ui/core';
 import Add from '@material-ui/icons/Add';
 import axios from 'axios';
@@ -28,7 +31,10 @@ class AttendanceTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            openOne: false,
+            openTwo: false,
+            openThree: false,
+            openFour: false,
             registrationId: '',
             registrations: this.props.state.attenTableData,
             attendId: this.props.state.adminInput.attendId,
@@ -153,8 +159,20 @@ class AttendanceTable extends Component {
                         </Table>
                     </div>
                     <Dialog 
-                        open={this.state.open}>
+                        openOne={this.state.openOne}>
                         <UpdateWeekOne registrationId={this.state.registrationId}/>
+                    </Dialog>
+                    <Dialog 
+                        openTwo={this.state.openTwo}>
+                        <UpdateWeekTwo registrationId={this.state.registrationId}/>
+                    </Dialog>
+                    <Dialog 
+                        openThree={this.state.openThree}>
+                        <UpdateWeekThree registrationId={this.state.registrationId}/>
+                    </Dialog>
+                    <Dialog 
+                        openFour={this.state.openFour}>
+                        <UpdateWeekFour registrationId={this.state.registrationId}/>
                     </Dialog>
                 </div>
             );

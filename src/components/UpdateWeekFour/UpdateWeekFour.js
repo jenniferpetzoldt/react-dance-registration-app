@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { FormControl, Radio, TextField, FormLabel, RadioGroup, FormControlLabel, Button } from '@material-ui/core';
+import { FormControl, TextField, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
