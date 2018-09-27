@@ -4,7 +4,8 @@ import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
 import UpdateDancerModal from '../UpdateDancerModal/UpdateDancerModal';
-import { Table, TableHead, TableBody, TableRow, TableCell, Button, Dialog } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, Dialog, } from '@material-ui/core';
+import Add from '@material-ui/icons/Add';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
@@ -15,8 +16,13 @@ const mapStateToProps = state => ({
 const styles = {
     textField: {
         width: 55,
-    }
+    },
+    button: {
+        height: 5,
+        width: 5,
+    },
   }
+
 
 class AttendanceTable extends Component {
     constructor(props) {
@@ -128,15 +134,18 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.payment_type}</TableCell>
                                         {/* Add function to update the registration */}
                                         {/* add a model that pops up with that registrations information to edit the attendance and submit the update*/}
-                                        <TableCell>{registration.week_one}</TableCell>
-                                        <TableCell>{registration.week_two}</TableCell>
-                                        <TableCell>{registration.week_three}</TableCell>
-                                        <TableCell>{registration.week_four}</TableCell>
+                                        {/* incorperate the add icon into the update button instead of text */}
+                                        <TableCell><Button size="mini" className="update" varient="raised" 
+                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_one}</Button></TableCell>
+                                        <TableCell><Button  className="update" varient="raised" 
+                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_two}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised" 
+                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_three}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised" 
+                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_four}</Button></TableCell>
                                         <TableCell>
                                             <Button className="delete" varient="raised" 
                                                     onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
-                                            <Button className="update" varient="raised" 
-                                                    onClick={() => this.handleUpdateClick(registration.id)}>Update</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
@@ -145,7 +154,7 @@ class AttendanceTable extends Component {
                     </div>
                     <Dialog 
                         open={this.state.open}>
-                        <UpdateDancerModal registrationId={this.state.registrationId}/>
+                        <UpdateWeekOne registrationId={this.state.registrationId}/>
                     </Dialog>
                 </div>
             );
