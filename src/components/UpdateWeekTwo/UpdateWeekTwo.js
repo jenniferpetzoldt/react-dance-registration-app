@@ -47,6 +47,7 @@ class UpdateWeekTwo extends Component {
                     </FormControl>
                     <br />
                     <Button className="submit" varient="raised" onClick={this.props.closeTwo}>Submit</Button>
+                    <Button className="cancel" varient="raised" onClick={this.props.closeTwo}>Cancel</Button>
                 </form>
             );
         }
