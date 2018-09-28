@@ -23,6 +23,23 @@ const userName = (state = null, action) => {
   }
 };
 
+const admin = (state = false, action) => {
+  switch (action.type) {
+    case USER_ACTIONS.SET_USER:
+    if(action.user.hasOwnProperty('admin')){
+      return(
+        action.user.admin
+      )
+    } else {
+      return state;
+    }
+    case USER_ACTIONS.UNSET_USER:
+      return null;
+    default:
+      return state;
+  }
+};
+
 const isLoading = (state = false, action) => {
   switch (action.type) {
     case USER_ACTIONS.REQUEST_START:
@@ -38,4 +55,5 @@ export default combineReducers({
   id,
   userName,
   isLoading,
+  admin,
 });
