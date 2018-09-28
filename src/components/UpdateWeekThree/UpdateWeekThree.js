@@ -52,7 +52,8 @@ class UpdateWeekThree extends Component {
                         <TextField style={styles.textField} label="Week 3" name="week3" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.updateAttendance}>Submit</Button>
+                    <Button className="submit" varient="raised" onClick={this.props.closeThree}>Submit</Button>
+                    <Button className="cancel" varient="raised" onClick={this.props.closeThree}>Cancel</Button>
                 </form>
             );
         }

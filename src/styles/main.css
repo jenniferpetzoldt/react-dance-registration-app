@@ -8,9 +8,9 @@ body {
 }
 
 .instructions {
-    background-color: #00acb0;
+    background-color: white;
     padding: 5px;
-    color: #ece7e7;
+    color: #126e7a;
 }
 
 form {
@@ -46,9 +46,10 @@ input[type="submit"] {
 }
 
 .navbar {
-  background-color: #00acb0;
+  background-color: white;
   width: 100%;
   border-radius: 0px;
+  
 }
 
 ul {
@@ -64,7 +65,7 @@ ul {
 
 li a {
     display: block;
-    color: white;
+    color: #126e7a;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -74,7 +75,7 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     text-decoration: underline;
-    color: #eee;
+    color: rgb(45, 134, 150);
 }
 
 /* .formSelect {

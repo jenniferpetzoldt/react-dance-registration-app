@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import AddDancerButton from '../AddDancerButton/AddDancerButton';
 import AttendanceTitle from '../AttendanceTitle/AttendanceTitle';
-import UpdateWeekOne from '../UppdateWeekOne/UppdateWeekOne';
+import UpdateWeekOne from '../UpdateWeekOne/UpdateWeekOne';
 import UpdateWeekTwo from '../UpdateWeekTwo/UpdateWeekTwo';
 import UpdateWeekThree from '../UpdateWeekThree/UpdateWeekThree';
 import UpdateWeekFour from '../UpdateWeekFour/UpdateWeekFour';
@@ -20,21 +20,17 @@ const styles = {
     textField: {
         width: 55,
     },
-    button: {
-        height: 5,
-        width: 5,
-    },
-  }
+}
 
 
 class AttendanceTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            openOne: false,
-            openTwo: false,
-            openThree: false,
-            openFour: false,
+            open: false,
+            twoOpen: false,
+            threeOpen: false,
+            fourOpen: false,
             registrationId: '',
             registrations: this.props.state.attenTableData,
             attendId: this.props.state.adminInput.attendId,
@@ -52,10 +48,55 @@ class AttendanceTable extends Component {
 
     }
 
-    handleUpdateClick(id){
+    handleOneClick = (id) => {
         this.setState({
             open: true,
             registrationId: id,
+        });
+    }
+
+    closeOne = (event) => {
+        this.setState({
+            open: false,
+        });
+    }
+
+    handleTwoClick = (id) => {
+        this.setState({
+            twoOpen: true,
+            registrationId: id,
+        });
+    }
+
+    closeTwo = (event) => {
+        this.setState({
+            twoOpen: false,
+        });
+    }
+
+    handleThreeClick = (id) => {
+        this.setState({
+            threeOpen: true,
+            registrationId: id,
+        });
+    }
+
+    closeThree = (event) => {
+        this.setState({
+            threeOpen: false,
+        });
+    }
+
+    handleFourClick = (id) => {
+        this.setState({
+            fourOpen: true,
+            registrationId: id,
+        });
+    }
+
+    closeFour = (event) => {
+        this.setState({
+            fourOpen: false,
         });
     }
 
@@ -141,38 +182,38 @@ class AttendanceTable extends Component {
                                         {/* Add function to update the registration */}
                                         {/* add a model that pops up with that registrations information to edit the attendance and submit the update*/}
                                         {/* incorperate the add icon into the update button instead of text */}
-                                        <TableCell><Button size="mini" className="update" varient="raised" 
-                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_one}</Button></TableCell>
-                                        <TableCell><Button  className="update" varient="raised" 
-                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_two}</Button></TableCell>
-                                        <TableCell><Button className="update" varient="raised" 
-                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_three}</Button></TableCell>
-                                        <TableCell><Button className="update" varient="raised" 
-                                                    onClick={() => this.handleUpdateClick(registration.id)}>{registration.week_four}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised"
+                                            onClick={() => this.handleOneClick(registration.id)}>{registration.week_one}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised"
+                                            onClick={() => this.handleTwoClick(registration.id)}>{registration.week_two}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised"
+                                            onClick={() => this.handleThreeClick(registration.id)}>{registration.week_three}</Button></TableCell>
+                                        <TableCell><Button className="update" varient="raised"
+                                            onClick={() => this.handleFourClick(registration.id)}>{registration.week_four}</Button></TableCell>
                                         <TableCell>
-                                            <Button className="delete" varient="raised" 
-                                                    onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
+                                            <Button className="delete" varient="raised"
+                                                onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
                             </TableBody>
                         </Table>
                     </div>
-                    <Dialog 
-                        openOne={this.state.openOne}>
-                        <UpdateWeekOne registrationId={this.state.registrationId}/>
+                    <Dialog
+                        open={this.state.open}>
+                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} registrationId={this.state.registrationId} />
                     </Dialog>
-                    <Dialog 
-                        openTwo={this.state.openTwo}>
-                        <UpdateWeekTwo registrationId={this.state.registrationId}/>
+                    <Dialog
+                        open={this.state.twoOpen}>
+                        <UpdateWeekTwo twoOpen={this.state.twoOpen} closeTwo={this.closeTwo} registrationId={this.state.registrationId} />
                     </Dialog>
-                    <Dialog 
-                        openThree={this.state.openThree}>
-                        <UpdateWeekThree registrationId={this.state.registrationId}/>
+                    <Dialog
+                        open={this.state.threeOpen}>
+                        <UpdateWeekThree threeOpen={this.state.threeOpen} closeThree={this.closeThree} registrationId={this.state.registrationId} />
                     </Dialog>
-                    <Dialog 
-                        openFour={this.state.openFour}>
-                        <UpdateWeekFour registrationId={this.state.registrationId}/>
+                    <Dialog
+                        open={this.state.fourOpen}>
+                        <UpdateWeekFour fourOpen={this.state.fourOpen} closeFour={this.closeFour} registrationId={this.state.registrationId} />
                     </Dialog>
                 </div>
             );
