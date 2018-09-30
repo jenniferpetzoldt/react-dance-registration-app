@@ -98,3 +98,8 @@ li a:hover {
 .confirm {
     padding: 3%;
 }
+
+#logOutBtn {
+    float: right;
+    text-align: right;
+}

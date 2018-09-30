@@ -26,7 +26,10 @@ class LoginPage extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.user.isLoading && this.props.user.userName !== null) {
+    if (!this.props.user.isLoading && this.props.user.userName !== null && this.props.user.admin === true) {
+      this.props.history.push('attendance');
+    }
+    if (!this.props.user.isLoading && this.props.user.userName !== null && this.props.user.admin === false) {
       this.props.history.push('registration');
     }
   }
@@ -54,7 +57,7 @@ class LoginPage extends Component {
           className="alert"
           role="alert"
         >
-          { this.props.login.message }
+          {this.props.login.message}
         </h2>
       );
     }
@@ -62,45 +65,93 @@ class LoginPage extends Component {
   }
 
   render() {
+    let content = null;
+    if (this.props.user && this.props.user.admin === false) {
+      content = (
+        <div>
+          {this.renderAlert()}
+          <form onSubmit={this.login}>
+            <h1>Login</h1>
+            <div>
+              <label htmlFor="username">
+                Username:
+              <input
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="password">
+                Password:
+              <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                />
+              </label>
+            </div>
+            <div>
+              <input
+                type="submit"
+                name="submit"
+                value="Log In"
+              />
+              <Link to="/register">Register</Link>
+            </div>
+          </form>
+        </div>
+      )
+    } else if (this.props.user && this.props.user.admin === true) {
+      content = (
+        <div>
+          {this.renderAlert()}
+          <form onSubmit={this.login}>
+            <h1>Login</h1>
+            <div>
+              <label htmlFor="username">
+                Username:
+              <input
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor('username')}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="password">
+                Password:
+              <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                />
+              </label>
+            </div>
+            <div>
+              <input
+                type="submit"
+                name="submit"
+                value="Log In"
+              />
+              <Link to="/attendance">Register</Link>
+            </div>
+          </form>
+        </div>
+      )
+    }
     return (
       <div>
-        { this.renderAlert() }
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-            <Link to="/register">Register</Link>
-          </div>
-        </form>
+        {content}
       </div>
-    );
+    )
   }
 }
+
 
 export default connect(mapStateToProps)(LoginPage);
