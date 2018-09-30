@@ -53,7 +53,7 @@ class PersonalInformation extends Component {
     render() {
         let content = null;
 
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === false) {
             content = (
                 <form  id="personalForm" onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />

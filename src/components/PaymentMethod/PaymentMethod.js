@@ -50,7 +50,7 @@ class PaymentMethod extends Component {
 
     render() {
         let content = null;
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === false) {
             content = (
                 <div className="Payment Method">
                     <RegistrationTitle />

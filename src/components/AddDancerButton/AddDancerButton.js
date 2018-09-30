@@ -35,7 +35,7 @@ class AddDancer extends Component {
             addDancer = <Button  className="submit" varient="raised" onClick={this.toggleAddDancer}>Add Dancer</Button>
         }
 
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === true) {
             content = (
                 <div>
                     {addDancer}

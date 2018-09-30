@@ -70,7 +70,7 @@ class Confirm extends Component {
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
 
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === false) {
             content = (
                 <div className="confirm">
                     <h3>Confirm Registration Information</h3>

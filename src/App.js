@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Nav from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import DanceRegistrationPage from './components/DanceRegistrationPage/DanceRegistrationPage';
@@ -35,10 +34,10 @@ const App = () => (
           path="/home"
           component={LoginPage}
         />
-        <Route
+        {/* <Route
           path="/profile"
           component={Profile}
-        />
+        /> */}
         <Route
           path="/register"
           component={RegisterPage}

@@ -94,7 +94,7 @@ class AddDancerDialog extends Component {
 
     render() {
         let content = null;
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === true) {
             content = (
                 <form style={styles.form}>
                     <FormControl style={styles.formControl}>
