@@ -91,6 +91,8 @@ class Lessons extends Component {
                     <form>
                         <h3>2. Lessons</h3>
                         <div>
+                            <p>General Admission is $40</p>
+                            <p>Student Admission is $35</p>
                             <FormControl>
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>
                                 <RadioGroup

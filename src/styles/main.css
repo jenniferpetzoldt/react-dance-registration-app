@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:  Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .instructions h1 {
@@ -19,6 +19,7 @@ form {
     padding: 25px;
     border-radius: 2px;
 }
+
 
 input {
     margin: 5px;
@@ -99,7 +100,46 @@ li a:hover {
     padding: 3%;
 }
 
-#logOutBtn {
+#logOutBtn, .submit, .cancel{
     float: right;
     text-align: right;
+}
+
+.cancel, .submit {
+    padding-right: 10%;
+}
+
+form {
+    margin: 0;
+    padding-top: 0;
+    text-align: center;
+}
+
+#personalForm {
+    margin: 0;
+    padding-Top: 0;
+    text-align: left;
+}
+
+#role, #admission {
+    flex-direction: row;
+
+}
+
+#admissionControl, #roleControl{
+    padding-top: 5%;
+    margin-right: 50px;
+}
+
+.formControl {
+    float: right;
+}
+
+.lead {
+    margin: 0;
+    font-size: 150%;
+}
+
+#logo {
+    height: 50px;
 }

@@ -47,7 +47,7 @@ class AttendanceTable extends Component {
         this.getRegistrations();
 
     }
-
+    // find better way to manage the modals
     handleOneClick = (id) => {
         this.setState({
             open: true,

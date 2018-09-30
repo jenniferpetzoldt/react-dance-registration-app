@@ -8,6 +8,15 @@ const mapStateToProps = state => ({
     state,
 });
 
+const styles = {
+    formControl: {
+        marginRight: 15,
+    },
+    textField: {
+        width: 55,
+    }
+}
+
 class PersonalInformation extends Component {
     constructor(props) {
         super(props);
@@ -46,33 +55,32 @@ class PersonalInformation extends Component {
 
         if (this.props.user.userName) {
             content = (
-                <form onSubmit={this.addPersonalInformation}>
+                <form  id="personalForm" onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
                     <h3>1. Personal Information:</h3>
-                    <FormControl>
+                    <FormControl style={styles.formControl}>
                     <TextField
                     label="First Name" 
                     name="firstName" 
                     onChange={this.handleChange} />
                     </FormControl>
-                    <br />
-                    <FormControl>
+                    <FormControl style={styles.formControl}>
                     <TextField
                     label="Last Name" 
                     name="lastName" 
                     onChange={this.handleChange} />
                     </FormControl>
-                    <br />
-                    <FormControl> 
+                    <FormControl style={styles.formControl}> 
                     <TextField
                     label="Email Address" 
                     name="email" 
                     onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <FormControl>
+                    <FormControl id="roleControl">
                         <FormLabel>Role</FormLabel>
                         <RadioGroup
+                            id="role"
                             name="role"
                             value={this.state.personalInformation.role}
                             onChange={this.handleChange}>
@@ -86,10 +94,10 @@ class PersonalInformation extends Component {
                                 label='Follower' />
                         </RadioGroup>
                     </FormControl>
-                    <br />
-                    <FormControl>
+                    <FormControl id="admissionControl">
                         <FormLabel>Admission</FormLabel>
                         <RadioGroup
+                            id="admission"
                             name="admission"
                             value={this.state.personalInformation.admission}
                             onChange={this.handleChange}>
@@ -103,7 +111,7 @@ class PersonalInformation extends Component {
                                 label='Student' />
                         </RadioGroup>
                     </FormControl>
-                    <p>* Comment about student discount</p>
+                    <p>$5 off your session with a valid student ID at check-in!</p>
                     <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                 </form>
             );

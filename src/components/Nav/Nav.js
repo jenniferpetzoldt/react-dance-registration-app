@@ -30,7 +30,7 @@ class Nav extends Component {
     if (this.props.user && this.props.user.admin === false) {
       content = (
         <div className="navbar">
-          <Grid align-items-xs-center justify-xs-flex-end>
+          <Grid >
             <ul>
               <li className="nav">
                 <Link to="/profile">
@@ -52,7 +52,7 @@ class Nav extends Component {
     } else if (this.props.user && this.props.user.admin === true) {
       content = (
         <div className="navbar">
-          <Grid align-items-xs-center justify-xs-flex-end>
+          <Grid >
             <ul>
               <li className="nav">
                 <Link to="/attendance">

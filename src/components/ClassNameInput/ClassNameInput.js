@@ -68,7 +68,7 @@ class ClassNameInput extends Component {
         if (this.props.user.userName) {
             content = (
                 <div>
-                    <form>
+                    <form id="classInputForm">
                         <h2>Class Names:</h2>
                         <p>Input class names including level below:</p>
                         <Grid>
@@ -98,8 +98,8 @@ class ClassNameInput extends Component {
                                             onChange={this.handleChange} />
                             </FormControl>
                             <br />
-                            <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
                             <Button className="cancel" varient="raised">Cancel</Button>
+                            <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
                         </Grid>
                     </form>
                 </div >
