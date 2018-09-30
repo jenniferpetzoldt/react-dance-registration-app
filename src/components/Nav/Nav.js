@@ -15,15 +15,16 @@ class Nav extends Component {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
   }
 
-  // componentDidUpdate() {
-  //   if (!this.props.user.isLoading && this.props.user.userName === null) {
-  //     this.props.history.push('home');
-  //   }
-  // }
+  componentDidUpdate() {
+    if (!this.props.user.isLoading && this.props.user.userName === null) {
+      this.props.history.push('home');
+    }
+  }
 
   logout = () => {
     this.props.dispatch(triggerLogout());
   }
+
   render() {
     let content = null;
 
@@ -33,11 +34,6 @@ class Nav extends Component {
           <Grid >
             <ul>
               <li className="nav">
-                <Link to="/profile">
-                  Profile
-                </Link>
-              </li>
-              <li className="nav">
                 <Link to="/registration">
                   Registration
                 </Link>
@@ -46,7 +42,7 @@ class Nav extends Component {
                 <Button id="logOutBtn" onClick={this.logout}>Log Out</Button>
               </li>
             </ul>
-            </Grid>
+          </Grid>
         </div>
       )
     } else if (this.props.user && this.props.user.admin === true) {
@@ -65,7 +61,7 @@ class Nav extends Component {
               </Link>
               </li>
               <li>
-              <Button id="logOutBtn" onClick={this.logout}>Log Out</Button>
+                <Button id="logOutBtn" onClick={this.logout}>Log Out</Button>
               </li>
             </ul>
           </Grid>

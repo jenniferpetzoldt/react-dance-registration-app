@@ -223,7 +223,7 @@ class AttendanceTable extends Component {
         }
         return (
             <div>
-                <Nav />
+                <Nav history={this.props.history}/>
                 {content}
             </div>
         );
