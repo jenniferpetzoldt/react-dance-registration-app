@@ -13,8 +13,11 @@ const styles = {
         marginRight: 15,
     },
     textField: {
-        width: 55,
-    }
+        width: 120,
+    },
+    emailField: {
+        width: 200,
+    },
 }
 
 class PersonalInformation extends Component {
@@ -64,18 +67,21 @@ class PersonalInformation extends Component {
                     <h3>Personal Information:</h3>
                     <FormControl style={styles.formControl}>
                     <TextField
+                    style={styles.textField}
                     label="First Name" 
                     name="firstName" 
                     onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
                     <TextField
+                    style={styles.textField}
                     label="Last Name" 
                     name="lastName" 
                     onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}> 
                     <TextField
+                    style={styles.emailField}
                     label="Email Address" 
                     name="email" 
                     onChange={this.handleChange} />

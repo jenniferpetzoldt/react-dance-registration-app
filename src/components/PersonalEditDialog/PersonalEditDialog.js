@@ -10,9 +10,16 @@ const mapStateToProps = state => ({
 const styles = {
     formControl: {
         marginRight: 15,
+        paddingTop: 3,
     },
     radioControl: {
         marginRight: 50,
+    },
+    textField: {
+        width: 120,
+    },
+    emailField: {
+        width: 200,
     },
 }
 
@@ -148,6 +155,7 @@ class EditDialog extends Component {
                         <h3>Edit Information</h3>
                         <FormControl style={styles.formControl}>
                             <TextField
+                            style={styles.textField}
                                 label="First Name"
                                 name="firstName"
                                 value={this.state.personalInformation.firstName}
@@ -155,6 +163,7 @@ class EditDialog extends Component {
                         </FormControl>
                         <FormControl>
                             <TextField
+                            style={styles.textField}
                                 label="Last Name"
                                 name="lastName"
                                 value={this.state.personalInformation.lastName}
@@ -163,6 +172,7 @@ class EditDialog extends Component {
                         <br />
                         <FormControl>
                             <TextField
+                            style={styles.emailField}
                                 label="Email Address"
                                 name="email"
                                 value={this.state.personalInformation.email}
@@ -253,8 +263,8 @@ class EditDialog extends Component {
                             </RadioGroup>
                         </FormControl>
                         <br />
-                        <Button className="submit" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
-                        <Button className="confirmBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
+                        <Button className="editBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
+                        <Button className="editBtn" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
                     </div>
             );
         }

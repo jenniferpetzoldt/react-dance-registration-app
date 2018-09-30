@@ -33,11 +33,12 @@ class Nav extends Component {
         <div className="navbar">
           <Grid >
             <ul>
-              <li className="nav">
+              {/* Don't need this for presentation but will for further building out the app */}
+              {/* <li className="nav">
                 <Link to="/registration">
                   Registration
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Button id="logOutBtn" onClick={this.logout}>Log Out</Button>
               </li>

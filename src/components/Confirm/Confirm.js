@@ -90,9 +90,9 @@ class Confirm extends Component {
                     <h4>Total Cost:</h4>
                     <p>${stringTotal}.00</p>
                     <br />
-                    <Button className="confirmBtn" varient="raised" onClick={this.submitRegistration}>Submit</Button>
-                    <Button className="confirmBtn" varient="raised" onClick={this.editClick}>Edit</Button>
                     <Button className="confirmBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
+                    <Button className="confirmBtn" varient="raised" onClick={this.editClick}>Edit</Button>
+                    <Button className="confirmBtn" varient="raised" onClick={this.submitRegistration}>Submit</Button>
                     <Dialog
                         open={this.state.editOpen} >
                         <PersonalEditDialog history={this.props.history} editOpen={this.state.editOpen} closeClick={this.closeClick} />
