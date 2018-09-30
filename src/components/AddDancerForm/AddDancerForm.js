@@ -109,9 +109,9 @@ class AddDancerDialog extends Component {
                     <FormControl style={styles.formControl}>
                         <FormLabel>Role</FormLabel>
                         <RadioGroup name="role" value={this.state.role} onChange={this.handleChange}>
-                            <FormControlLabel value='leader' control={<Radio color="primary" />}
+                            <FormControlLabel value='Leader' control={<Radio color="primary" />}
                                 label='Leader' />
-                            <FormControlLabel value='follower' control={<Radio color="primary" />}
+                            <FormControlLabel value='Follower' control={<Radio color="primary" />}
                                 label='Follower' />
                         </RadioGroup>
                     </FormControl>

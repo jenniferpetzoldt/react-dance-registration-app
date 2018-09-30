@@ -8,7 +8,7 @@ import UpdateWeekTwo from '../UpdateWeekTwo/UpdateWeekTwo';
 import UpdateWeekThree from '../UpdateWeekThree/UpdateWeekThree';
 import UpdateWeekFour from '../UpdateWeekFour/UpdateWeekFour';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button, Dialog, } from '@material-ui/core';
-import Add from '@material-ui/icons/Add';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import axios from 'axios';
 
 const mapStateToProps = state => ({
@@ -20,6 +20,9 @@ const styles = {
     textField: {
         width: 55,
     },
+    narrowCell: {
+        width: 30,
+    }
 }
 
 
@@ -152,15 +155,15 @@ class AttendanceTable extends Component {
                     <div>
                         <Table>
                             <TableHead>
-                                <TableRow>
+                                <TableRow className="attendanceTable">
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
-                                    <TableCell>Role</TableCell>
+                                    <TableCell style={styles.narrowCell}>Role</TableCell>
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
                                     <TableCell>Second Class</TableCell>
-                                    <TableCell>Owed</TableCell>
-                                    <TableCell>Payment Method</TableCell>
+                                    {/* <TableCell style={styles.narrowCell}>Owed</TableCell> */}
+                                    {/* <TableCell>Payment Method</TableCell> */}
                                     <TableCell>Week 1</TableCell>
                                     <TableCell>Week 2</TableCell>
                                     <TableCell>Week 3</TableCell>
@@ -170,29 +173,29 @@ class AttendanceTable extends Component {
                             </TableHead>
                             <TableBody>
                                 {this.props.state.attenTableData.map((registration) => {
-                                    return <TableRow key={registration.id} value={registration}>
+                                    return <TableRow className="attendanceTable" key={registration.id} value={registration}>
                                         <TableCell>{registration.first_name}</TableCell>
                                         <TableCell>{registration.last_name}</TableCell>
-                                        <TableCell>{registration.dancer_role}</TableCell>
+                                        <TableCell style={styles.narrowCell}>{registration.dancer_role}</TableCell>
                                         <TableCell>{registration.admission}</TableCell>
                                         <TableCell>{registration.first_hour}</TableCell>
                                         <TableCell>{registration.second_hour}</TableCell>
-                                        <TableCell>{registration.oweds}</TableCell>
-                                        <TableCell>{registration.payment_type}</TableCell>
+                                        {/* <TableCell style={styles.narrowCell}>{registration.oweds}</TableCell> */}
+                                        {/* <TableCell>{registration.payment_type}</TableCell> */}
                                         {/* Add function to update the registration */}
                                         {/* add a model that pops up with that registrations information to edit the attendance and submit the update*/}
                                         {/* incorperate the add icon into the update button instead of text */}
-                                        <TableCell><Button className="update" varient="raised"
+                                        <TableCell style={styles.narrowCell}><Button className="update" varient="raised"
                                             onClick={() => this.handleOneClick(registration.id)}>{registration.week_one}</Button></TableCell>
-                                        <TableCell><Button className="update" varient="raised"
+                                        <TableCell style={styles.narrowCell}><Button className="update" varient="raised"
                                             onClick={() => this.handleTwoClick(registration.id)}>{registration.week_two}</Button></TableCell>
-                                        <TableCell><Button className="update" varient="raised"
+                                        <TableCell style={styles.narrowCell}><Button className="update" varient="raised"
                                             onClick={() => this.handleThreeClick(registration.id)}>{registration.week_three}</Button></TableCell>
                                         <TableCell><Button className="update" varient="raised"
                                             onClick={() => this.handleFourClick(registration.id)}>{registration.week_four}</Button></TableCell>
                                         <TableCell>
                                             <Button className="delete" varient="raised"
-                                                onClick={() => this.deleteRegistration(registration.id)}>Delete</Button>
+                                                onClick={() => this.deleteRegistration(registration.id)}><DeleteForeverIcon /></Button>
                                         </TableCell>
                                     </TableRow>
                                 })}
