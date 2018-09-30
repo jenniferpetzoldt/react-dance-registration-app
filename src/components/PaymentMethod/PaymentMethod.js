@@ -25,6 +25,10 @@ class PaymentMethod extends Component {
         this.props.dispatch({ type: 'ADD_PAYMENT', payload: this.state.payment });
     }
 
+    cancelClick = (event) => {
+        this.props.history.push('/registration');
+    }
+
     handleChange = (event) => {
         this.setState({
             payment: {
@@ -52,9 +56,9 @@ class PaymentMethod extends Component {
         let content = null;
         if (this.props.user.userName && this.props.user.admin === false) {
             content = (
-                <div className="Payment Method">
+                <form id="paymentMethodForm">
                     <RegistrationTitle />
-                    <h3>3. Payment Method</h3>
+                    <h3>Payment Method</h3>
                     <FormControl>
                         <RadioGroup
                             aria-label="7:00pm - 8:15pm"
@@ -68,15 +72,15 @@ class PaymentMethod extends Component {
                         </RadioGroup>
                     </FormControl>
                     <br />
-                    <Button className="next" varient="raised"
-                        onClick={this.handleConfirmClick}>Confirm</Button>
+                    <Button className="cancel" varient="raised" onClick={this.cancelClick}>Cancel</Button>
+                    <Button className="next" varient="raised" onClick={this.handleConfirmClick}>Confirm</Button>
 
                     <Dialog 
                         open={this.state.open}>
                         <Confirm open={this.state.open} closeConfirm={this.closeConfirm}/>
                         
                     </Dialog>
-                </div>
+                </form>
             )
         }
 

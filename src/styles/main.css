@@ -79,11 +79,6 @@ li a:hover {
     color: rgb(45, 134, 150);
 }
 
-/* .formSelect {
-    width: 300px;
-    display: block;
-} */
-
 .attendanceTable {
     width: 80%;
 }
@@ -96,29 +91,34 @@ li a:hover {
     width: 5%;
 }
 
-.confirm {
-    padding: 3%;
-}
-
-#logOutBtn, .submit, .cancel{
+#logOutBtn, .submit, .cancel, .next{
     float: right;
     text-align: right;
 }
 
-.cancel, .submit {
-    padding-right: 10%;
-}
-
 form {
-    margin: 0;
-    padding-top: 0;
     text-align: center;
+    width: 60%;
 }
 
-#personalForm {
-    margin: 0;
+h3 {
+    margin: 0px;
+}
+
+.paymentMethod {
+    margin-left: 5%;
+}
+
+#personalForm, #lessonsForm, #paymentMethodForm {
+    margin-left: 20%;
+    margin-top: 0px;
+    width: 60%;
     padding-Top: 0;
     text-align: left;
+}
+
+#registrationTitle {
+    text-align: center;
 }
 
 #role, #admission {
@@ -128,7 +128,10 @@ form {
 
 #admissionControl, #roleControl{
     padding-top: 5%;
-    margin-right: 50px;
+}
+
+#roleControl, #roleRadio {
+    margin-right: 80px;
 }
 
 .formControl {
@@ -144,11 +147,37 @@ form {
     height: 35px;
 }
 
-#attendanceTable {
-    column-width: auto;
-    font-size: 50%;
-}
 
 .lead {
     text-align: center;
+}
+
+#discount {
+    font-size: 75%;
+    margin-top: 0px;
+}
+
+#confirm{
+    width: 300px;
+    padding: 4%;
+}
+
+.confirmBtn {
+    float: left;
+    text-align: center;
+}
+
+h4 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+p {
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+#edit {
+    width: 400px;
+    padding: 3%;
 }

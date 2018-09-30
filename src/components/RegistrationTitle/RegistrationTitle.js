@@ -11,9 +11,9 @@ const space = " ";
 class RegistrationTitle extends Component {
     render() {
         let content = null;
-        if (this.props.user.userName) {
+        if (this.props.user.userName && this.props.user.admin === false) {
             content = (
-                <div>
+                <div id="registrationTitle">
                     {/* loops over available forms in the reducer to populate the dropdown menu */}
                     {this.props.state.form.map((registration, i) => {
                         return <h2 key={i} value={registration.id}>

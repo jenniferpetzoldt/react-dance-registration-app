@@ -56,6 +56,9 @@ class Confirm extends Component {
         });
     }
 
+    cancelClick = (event) => {
+        this.props.history.push('/registration');
+    }
 
     closeClick = (event) => {
         this.setState({
@@ -72,26 +75,27 @@ class Confirm extends Component {
 
         if (this.props.user.userName && this.props.user.admin === false) {
             content = (
-                <div className="confirm">
+                <div id="confirm">
                     <h3>Confirm Registration Information</h3>
-                    <h3>PersonalInformation:</h3>
+                    <h4>PersonalInformation:</h4>
                     <p>Name: {this.props.state.userInput.personalInfo.firstName} {this.props.state.userInput.personalInfo.lastName}</p>
                     <p>Email: {this.props.state.userInput.personalInfo.email}</p>
                     <p>Role: {this.props.state.userInput.personalInfo.role} </p>
                     <p>Admission: {this.props.state.userInput.personalInfo.admission}</p>
-                    <h3>Lessons:</h3>
+                    <h4>Lessons:</h4>
                     <p>{this.props.state.userInput.lessons.firstHour}</p>
                     <p>{this.props.state.userInput.lessons.secondHour}</p>
-                    <h3>Payment Method:</h3>
+                    <h4>Payment Method:</h4>
                     {this.props.state.userInput.payment.paymentMethod}
-                    <h3>Total Cost:</h3>
+                    <h4>Total Cost:</h4>
                     <p>${stringTotal}.00</p>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.submitRegistration}>Submit</Button>
-                    <Button className="edit" varient="raised" onClick={this.editClick}>Edit</Button>
+                    <Button className="confirmBtn" varient="raised" onClick={this.submitRegistration}>Submit</Button>
+                    <Button className="confirmBtn" varient="raised" onClick={this.editClick}>Edit</Button>
+                    <Button className="confirmBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                     <Dialog
                         open={this.state.editOpen} >
-                        <PersonalEditDialog editOpen={this.state.editOpen} closeClick={this.closeClick} />
+                        <PersonalEditDialog history={this.props.history} editOpen={this.state.editOpen} closeClick={this.closeClick} />
                     </Dialog>
                 </div>
             );

@@ -50,6 +50,10 @@ class PersonalInformation extends Component {
         this.props.history.push('/lessons');
     }
 
+    cancelClick = (event) => {
+        this.props.history.push('/registration');
+    }
+
     render() {
         let content = null;
 
@@ -57,7 +61,7 @@ class PersonalInformation extends Component {
             content = (
                 <form  id="personalForm" onSubmit={this.addPersonalInformation}>
                     <RegistrationTitle />
-                    <h3>1. Personal Information:</h3>
+                    <h3>Personal Information:</h3>
                     <FormControl style={styles.formControl}>
                     <TextField
                     label="First Name" 
@@ -85,11 +89,11 @@ class PersonalInformation extends Component {
                             value={this.state.personalInformation.role}
                             onChange={this.handleChange}>
                             <FormControlLabel
-                                value='leader'
+                                value='Leader'
                                 control={<Radio color="primary" />}
                                 label='Leader' />
                             <FormControlLabel
-                                value='follower'
+                                value='Follower'
                                 control={<Radio color="primary" />}
                                 label='Follower' />
                         </RadioGroup>
@@ -102,16 +106,17 @@ class PersonalInformation extends Component {
                             value={this.state.personalInformation.admission}
                             onChange={this.handleChange}>
                             <FormControlLabel
-                                value='general'
+                                value='General'
                                 control={<Radio color="primary" />}
                                 label='General' />
                             <FormControlLabel
-                                value='student'
+                                value='Student'
                                 control={<Radio color="primary" />}
-                                label='Student' />
+                                label='Student *' />
                         </RadioGroup>
                     </FormControl>
-                    <p>$5 off your session with a valid student ID at check-in!</p>
+                    <p id="discount">* $5 off your session with a valid student ID at check-in!</p>
+                    <Button className="cancel" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                     <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                 </form>
             );

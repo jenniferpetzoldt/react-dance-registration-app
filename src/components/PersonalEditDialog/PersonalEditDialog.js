@@ -7,6 +7,15 @@ const mapStateToProps = state => ({
     state,
 });
 
+const styles = {
+    formControl: {
+        marginRight: 15,
+    },
+    radioControl: {
+        marginRight: 50,
+    },
+}
+
 class EditDialog extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +39,10 @@ class EditDialog extends Component {
 
     componentWillUnmount() {
         this.updateRegistraiton();
+    }
+
+    cancelClick = (event) => {
+        this.props.history.push('/registration');
     }
 
     handleAdmissionChange = (event) => {
@@ -131,18 +144,15 @@ class EditDialog extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <div>
-                    <div>
-                        <h1>Edit Personal Information</h1>
-                        <h3>PersonalInformation:</h3>
-                        <FormControl>
+                    <div id="edit">
+                        <h3>Edit Information</h3>
+                        <FormControl style={styles.formControl}>
                             <TextField
                                 label="First Name"
                                 name="firstName"
                                 value={this.state.personalInformation.firstName}
                                 onChange={this.handlePersonalInformationChange} />
                         </FormControl>
-                        <br />
                         <FormControl>
                             <TextField
                                 label="Last Name"
@@ -159,18 +169,18 @@ class EditDialog extends Component {
                                 onChange={this.handlePersonalInformationChange} />
                         </FormControl>
                         <br />
-                        <FormControl>
+                        <FormControl style={styles.radioControl}>
                             <FormLabel>Role</FormLabel>
                             <RadioGroup
                                 name="role"
                                 value={this.state.personalInformation.role}
                                 onChange={this.handlePersonalInformationChange}>
                                 <FormControlLabel
-                                    value='leader'
+                                    value='Leader'
                                     control={<Radio color="primary" />}
                                     label='Leader' />
                                 <FormControlLabel
-                                    value='follower'
+                                    value='Follower'
                                     control={<Radio color="primary" />}
                                     label='Follower' />
                             </RadioGroup>
@@ -182,11 +192,11 @@ class EditDialog extends Component {
                                 value={this.state.personalInformation.admission}
                                 onChange={this.handlePersonalInformationChange}>
                                 <FormControlLabel
-                                    value='general'
+                                    value='General'
                                     control={<Radio color="primary" />}
                                     label='General' />
                                 <FormControlLabel
-                                    value='student'
+                                    value='Student'
                                     control={<Radio color="primary" />}
                                     label='Student' />
                             </RadioGroup>
@@ -244,8 +254,8 @@ class EditDialog extends Component {
                         </FormControl>
                         <br />
                         <Button className="submit" varient="raised" onClick={this.handleAdmissionChange}>Save</Button>
+                        <Button className="confirmBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                     </div>
-                </div>
             );
         }
         return (

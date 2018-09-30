@@ -33,27 +33,28 @@ class Lessons extends Component {
     }
 
     handleFirstHourChange = (event) => {
-        if (this.props.state.userInput.personalInfo.admission === "general") {
+        if (this.props.state.userInput.personalInfo.admission === "General") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
                     firstHour: event.target.value,
                     firstHourCost: '40',
                 }
-            });
-        } else if (this.props.state.userInput.personalInfo.admission === "student") {
+            })
+        } 
+        if (this.props.state.userInput.personalInfo.admission === "Student") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
                     firstHour: event.target.value,
                     firstHourCost: '35',
                 }
-            });
+            })
         }
     }
 
     handleSecondHourChange = (event) => {
-        if (this.props.state.userInput.personalInfo.admission === "general") {
+        if (this.props.state.userInput.personalInfo.admission === "General") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
@@ -61,7 +62,7 @@ class Lessons extends Component {
                     secondHourCost: '40',
                 }
             });
-        } else if (this.props.state.userInput.personalInfo.admission === "student") {
+        } else if (this.props.state.userInput.personalInfo.admission === "Student") {
             this.setState({
                 lessons: {
                     ...this.state.lessons,
@@ -76,6 +77,10 @@ class Lessons extends Component {
         this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
         this.calculateTotal();
     }
+    
+    cancelClick = (event) => {
+        this.props.history.push('/registration');
+    }
 
     handleNextClick = (event) => {
         this.addLessons();
@@ -88,12 +93,11 @@ class Lessons extends Component {
             content = (
                 <div>
                     <RegistrationTitle />
-                    <form>
-                        <h3>2. Lessons</h3>
+                    <form id="lessonsForm">
+                        <h3>Lessons</h3>
                         <div>
-                            <p>General Admission is $40</p>
-                            <p>Student Admission is $35</p>
-                            <FormControl>
+                            <p>General Admission is $40 OR with Student ID $35 </p>
+                            <FormControl id="roleRadio">
                                 <FormLabel>7:00pm - 8:15pm</FormLabel>
                                 <RadioGroup
                                     aria-label="7:00pm - 8:15pm"
@@ -118,8 +122,6 @@ class Lessons extends Component {
                                         label="None" />
                                 </RadioGroup>
                             </FormControl>
-                        </div>
-                        <div>
                             <FormControl>
                                 <FormLabel>8:30pm - 9:45pm</FormLabel>
                                 <RadioGroup
@@ -146,6 +148,7 @@ class Lessons extends Component {
                                 </RadioGroup>
                             </FormControl>
                         </div>
+                        <Button className="cancel" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                         <Button className="next" varient="raised" onClick={this.handleNextClick}>Next</Button>
                     </form>
                 </div>
