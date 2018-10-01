@@ -13,7 +13,7 @@ class AttendanceTitle extends Component {
         let content = null;
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
-                <div>
+                <div id="attendanceTitle">
                     {/* loops over available forms in the reducer to populate the dropdown menu */}
                     {this.props.state.attend.map((attendance, i) => {
                         return <h2 key={i} value={attendance.id}>

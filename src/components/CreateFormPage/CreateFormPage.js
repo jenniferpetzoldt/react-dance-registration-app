@@ -14,7 +14,8 @@ const space = " ";
 const styles = {
     formControl: {
         width: 150,
-        margin: 20,
+        marginRight: 20,
+        marginBottom: 10,
     },
 }
 
@@ -62,8 +63,8 @@ class CreateFormPage extends Component {
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
                 <div>
-                    <form>
-                        <h2>Create a new class session:</h2>
+                    <form id="createForm">
+                        <h3>Create a new class session:</h3>
                         <FormControl style={styles.formControl}>
                             <InputLabel htmlFor="monthSelect">Select Month</InputLabel>
                             <Select
@@ -86,6 +87,7 @@ class CreateFormPage extends Component {
                                 })}
                             </Select>
                         </FormControl>
+                        <br />
                         <Button className="next" varient="raised" onClick={this.handleClick}>Next</Button>
                     </form>
                     <FormTable />

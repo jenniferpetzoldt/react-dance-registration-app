@@ -80,7 +80,7 @@ class AttendancePage extends Component {
 
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
-                <form>
+                <form id="attendanceSelect">
                     <FormControl style={styles.formControl}>
                         <InputLabel htmlFor="attendSelect">Select Month</InputLabel>
                         <Select inputProps={{ name: 'attendSelect', id: "formSelect" }}
@@ -90,6 +90,7 @@ class AttendancePage extends Component {
                                 return (<MenuItem key={i} value={attendMonth.id}>{attendMonth.form_month + space + attendMonth.form_year}</MenuItem>)
                             })}</Select>
                     </FormControl>
+                    <br />
                     <Button className="next" varient="raised" onClick={this.handleClick}>Select</Button>
                 </form>
             );

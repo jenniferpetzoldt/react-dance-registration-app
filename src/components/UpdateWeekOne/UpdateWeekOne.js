@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
 });
 
 
-
 class UpdateWeekOne extends Component {
     constructor(props) {
         super(props);
@@ -39,12 +38,12 @@ class UpdateWeekOne extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <form>
+                <form id="week1Edit">
                     <FormControl>
                         <TextField label="Week 1" name="week1" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.props.closeOne}>Submit</Button>
+                    <Button className="submit" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                     <Button className="cancel" varient="raised" onClick={this.props.closeOne}>Cancel</Button>
                 </form>
             );

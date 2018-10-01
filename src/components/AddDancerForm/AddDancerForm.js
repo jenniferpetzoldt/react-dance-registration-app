@@ -10,11 +10,19 @@ const mapStateToProps = state => ({
 
 const styles = {
     formControl: {
-        margin: 15,
+        marginRight: 20,
+        paddingBottom: 10,
     },
     textField: {
         width: 55,
-    }
+    },
+    inputField: {
+        width: 100,
+    },
+    emailField: {
+        width: 200,
+        paddingRight: 80,
+    },
 }
 
 class AddDancerDialog extends Component {
@@ -96,19 +104,32 @@ class AddDancerDialog extends Component {
         let content = null;
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
-                <form style={styles.form}>
+                <form id="addDancerForm" style={styles.form}>
                     <FormControl style={styles.formControl}>
-                        <TextField label="First Name" name="firstName" onChange={this.handleChange} />
+                        <TextField style={styles.inputField} label="First Name" name="firstName" value={this.state.firstName} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
-                        <TextField label="Last Name" name="lastName" onChange={this.handleChange} />
+                        <TextField style={styles.inputField} label="Last Name" name="lastName" value={this.state.lastName} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
-                        <TextField label="Email Address" name="email" onChange={this.handleChange} />
+                        <TextField style={styles.emailField} label="Email Address" name="email" value={this.state.email} onChange={this.handleChange} />
                     </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 1" name="week1" value={this.state.week1} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 2" name="week2" value={this.state.week2} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 3" name="week3" value={this.state.week3} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 4" name="week4" value={this.state.week4} onChange={this.handleChange} />
+                    </FormControl>
+                    <br />
                     <FormControl style={styles.formControl}>
                         <FormLabel>Role</FormLabel>
-                        <RadioGroup name="role" value={this.state.role} onChange={this.handleChange}>
+                        <RadioGroup id="role" name="role" value={this.state.role} onChange={this.handleChange}>
                             <FormControlLabel value='Leader' control={<Radio color="primary" />}
                                 label='Leader' />
                             <FormControlLabel value='Follower' control={<Radio color="primary" />}
@@ -117,16 +138,18 @@ class AddDancerDialog extends Component {
                     </FormControl>
                     <FormControl style={styles.formControl}>
                         <FormLabel>Admission</FormLabel>
-                        <RadioGroup name="admission" value={this.state.admission} onChange={this.handleChange}>
-                            <FormControlLabel value='general' control={<Radio color="primary" />}
+                        <RadioGroup id="admission" name="admission" value={this.state.admission} onChange={this.handleChange}>
+                            <FormControlLabel value='general' control={<Radio color="primary" size="small" />}
                                 label='General' />
-                            <FormControlLabel value='student' control={<Radio color="primary" />}
+                            <FormControlLabel value='student' control={<Radio color="primary" size="small" />}
                                 label='Student' />
                         </RadioGroup>
                     </FormControl>
+                    <br />
                     <FormControl style={styles.formControl}>
                         <FormLabel>7:00 pm</FormLabel>
                         <RadioGroup
+                            id="firstHour"
                             aria-label="7:00pm - 8:15pm"
                             name="first"
                             value={this.state.first}
@@ -152,6 +175,7 @@ class AddDancerDialog extends Component {
                     <FormControl style={styles.formControl}>
                         <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup
+                            id="secondHour"
                             aria-label="8:30pm - 9:45pm"
                             name="second"
                             value={this.state.second}
@@ -174,21 +198,10 @@ class AddDancerDialog extends Component {
                                 label="None" />
                         </RadioGroup>
                     </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 1" name="week1" onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 2" name="week2" onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 3" name="week3" onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 4" name="week4" onChange={this.handleChange} />
-                    </FormControl>
+                    
                     <br />
+                    <Button className="cancel" varient="raised" onClick={this.props.toggleAddDancer}>Close Form</Button>
                     <Button className="submit" varient="raised" onClick={this.sendNewDancerInfo}>Submit</Button>
-                    <Button className="close" varient="raised" onClick={this.props.toggleAddDancer}>Close Form</Button>
                 </form>
             );
         }

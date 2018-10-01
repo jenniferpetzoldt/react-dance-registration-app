@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Nav from '../Nav/Nav';
-import { TextField, FormControl, Grid, Button } from '@material-ui/core';
+import { TextField, FormControl, FormHelperText, Grid, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -34,6 +34,10 @@ class ClassNameInput extends Component {
                 levelFive: '',
             },
         }
+    }
+    
+    cancelClick = (event) => {
+        this.props.history.push('/form');
     }
 
     handleChange = (event) => {
@@ -69,36 +73,41 @@ class ClassNameInput extends Component {
             content = (
                 <div>
                     <form id="classInputForm">
-                        <h2>Class Names:</h2>
-                        <p>Input class names including level below:</p>
+                        <h3>Class Names:</h3>
                         <Grid>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 1" name="levelOne" value={this.state.newForm.levelOne} 
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Level 1 (8-Count)</FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 2" name="levelTwo" value={this.state.newForm.levelTwo}
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Level 2 (Swingout)</FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 3"  name="levelThree" value={this.state.newForm.levelThree}
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Level 3 (Connection)</FormHelperText>
                             </FormControl>
                             <br />
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 4" name="levelFour"value={this.state.newForm.levelFour}
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Level 4 </FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 5" name="levelFive" value={this.state.newForm.levelFive}
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Level 5 </FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Solo Jazz" name="soloJazz" value={this.state.newForm.soloJazz}
                                             onChange={this.handleChange} />
+                                            <FormHelperText>ex. Solo Jazz (Tranky Doo)</FormHelperText>
                             </FormControl>
                             <br />
-                            <Button className="cancel" varient="raised">Cancel</Button>
+                            <Button className="cancel" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                             <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
                         </Grid>
                     </form>

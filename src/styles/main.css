@@ -117,11 +117,11 @@ h3 {
     text-align: left;
 }
 
-#registrationTitle {
+#registrationTitle, #attendanceTitle {
     text-align: center;
 }
 
-#role, #admission {
+#role, #admission, #firstHour, #secondHour {
     flex-direction: row;
 
 }
@@ -176,4 +176,31 @@ p {
 #edit {
     width: 400px;
     padding: 4%;
+}
+
+#createForm, #attendanceSelect {
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: left;
+}
+
+#attendanceSelect {
+    width: 40%;
+}
+
+#createForm {
+    width: 50%;
+}
+
+#classInputForm {
+    width: 80%;
+    text-align: left;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+#addDancerForm {
+    width: 100%;
+    margin-top: 0px;
+    padding: 0px;
+    text-align: left;
 }
