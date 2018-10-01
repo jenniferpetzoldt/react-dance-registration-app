@@ -15,13 +15,14 @@ class SuccessPage extends Component {
         if (this.props.user.userName && this.props.user.admin === false) {
             content = (
                 <div>
-                    <p>Success message here!</p>
+                    <h3> Success!</h3>
+                    <p>You have registered for classes with Uptown Swing!</p>
                 </div>
             );
         }
         return (
             <div>
-                <Nav history={this.props.history}/>
+
                 {content}
             </div>
         )

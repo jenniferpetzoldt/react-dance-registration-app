@@ -23,7 +23,6 @@ class UpdateWeekTwo extends Component {
         this.state = {
             // ensures registration is linked to the correct from by using information from the redux state
             formId: this.props.state.adminInput.attendId,
-            dancerId: this.props.dancerId, //pass id through props
             week2: '',
         };
     }
@@ -35,7 +34,22 @@ class UpdateWeekTwo extends Component {
     }
 
 
-    // update request to update the specific registration
+     // update request to update the specific registration
+     updateAttendance = (event) => {
+        console.log('id in updateWeekOne', this.props.state.adminInput.regId);
+        const id = this.props.state.adminInput.regId;
+        axios({
+            method: 'PUT',
+            url: '/api/registration/weekTwo/' + id,
+            data: {week2: this.state.week2}
+        }).then((response) => {
+            this.props.closeOne();
+            this.props.getRegistrations();
+        }).catch((error)=> {
+            console.log('Attendance UPDATE error', error);
+            alert('Unable to update registration');
+        })
+    }
 
     render() {
         let content = null;
@@ -46,7 +60,7 @@ class UpdateWeekTwo extends Component {
                         <TextField style={styles.textField} label="Week 2" name="week2" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.props.closeTwo}>Submit</Button>
+                    <Button className="submit" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                     <Button className="cancel" varient="raised" onClick={this.props.closeTwo}>Cancel</Button>
                 </form>
             );

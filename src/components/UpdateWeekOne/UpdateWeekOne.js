@@ -15,7 +15,6 @@ class UpdateWeekOne extends Component {
         this.state = {
             // ensures registration is linked to the correct from by using information from the redux state
             formId: this.props.state.adminInput.attendId,
-            dancerId: this.props.dancerId, //pass id through props
             week1: '',
         };
     }
@@ -29,10 +28,12 @@ class UpdateWeekOne extends Component {
 
     // update request to update the specific registration
     updateAttendance = (event) => {
+        console.log('id in updateWeekOne', this.props.state.adminInput.regId);
+        const id = this.props.state.adminInput.regId;
         axios({
             method: 'PUT',
-            url: '/admin',
-            data: {week1Input: this.state.week1}
+            url: '/api/registration/weekOne/' + id,
+            data: {week1: this.state.week1}
         }).then((response) => {
             this.props.closeOne();
             this.props.getRegistrations();

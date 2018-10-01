@@ -26,7 +26,6 @@ router.get('/:id', (req, res) => {
         const query = `SELECT * FROM "wed_form" WHERE "id" = $1;`;
         pool.query(query, [req.params.id])
             .then((response) => {
-                console.log('specific attendance get response', response.rows);
                 res.send(response.rows);
             }).catch((error) => {
                 console.log('GET specific form failed', error);

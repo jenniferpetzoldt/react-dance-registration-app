@@ -52,9 +52,13 @@ class AttendanceTable extends Component {
     }
     // find better way to manage the modals
     handleOneClick = (id) => {
+        this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
+        this.openOne();
+    }
+
+    openOne = () => {
         this.setState({
             open: true,
-            registrationId: id,
         });
     }
 
@@ -65,9 +69,13 @@ class AttendanceTable extends Component {
     }
 
     handleTwoClick = (id) => {
+        this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
+        this.openTwo();
+    }
+
+    openTwo = () => {
         this.setState({
             twoOpen: true,
-            registrationId: id,
         });
     }
 
@@ -78,12 +86,15 @@ class AttendanceTable extends Component {
     }
 
     handleThreeClick = (id) => {
-        this.setState({
-            threeOpen: true,
-            registrationId: id,
-        });
+        this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
+        this.openThree();
     }
 
+    openThree = () => {
+        this.setState({
+            threeOpen: true,
+        });
+    }
     closeThree = (event) => {
         this.setState({
             threeOpen: false,
@@ -91,9 +102,14 @@ class AttendanceTable extends Component {
     }
 
     handleFourClick = (id) => {
+        this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
+        this.openFour();
+    }
+
+    openFour = () => {
         this.setState({
             fourOpen: true,
-            registrationId: id,
+
         });
     }
 
@@ -191,19 +207,19 @@ class AttendanceTable extends Component {
                     </div>
                     <Dialog
                         open={this.state.open}>
-                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} registrationId={this.state.registrationId} getRegistrations={this.getRegistrations}/>
+                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} getRegistrations={this.getRegistrations}/>
                     </Dialog>
                     <Dialog
                         open={this.state.twoOpen}>
-                        <UpdateWeekTwo twoOpen={this.state.twoOpen} closeTwo={this.closeTwo} registrationId={this.state.registrationId} />
+                        <UpdateWeekTwo twoOpen={this.state.twoOpen} closeTwo={this.closeTwo} getRegistrations={this.getRegistrations} />
                     </Dialog>
                     <Dialog
                         open={this.state.threeOpen}>
-                        <UpdateWeekThree threeOpen={this.state.threeOpen} closeThree={this.closeThree} registrationId={this.state.registrationId} />
+                        <UpdateWeekThree threeOpen={this.state.threeOpen} closeThree={this.closeThree} getRegistrations={this.getRegistrations} />
                     </Dialog>
                     <Dialog
                         open={this.state.fourOpen}>
-                        <UpdateWeekFour fourOpen={this.state.fourOpen} closeFour={this.closeFour} registrationId={this.state.registrationId} />
+                        <UpdateWeekFour fourOpen={this.state.fourOpen} closeFour={this.closeFour} getRegistrations={this.getRegistrations} />
                     </Dialog>
                 </div>
             );

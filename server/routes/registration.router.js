@@ -34,7 +34,6 @@ router.post('/', (req, res) => {
 
 // gets all the registrations matching the selected registration form id
 router.get('/:id', (req, res) => {
-    console.log('registration GET req.params.id', req.params.id);
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "registration" WHERE "wed_form_id" = $1 ORDER BY "last_name" ASC;`;
         pool.query(query, [req.params.id])
@@ -66,21 +65,19 @@ router.delete('/:id', (req, res) => {
     }
 });
 
-// updates the attendance portion of a specific registration by its id
-// router.update('/:id', (req, res) => {
-//     console.log('attendance UPDATE req.params.id', req.params.id);
-//     if (req.isAuthenticated()) {
-//         const query = ``;
-//         pool.query(query, [])
-//         .then((response) => {
-//             res.sendStatus(200);
-//         }). catch((error) => {
-//             console.log('attendance UPDATE error', error);
-//             res.sendStatus(500);
-//         });
-//     } else {
-//         res.sendStatus(403);
-//     }
-// })
+router.put('/weekOne/:id', (req, res) => {
+    console.log('admin UPDATE req.body', req.body);
+    const regToUpdate = req.body;
+    const id = req.params.id;
+    const query =  `UPDATE "registration" SET "week_one" = ($1) WHERE "id" = ($2);`;
+    pool.query(query, [regToUpdate.week1, id])
+    .then((results) => {
+        console.log('registration updated');
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error with update', error);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = router;

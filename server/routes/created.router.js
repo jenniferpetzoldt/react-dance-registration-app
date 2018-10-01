@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
         const query = `SELECT * FROM "wed_form" WHERE "start_date" > now() ORDER BY "start_date" ASC;`;
         pool.query(query)
         .then((response) => {
-            console.log('created forms GET:', response.rows);
             res.send(response.rows);
         }).catch((error) => {
             console.log('GET created forms failed', error);
