@@ -28,8 +28,18 @@ class UpdateWeekOne extends Component {
 
 
     // update request to update the specific registration
-    updateAttendance(){
-        
+    updateAttendance = (event) => {
+        axios({
+            method: 'PUT',
+            url: '/admin',
+            data: {week1Input: this.state.week1}
+        }).then((response) => {
+            this.props.closeOne();
+            this.props.getRegistrations();
+        }).catch((error)=> {
+            console.log('Attendance UPDATE error', error);
+            alert('Unable to update registration');
+        })
     }
     
  

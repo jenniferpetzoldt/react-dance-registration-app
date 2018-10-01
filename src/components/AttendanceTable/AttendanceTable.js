@@ -130,19 +130,6 @@ class AttendanceTable extends Component {
             alert('Unable to DELETE registration');
         })
     }
-    //updates the attendance information
-    updateAttendance = (id) => {
-        console.log('Update registration', id);
-        axios({
-            method: 'UPDATE',
-            url: '/api/registration/' + id
-        }).then((response) => {
-            this.getRegistrations();
-        }).catch((error) => {
-            console.log('Update registration error', error);
-            alert('Unable to UPDATE registration');
-        })
-    }
 
     render() {
         let content = null;
@@ -204,7 +191,7 @@ class AttendanceTable extends Component {
                     </div>
                     <Dialog
                         open={this.state.open}>
-                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} registrationId={this.state.registrationId} />
+                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} registrationId={this.state.registrationId} getRegistrations={this.getRegistrations}/>
                     </Dialog>
                     <Dialog
                         open={this.state.twoOpen}>
