@@ -8,6 +8,14 @@ const mapStateToProps = state => ({
     state,
 });
 
+const styles = {
+    formControl: {
+        margin: 15,
+    },
+    textField: {
+        width: 75,
+    }
+}
 
 class UpdateWeekOne extends Component {
     constructor(props) {
@@ -49,13 +57,13 @@ class UpdateWeekOne extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <form id="week1Edit">
-                    <FormControl>
-                        <TextField label="Week 1" name="week1" onChange={this.handleChange} />
+                <form className="updateModal" style={styles.form}>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 1" name="week1" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.updateAttendance}>Submit</Button>
-                    <Button className="cancel" varient="raised" onClick={this.props.closeOne}>Cancel</Button>
+                    <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
+                    <Button className="editBtn" varient="raised" onClick={this.props.closeOne}>Cancel</Button>
                 </form>
             );
         }

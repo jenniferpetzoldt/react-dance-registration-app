@@ -13,7 +13,7 @@ const styles = {
         margin: 15,
     },
     textField: {
-        width: 55,
+        width: 75,
     }
 }
 
@@ -43,7 +43,7 @@ class UpdateWeekTwo extends Component {
             url: '/api/registration/weekTwo/' + id,
             data: {week2: this.state.week2}
         }).then((response) => {
-            this.props.closeOne();
+            this.props.closeTwo();
             this.props.getRegistrations();
         }).catch((error)=> {
             console.log('Attendance UPDATE error', error);
@@ -55,13 +55,13 @@ class UpdateWeekTwo extends Component {
         let content = null;
         if (this.props.user.userName) {
             content = (
-                <form style={styles.form}>
+                <form className="updateModal" style={styles.form}>
                     <FormControl style={styles.formControl}>
                         <TextField style={styles.textField} label="Week 2" name="week2" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="submit" varient="raised" onClick={this.updateAttendance}>Submit</Button>
-                    <Button className="cancel" varient="raised" onClick={this.props.closeTwo}>Cancel</Button>
+                    <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
+                    <Button className="editBtn" varient="raised" onClick={this.props.closeTwo}>Cancel</Button>
                 </form>
             );
         }

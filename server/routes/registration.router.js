@@ -80,4 +80,48 @@ router.put('/weekOne/:id', (req, res) => {
     });
 });
 
+router.put('/weekTwo/:id', (req, res) => {
+    console.log('admin UPDATE req.body', req.body);
+    const regToUpdate = req.body;
+    const id = req.params.id;
+    const query =  `UPDATE "registration" SET "week_two" = ($1) WHERE "id" = ($2);`;
+    pool.query(query, [regToUpdate.week2, id])
+    .then((results) => {
+        console.log('registration updated');
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error with update', error);
+        res.sendStatus(500);
+    });
+});
+
+router.put('/weekThree/:id', (req, res) => {
+    console.log('admin UPDATE req.body', req.body);
+    const regToUpdate = req.body;
+    const id = req.params.id;
+    const query =  `UPDATE "registration" SET "week_three" = ($1) WHERE "id" = ($2);`;
+    pool.query(query, [regToUpdate.week3, id])
+    .then((results) => {
+        console.log('registration updated');
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error with update', error);
+        res.sendStatus(500);
+    });
+});
+
+router.put('/weekFour/:id', (req, res) => {
+    console.log('admin UPDATE req.body', req.body);
+    const regToUpdate = req.body;
+    const id = req.params.id;
+    const query =  `UPDATE "registration" SET "week_four" = ($1) WHERE "id" = ($2);`;
+    pool.query(query, [regToUpdate.week4, id])
+    .then((results) => {
+        console.log('registration updated');
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error with update', error);
+        res.sendStatus(500);
+    });
+});
 module.exports = router;
