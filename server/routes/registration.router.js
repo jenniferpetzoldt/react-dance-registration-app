@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// posts client side registrations to the database
+// posts student registrations to the database
 router.post('/', (req, res) => {
     if (req.isAuthenticated()) {
         const regToAdd = req.body;
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
     }
 });
 
-// gets all the registrations matching the selected registration form id
+// gets all the registrations matching the selected registration form id sorted ascending by last name
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
         const query = `SELECT * FROM "registration" WHERE "wed_form_id" = $1 ORDER BY "last_name" ASC;`;
@@ -65,6 +65,7 @@ router.delete('/:id', (req, res) => {
     }
 });
 
+// update specific registration attendance/payment for week 1
 router.put('/weekOne/:id', (req, res) => {
     console.log('admin UPDATE req.body', req.body);
     const regToUpdate = req.body;
@@ -80,6 +81,7 @@ router.put('/weekOne/:id', (req, res) => {
     });
 });
 
+// update specific registration attendance/payment for week 2
 router.put('/weekTwo/:id', (req, res) => {
     console.log('admin UPDATE req.body', req.body);
     const regToUpdate = req.body;
@@ -95,6 +97,7 @@ router.put('/weekTwo/:id', (req, res) => {
     });
 });
 
+// update specific registration attendance/payment for week 3
 router.put('/weekThree/:id', (req, res) => {
     console.log('admin UPDATE req.body', req.body);
     const regToUpdate = req.body;
@@ -110,6 +113,7 @@ router.put('/weekThree/:id', (req, res) => {
     });
 });
 
+// update specific registration attendance/payment for week 4
 router.put('/weekFour/:id', (req, res) => {
     console.log('admin UPDATE req.body', req.body);
     const regToUpdate = req.body;
