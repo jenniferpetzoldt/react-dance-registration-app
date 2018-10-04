@@ -115,19 +115,6 @@ class AddDancerDialog extends Component {
                         <TextField style={styles.emailField} label="Email Address" name="email" value={this.state.email} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 1" name="week1" value={this.state.week1} onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 2" name="week2" value={this.state.week2} onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 3" name="week3" value={this.state.week3} onChange={this.handleChange} />
-                    </FormControl>
-                    <FormControl style={styles.formControl}>
-                        <TextField style={styles.textField} label="Week 4" name="week4" value={this.state.week4} onChange={this.handleChange} />
-                    </FormControl>
-                    <br />
-                    <FormControl style={styles.formControl}>
                         <FormLabel>Role</FormLabel>
                         <RadioGroup id="role" name="role" value={this.state.role} onChange={this.handleChange}>
                             <FormControlLabel value='Leader' control={<Radio color="primary" />}
@@ -172,6 +159,7 @@ class AddDancerDialog extends Component {
                                 label="None" />
                         </RadioGroup>
                     </FormControl>
+                    <br />
                     <FormControl style={styles.formControl}>
                         <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup
@@ -198,7 +186,19 @@ class AddDancerDialog extends Component {
                                 label="None" />
                         </RadioGroup>
                     </FormControl>
-                    
+                    <br />
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 1" name="week1" value={this.state.week1} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 2" name="week2" value={this.state.week2} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 3" name="week3" value={this.state.week3} onChange={this.handleChange} />
+                    </FormControl>
+                    <FormControl style={styles.formControl}>
+                        <TextField style={styles.textField} label="Week 4" name="week4" value={this.state.week4} onChange={this.handleChange} />
+                    </FormControl>
                     <br />
                     <Button className="cancel" varient="raised" onClick={this.props.toggleAddDancer}>Close Form</Button>
                     <Button className="submit" varient="raised" onClick={this.sendNewDancerInfo}>Submit</Button>

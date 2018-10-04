@@ -7,8 +7,9 @@ CREATE TABLE person (
 
 CREATE TABLE wed_form (
 	id SERIAL PRIMARY KEY,
-	month VARCHAR(240) NOT NULL,
-	year VARCHAR(240) NOT NULL,
+	start_date DATE NOT NULL,
+	form_month VARCHAR(240) NOT NULL,
+	form_year INT NOT NULL,
 	level_one VARCHAR(240) NOT NULL,
 	level_two VARCHAR(240) NOT NULL,
 	level_three VARCHAR(240) NOT NULL,
@@ -24,16 +25,13 @@ CREATE TABLE registration (
 	first_name VARCHAR(240) NOT NULL,
 	last_name VARCHAR(240) NOT NULL,
 	email VARCHAR(1040) NOT NULL,
-	role VARCHAR(240) NOT NULL,
+	dancer_role VARCHAR(240) NOT NULL,
 	admission VARCHAR(240) NOT NULL, 
+	first_hour VARCHAR(240),
+	second_hour VARCHAR(240),
 	payment_type VARCHAR(240) NOT NULL,
-	paid INT NOT NULL,
-	owes INT NOT NULL
-);
-
-CREATE TABLE attendance (
-	id SERIAL PRIMARY KEY,
-	registration_id INT REFERENCES "registration",
+	paid INT,
+	owes INT,
 	week_one VARCHAR(240),
 	week_two VARCHAR(240),
 	week_three VARCHAR(240),

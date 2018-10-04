@@ -94,7 +94,7 @@ class DanceRegistrationPage extends Component {
     //only loads page content if user is logged in
     if (this.props.user.userName && this.props.user.admin === false) {
       content = (
-        <form >
+        <form id="registrationSelect">
           <FormControl style={styles.formControl}>
             <InputLabel htmlFor="formSelect">Select Month</InputLabel>
             <Select
