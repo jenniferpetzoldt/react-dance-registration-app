@@ -159,7 +159,6 @@ class AddDancerDialog extends Component {
                                 label="None" />
                         </RadioGroup>
                     </FormControl>
-                    <br />
                     <FormControl style={styles.formControl}>
                         <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup

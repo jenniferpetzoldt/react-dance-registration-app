@@ -119,6 +119,7 @@ h3 {
 
 #registrationTitle, #attendanceTitle {
     text-align: center;
+    width: 100%;
 }
 
 #role, #admission, #firstHour, #secondHour {
@@ -141,17 +142,21 @@ h3 {
 
 #lead {
     margin: 0;
-    font-size: 220%;
+    font-size: 50px;
     /* text-align: center; */
 }
 
 #logo {
-    height: 40px;
+    height: 60px;
+}
+
+#dance {
+    font-size: 60px;
 }
 
 #discount {
     font-size: 75%;
-    margin-top: 0px;
+
 }
 
 #confirm{
@@ -169,7 +174,7 @@ h4 {
 }
 
 p {
-    margin-top: 0px;
+    /* margin-top: 0px; */
     margin-bottom: 4px;
 }
 
@@ -199,7 +204,7 @@ p {
     padding-top: 0px;
 }
 #addDancerForm {
-    width: 100%;
+    width: 90%;
     margin-top: 0px;
     padding: 0px;
     text-align: left;

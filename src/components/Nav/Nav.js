@@ -58,7 +58,7 @@ class Nav extends Component {
               </li>
               <li className="nav">
                 <Link to="/form">
-                  CreateForm
+                  Create Form
               </Link>
               </li>
               <li>
