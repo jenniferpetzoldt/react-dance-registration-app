@@ -6,7 +6,8 @@ import Nav from '../Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
-
+//this view will be used when the app is built out further to provide students with records of the classes taken and 
+//the classes they have already registered for
 
 const mapStateToProps = state => ({
   user: state.user,
