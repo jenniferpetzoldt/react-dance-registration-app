@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PersonalEditDialog from '../PersonalEditDialog/PersonalEditDialog';
+import EditDialog from '../EditDialog/EditDialog';
 import axios from 'axios';
 import { Dialog, Button } from '@material-ui/core';
 
@@ -18,15 +18,16 @@ class Confirm extends Component {
         }
     }
 
+    //sends total cost to redux
     dispatchTotal = () => {
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
         this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
-        console.log('in calculateTotal', stringTotal);
     }
 
+    // on submit button click the total is send to redux and the registration is sent to the database
     submitRegistration = (event) => {
         this.dispatchTotal();
         //need to find a betterway to do this
@@ -34,32 +35,34 @@ class Confirm extends Component {
             this.sendRegistration();
         }, 1);
     }
-
+    // sends registration to database
     sendRegistration = () => {
+        const id = this.props.state.userInput;
         axios({
             method: 'POST',
             url: '/api/registration',
-            data: { newReg: this.props.state.userInput }
+            data: { newReg: id }
         }).then((response) => {
-            console.log('Success with registration POST');
+            // clears registration data from redux
             this.props.dispatch({ type: 'CLEAR_USER_INPUT' });
+            // closes the confirm dialog
             this.props.closeConfirm();
         }).catch((error) => {
             console.log('Registration POST error', error);
             alert('Unable to add registration');
         })
     }
-
+    // sets state to open the edit dialog
     editClick = (event) => {
         this.setState({
             editOpen: true,
         });
     }
-
+    // sends user back to main registration page on cancel button click
     cancelClick = (event) => {
         this.props.history.push('/registration');
     }
-
+    // set state to close the edit dialog
     closeClick = (event) => {
         this.setState({
             editOpen: false,
@@ -68,6 +71,7 @@ class Confirm extends Component {
 
     render() {
         let content = null;
+        //calculates total cost to display for confirm dialog
         const firstHourCost = Number(this.props.state.userInput.lessons.firstHourCost);
         const secondHourCost = Number(this.props.state.userInput.lessons.secondHourCost);
         const total = firstHourCost + secondHourCost;
@@ -90,12 +94,13 @@ class Confirm extends Component {
                     <h4>Total Cost:</h4>
                     <p>${stringTotal}.00</p>
                     <br />
+                    {/* create button components */}
                     <Button className="confirmBtn" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                     <Button className="confirmBtn" varient="raised" onClick={this.editClick}>Edit</Button>
                     <Button className="confirmBtn" varient="raised" onClick={this.submitRegistration}>Submit</Button>
                     <Dialog
                         open={this.state.editOpen} >
-                        <PersonalEditDialog history={this.props.history} editOpen={this.state.editOpen} closeClick={this.closeClick} />
+                        <EditDialog history={this.props.history} editOpen={this.state.editOpen} closeClick={this.closeClick} />
                     </Dialog>
                 </div>
             );
