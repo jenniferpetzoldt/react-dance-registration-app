@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { FormControl,TextField, Button } from '@material-ui/core';
+import { FormControl, TextField, Button } from '@material-ui/core';
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -36,22 +36,24 @@ class UpdateWeekOne extends Component {
 
     // update request to update the specific registration
     updateAttendance = (event) => {
-        console.log('id in updateWeekOne', this.props.state.adminInput.regId);
         const id = this.props.state.adminInput.regId;
+        let week1 = this.state.week1
         axios({
             method: 'PUT',
             url: '/api/registration/weekOne/' + id,
-            data: {week1: this.state.week1}
+            data: { week1: week1 }
         }).then((response) => {
+            //closes dialog
             this.props.closeOne();
+            //updates table with most recent data
             this.props.getRegistrations();
-        }).catch((error)=> {
+        }).catch((error) => {
             console.log('Attendance UPDATE error', error);
             alert('Unable to update registration');
         })
     }
-    
- 
+
+
 
     render() {
         let content = null;
@@ -62,6 +64,7 @@ class UpdateWeekOne extends Component {
                         <TextField style={styles.textField} label="Week 1" name="week1" onChange={this.handleChange} />
                     </FormControl>
                     <br />
+                    {/* create component for buttons */}
                     <Button className="editBtn" varient="raised" onClick={this.props.closeOne}>Cancel</Button>
                     <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                 </form>

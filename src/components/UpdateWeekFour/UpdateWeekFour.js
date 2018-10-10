@@ -34,22 +34,24 @@ class UpdateWeekFour extends Component {
     }
 
 
- // update request to update the specific registration
- updateAttendance = (event) => {
-    console.log('id in updateWeekOne', this.props.state.adminInput.regId);
-    const id = this.props.state.adminInput.regId;
-    axios({
-        method: 'PUT',
-        url: '/api/registration/weekFour/' + id,
-        data: {week4: this.state.week4}
-    }).then((response) => {
-        this.props.closeFour();
-        this.props.getRegistrations();
-    }).catch((error)=> {
-        console.log('Attendance UPDATE error', error);
-        alert('Unable to update registration');
-    })
-}
+    // update request to update the specific registration
+    updateAttendance = (event) => {
+        const id = this.props.state.adminInput.regId;
+        let week4 = this.state.week4;
+        axios({
+            method: 'PUT',
+            url: '/api/registration/weekFour/' + id,
+            data: { week4: week4 }
+        }).then((response) => {
+            //closes dialog
+            this.props.closeFour();
+            //updates table with most recent data
+            this.props.getRegistrations();
+        }).catch((error) => {
+            console.log('Attendance UPDATE error', error);
+            alert('Unable to update registration');
+        })
+    }
 
     render() {
         let content = null;
@@ -60,6 +62,7 @@ class UpdateWeekFour extends Component {
                         <TextField style={styles.textField} label="Week 4" name="week4" onChange={this.handleChange} />
                     </FormControl>
                     <br />
+                    {/* create components for buttons */}
                     <Button className="editBtn" varient="raised" onClick={this.props.closeFour}>Cancel</Button>
                     <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                 </form>
