@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
     state,
 });
 
+//required to concatinate the title
 const space = " ";
 
 class RegistrationTitle extends Component {

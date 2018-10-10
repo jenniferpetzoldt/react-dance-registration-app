@@ -53,7 +53,6 @@ class EditDialog extends Component {
     }
 
     handleAdmissionChange = (event) => {
-        console.log('in handleAdmissionChange', this.state.personalInformation.admission);
         const studentDiscount = '35';
         const general = '40';
         if (this.state.personalInformation.admission === "student") {
@@ -142,7 +141,6 @@ class EditDialog extends Component {
     }
 
     updateRegistraiton = () => {
-        console.log('in updateRegistration', this.state.lessons);
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
         this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
     }

@@ -58,12 +58,10 @@ class DanceRegistrationPage extends Component {
   // retrieves all the information assosiated with the selected form's id. 
   // then send's it to redux, and sends the user to the next page of the form
   getSpecificFormData = () => {
-    console.log('selected id:', this.state.formId)
     axios({
       method: 'GET',
       url: '/api/form/' + this.state.formId
     }).then((response) => {
-      console.log('GET specific form:', response.data);
       const selectedForm = response.data;
       const action = { type: 'SET_FORM_DATA', payload: selectedForm };
       this.props.dispatch(action);
@@ -83,7 +81,6 @@ class DanceRegistrationPage extends Component {
   
   // adds the form id to redux and pulls thinformation
   handleClick = (event) => {
-    console.log('selectedFormID', this.state.formId);
     this.props.dispatch({ type: 'ADD_FORM_ID', payload: this.state });
     this.getSpecificFormData();
   }

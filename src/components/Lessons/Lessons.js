@@ -29,7 +29,6 @@ class Lessons extends Component {
         const total = firstHourCost + secondHourCost;
         const stringTotal = String(total);
         this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
-        console.log('in calculateTotal', stringTotal);
     }
 
     handleFirstHourChange = (event) => {

@@ -31,9 +31,7 @@ class FormTable extends Component {
         })
     }
 
-    deleteCreatedForm = (id) => {
-        console.log('delete createdForm id', id);
-       
+    deleteCreatedForm = (id) => {       
         axios({
             method: 'DELETE',
             url: '/api/created/' + id
