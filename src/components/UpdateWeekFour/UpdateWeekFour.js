@@ -60,8 +60,8 @@ class UpdateWeekFour extends Component {
                         <TextField style={styles.textField} label="Week 4" name="week4" onChange={this.handleChange} />
                     </FormControl>
                     <br />
-                    <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                     <Button className="editBtn" varient="raised" onClick={this.props.closeFour}>Cancel</Button>
+                    <Button className="editBtn" varient="raised" onClick={this.updateAttendance}>Submit</Button>
                 </form>
             );
         }
