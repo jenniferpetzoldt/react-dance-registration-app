@@ -41,7 +41,7 @@ class UpdateWeekFour extends Component {
     axios({
         method: 'PUT',
         url: '/api/registration/weekFour/' + id,
-        data: {week1: this.state.week4}
+        data: {week4: this.state.week4}
     }).then((response) => {
         this.props.closeFour();
         this.props.getRegistrations();
