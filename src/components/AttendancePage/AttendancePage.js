@@ -19,7 +19,6 @@ const styles = {
 const space = " ";
 
 class AttendancePage extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -36,8 +35,8 @@ class AttendancePage extends Component {
             method: 'GET',
             url: 'api/attendance'
         }).then((response) => {
-            console.log('GET attend months:', response.data);
             const attendMonths = response.data;
+            // sends redux with the month and year of the sessions
             const action = { type: 'UPDATE_ATTEND_MONTHS', payload: attendMonths };
             this.props.dispatch(action);
         }).catch((error) => {
@@ -47,11 +46,13 @@ class AttendancePage extends Component {
     }
     // retrieves the form data and registrations associated with the specific form id
     getSpecificAttendanceData = () => {
+        const id = this.state.attendId;
         axios({
             method: 'GET',
-            url: '/api/attendance/' + this.state.attendId
+            url: '/api/attendance/' + id
         }).then((response) => {
             const selectedAttendance = response.data;
+            // sends all the registrations for the selected session's attendnace to redux
             const action = {type: 'SET_ATTENDANCE_DATA', payload: selectedAttendance};
             this.props.dispatch(action);
             this.props.history.push('/checkin')
@@ -66,11 +67,9 @@ class AttendancePage extends Component {
         this.setState({
             attendId: event.target.value,
         });
-        console.log('attendID:', this.state.attendId);
     }
     // dispatches form id and calls for the attendance data
     handleClick = (event) => {
-        console.log('attendID:', this.state.attendId);
         this.props.dispatch({ type: 'ADD_ATTEND_MONTH_ID', payload: this.state })
         this.getSpecificAttendanceData();
     }
@@ -91,6 +90,7 @@ class AttendancePage extends Component {
                             })}</Select>
                     </FormControl>
                     <br />
+                    {/* create Button component */}
                     <Button className="next" varient="raised" onClick={this.handleClick}>Select</Button>
                 </form>
             );
