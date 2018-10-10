@@ -10,7 +10,7 @@ import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import DanceRegistrationPage from './components/DanceRegistrationPage/DanceRegistrationPage';
-import Profile from './components/Profile/Profile';
+// import Profile from './components/Profile/Profile'; will use when building out the app
 import SuccessPage from './components/SuccessPage/SuccessPage';
 import AttendancePage from './components/AttendancePage/AttendancePage';
 import AttendanceTable from './components/AttendanceTable/AttendanceTable';
@@ -26,7 +26,6 @@ import './styles/main.css';
 const App = () => (
   <div>
     <Header />
-    {/* <Nav /> */}
     <Router>
       <Switch>
         <Redirect exact from="/" to="/home" />
@@ -34,10 +33,10 @@ const App = () => (
           path="/home"
           component={LoginPage}
         />
-        {/* <Route
+        {/* <Route 
           path="/profile"
           component={Profile}
-        /> */}
+        />  will need this route while building out the app*/}
         <Route
           path="/register"
           component={RegisterPage}
