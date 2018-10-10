@@ -52,7 +52,7 @@ class AttendanceTable extends Component {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openOne();
     }
-    
+
     openOne = () => {
         this.setState({
             open: true,
@@ -155,7 +155,7 @@ class AttendanceTable extends Component {
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
                 <div>
-                    <AttendanceTitle /> 
+                    <AttendanceTitle />
                     <AddDancerButton />
                     <div>
                         <Table>
@@ -208,7 +208,7 @@ class AttendanceTable extends Component {
                     {/* Dialog open and the admin are able to input either a payment amount or track attendance with an 'X' */}
                     <Dialog
                         open={this.state.open}>
-                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} getRegistrations={this.getRegistrations}/>
+                        <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} getRegistrations={this.getRegistrations} />
                     </Dialog>
                     <Dialog
                         open={this.state.twoOpen}>
@@ -228,7 +228,7 @@ class AttendanceTable extends Component {
         return (
             <div>
                 {/* passes history through props to enable 'push' */}
-                <Nav history={this.props.history}/>
+                <Nav history={this.props.history} />
                 {content}
             </div>
         );

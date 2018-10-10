@@ -53,7 +53,7 @@ class AttendancePage extends Component {
         }).then((response) => {
             const selectedAttendance = response.data;
             // sends all the registrations for the selected session's attendnace to redux
-            const action = {type: 'SET_ATTENDANCE_DATA', payload: selectedAttendance};
+            const action = { type: 'SET_ATTENDANCE_DATA', payload: selectedAttendance };
             this.props.dispatch(action);
             this.props.history.push('/checkin')
         }).catch((error) => {
@@ -97,7 +97,7 @@ class AttendancePage extends Component {
         }
         return (
             <div>
-                <Nav history={this.props.history}/>
+                <Nav history={this.props.history} />
                 {content}
             </div>
 

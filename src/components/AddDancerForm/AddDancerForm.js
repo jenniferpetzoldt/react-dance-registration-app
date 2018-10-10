@@ -110,16 +110,16 @@ class AddDancerDialog extends Component {
             content = (
                 <form id="addDancerForm" style={styles.form}>
                     <FormControl style={styles.formControl}>
-                        <TextField style={styles.inputField} label="First Name" name="firstName" 
-                                    value={this.state.firstName} onChange={this.handleChange} />
+                        <TextField style={styles.inputField} label="First Name" name="firstName"
+                            value={this.state.firstName} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
-                        <TextField style={styles.inputField} label="Last Name" name="lastName" 
-                                    value={this.state.lastName} onChange={this.handleChange} />
+                        <TextField style={styles.inputField} label="Last Name" name="lastName"
+                            value={this.state.lastName} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
-                        <TextField style={styles.emailField} label="Email Address" name="email" 
-                                    value={this.state.email} onChange={this.handleChange} />
+                        <TextField style={styles.emailField} label="Email Address" name="email"
+                            value={this.state.email} onChange={this.handleChange} />
                     </FormControl>
                     <FormControl style={styles.formControl}>
                         <FormLabel>Role</FormLabel>
@@ -138,27 +138,27 @@ class AddDancerDialog extends Component {
                     <br />
                     <FormControl style={styles.formControl}>
                         <FormLabel>7:00 pm</FormLabel>
-                        <RadioGroup id="firstHour" aria-label="7:00pm - 8:15pm" name="first" 
+                        <RadioGroup id="firstHour" aria-label="7:00pm - 8:15pm" name="first"
                             value={this.state.first} onChange={this.handleChange}>
-                            <FormControlLabel value={this.props.state.attend[0].level_one} control={<Radio color="primary" />} 
-                                                label={this.props.state.attend[0].level_one} />
-                            <FormControlLabel value={this.props.state.attend[0].level_four} control={<Radio color="primary" />} 
-                                                label={this.props.state.attend[0].level_four} />
-                            <FormControlLabel value={this.props.state.attend[0].solo_jazz} control={<Radio color="primary" />} 
-                                                label={this.props.state.attend[0].solo_jazz} />
+                            <FormControlLabel value={this.props.state.attend[0].level_one} control={<Radio color="primary" />}
+                                label={this.props.state.attend[0].level_one} />
+                            <FormControlLabel value={this.props.state.attend[0].level_four} control={<Radio color="primary" />}
+                                label={this.props.state.attend[0].level_four} />
+                            <FormControlLabel value={this.props.state.attend[0].solo_jazz} control={<Radio color="primary" />}
+                                label={this.props.state.attend[0].solo_jazz} />
                             <FormControlLabel value='' control={<Radio color="primary" />} label="None" />
                         </RadioGroup>
                     </FormControl>
                     <FormControl style={styles.formControl}>
                         <FormLabel>8:30 pm</FormLabel>
                         <RadioGroup id="secondHour" aria-label="8:30pm - 9:45pm" name="second"
-                                    value={this.state.second} onChange={this.handleChange}>
-                            <FormControlLabel value={this.props.state.attend[0].level_two} control={<Radio color="primary" />} 
-                                                label={this.props.state.attend[0].level_two} />
+                            value={this.state.second} onChange={this.handleChange}>
+                            <FormControlLabel value={this.props.state.attend[0].level_two} control={<Radio color="primary" />}
+                                label={this.props.state.attend[0].level_two} />
                             <FormControlLabel value={this.props.state.attend[0].level_three} control={<Radio color="primary" />}
-                                                label={this.props.state.attend[0].level_three} />
+                                label={this.props.state.attend[0].level_three} />
                             <FormControlLabel value={this.props.state.attend[0].level_five} control={<Radio color="primary" />}
-                                                label={this.props.state.attend[0].level_five} />
+                                label={this.props.state.attend[0].level_five} />
                             <FormControlLabel value='' control={<Radio color="primary" />} label="None" />
                         </RadioGroup>
                     </FormControl>

@@ -5,7 +5,7 @@ const mapStateToProps = state => ({
     user: state.user,
     state,
 });
-
+//required to concatinate the title
 const space = " ";
 
 class AttendanceTitle extends Component {

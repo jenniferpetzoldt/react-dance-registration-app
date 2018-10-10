@@ -6,8 +6,6 @@ const createFormReducer = (state = {}, action) => {
             return {...state, month: action.payload};
         case 'ADD_YEAR':
             return {...state, year: action.payload};
-        case 'ADD_FORM':
-            return action.payload;
         case 'CLEAR_FORM':
             return state = {};
         default:

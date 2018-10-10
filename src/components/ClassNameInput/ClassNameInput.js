@@ -35,11 +35,12 @@ class ClassNameInput extends Component {
             },
         }
     }
-    
+    // sends user back to the main Create Form page
     cancelClick = (event) => {
         this.props.history.push('/form');
     }
 
+    // sets local state with the class names
     handleChange = (event) => {
         this.setState({
             newForm: {
@@ -49,16 +50,18 @@ class ClassNameInput extends Component {
         });
     }
 
+    // sends info for new session form to the database
     addNewForm = event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_FORM', payload: this.state.newForm });
+        const id = this.state.newForm;
         axios({
             method: 'POST',
             url: '/api/form',
-            data: { newForm: this.state.newForm }
+            data: { newForm: id }
         }).then((response) => {
-            console.log('Success with form POST');
+            // clears form data from redux so user can continue to submit more forms
             this.props.dispatch({ type: 'CLEAR_FORM' });
+            // sends user back to the create form page
             this.props.history.push('/form');
         }).catch((error) => {
             console.log('Form Post error', error);
@@ -76,37 +79,38 @@ class ClassNameInput extends Component {
                         <h3>Class Names:</h3>
                         <Grid>
                             <FormControl style={styles.formControl}>
-                                <TextField label="Level 1" name="levelOne" value={this.state.newForm.levelOne} 
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Level 1 (8-Count)</FormHelperText>
+                                <TextField label="Level 1" name="levelOne" value={this.state.newForm.levelOne}
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Level 1 (8-Count)</FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 2" name="levelTwo" value={this.state.newForm.levelTwo}
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Level 2 (Swingout)</FormHelperText>
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Level 2 (Swingout)</FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
-                                <TextField label="Level 3"  name="levelThree" value={this.state.newForm.levelThree}
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Level 3 (Connection)</FormHelperText>
+                                <TextField label="Level 3" name="levelThree" value={this.state.newForm.levelThree}
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Level 3 (Connection)</FormHelperText>
                             </FormControl>
                             <br />
                             <FormControl style={styles.formControl}>
-                                <TextField label="Level 4" name="levelFour"value={this.state.newForm.levelFour}
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Level 4 </FormHelperText>
+                                <TextField label="Level 4" name="levelFour" value={this.state.newForm.levelFour}
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Level 4 </FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Level 5" name="levelFive" value={this.state.newForm.levelFive}
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Level 5 </FormHelperText>
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Level 5 </FormHelperText>
                             </FormControl>
                             <FormControl style={styles.formControl}>
                                 <TextField label="Solo Jazz" name="soloJazz" value={this.state.newForm.soloJazz}
-                                            onChange={this.handleChange} />
-                                            <FormHelperText>ex. Solo Jazz (Tranky Doo)</FormHelperText>
+                                    onChange={this.handleChange} />
+                                <FormHelperText>ex. Solo Jazz (Tranky Doo)</FormHelperText>
                             </FormControl>
                             <br />
+                            {/* cancel button into it's own component */}
                             <Button className="cancel" varient="raised" onClick={this.cancelClick}>Cancel</Button>
                             <Button className="submit" varient="raised" onClick={this.addNewForm}>Submit</Button>
                         </Grid>
@@ -116,7 +120,8 @@ class ClassNameInput extends Component {
         }
         return (
             <div>
-                <Nav history={this.props.history}/>
+                {/* passes history through props to enable 'push' */}
+                <Nav history={this.props.history} />
                 {content}
             </div>
         );
