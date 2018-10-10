@@ -20,11 +20,7 @@ const styles = {
     textField: {
         width: 55,
     },
-    narrowCell: {
-        width: 30,
-    }
 }
-
 
 class AttendanceTable extends Component {
     constructor(props) {
@@ -51,11 +47,12 @@ class AttendanceTable extends Component {
 
     }
     // find better way to manage the modals
+    // the following functions manage the opening and closing of the different week dialogs and updates redux
     handleOneClick = (id) => {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openOne();
     }
-
+    
     openOne = () => {
         this.setState({
             open: true,
@@ -68,6 +65,7 @@ class AttendanceTable extends Component {
         });
     }
 
+    // functions for week 2 dialog
     handleTwoClick = (id) => {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openTwo();
@@ -85,6 +83,7 @@ class AttendanceTable extends Component {
         });
     }
 
+    //functions for week 3 dialog
     handleThreeClick = (id) => {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openThree();
@@ -101,6 +100,7 @@ class AttendanceTable extends Component {
         });
     }
 
+    //functions for week 4 dialog
     handleFourClick = (id) => {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openFour();
@@ -121,11 +121,13 @@ class AttendanceTable extends Component {
 
     //retrieves registration information associated with specific form id
     getRegistrations = () => {
+        const id = this.state.attendId;
         axios({
             method: 'GET',
-            url: '/api/registration/' + this.state.attendId
+            url: '/api/registration/' + id
         }).then((response) => {
             const registrations = response.data;
+            // sends registration data to redux
             const action = { type: 'ADD_ATTEND_DATA', payload: registrations };
             this.props.dispatch(action);
         }).catch((error) => {
@@ -135,11 +137,11 @@ class AttendanceTable extends Component {
     }
     // deletes registration based on id 
     deleteRegistration = (id) => {
-        console.log('Delete registration', id);
         axios({
             method: 'DELETE',
             url: '/api/registration/' + id
         }).then((response) => {
+            //updates table data with most resent updates
             this.getRegistrations();
         }).catch((error) => {
             console.log('Registration DELETE error', error);
@@ -153,7 +155,7 @@ class AttendanceTable extends Component {
         if (this.props.user.userName && this.props.user.admin === true) {
             content = (
                 <div>
-                    <AttendanceTitle />
+                    <AttendanceTitle /> 
                     <AddDancerButton />
                     <div>
                         <Table>
@@ -161,12 +163,12 @@ class AttendanceTable extends Component {
                                 <TableRow className="attendanceTable">
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
-                                    <TableCell style={styles.narrowCell}>Role</TableCell>
+                                    <TableCell>Role</TableCell>
                                     <TableCell>Admission</TableCell>
                                     <TableCell>First Class</TableCell>
                                     <TableCell>Second Class</TableCell>
-                                    {/* <TableCell style={styles.narrowCell}>Owed</TableCell> */}
-                                    {/* <TableCell>Payment Method</TableCell> */}
+                                    {/* <TableCell style={styles.narrowCell}>Owed</TableCell>  will need this row as app is built out*/}
+                                    {/* <TableCell>Payment Method</TableCell> will need this row as app is built out */}
                                     <TableCell>Week 1</TableCell>
                                     <TableCell>Week 2</TableCell>
                                     <TableCell>Week 3</TableCell>
@@ -183,11 +185,8 @@ class AttendanceTable extends Component {
                                         <TableCell>{registration.admission}</TableCell>
                                         <TableCell>{registration.first_hour}</TableCell>
                                         <TableCell>{registration.second_hour}</TableCell>
-                                        {/* <TableCell style={styles.narrowCell}>{registration.oweds}</TableCell> */}
-                                        {/* <TableCell>{registration.payment_type}</TableCell> */}
-                                        {/* Add function to update the registration */}
-                                        {/* add a model that pops up with that registrations information to edit the attendance and submit the update*/}
-                                        {/* incorperate the add icon into the update button instead of text */}
+                                        {/* <TableCell style={styles.narrowCell}>{registration.oweds}</TableCell> will need as app is built out */}
+                                        {/* <TableCell>{registration.payment_type}</TableCell> will need as app is built out*/}
                                         <TableCell style={styles.narrowCell}><Button className="update" varient="raised"
                                             onClick={() => this.handleOneClick(registration.id)}>{registration.week_one}</Button></TableCell>
                                         <TableCell style={styles.narrowCell}><Button className="update" varient="raised"
@@ -205,6 +204,8 @@ class AttendanceTable extends Component {
                             </TableBody>
                         </Table>
                     </div>
+                    {/* find better way to acomplish this */}
+                    {/* Dialog open and the admin are able to input either a payment amount or track attendance with an 'X' */}
                     <Dialog
                         open={this.state.open}>
                         <UpdateWeekOne open={this.state.open} closeOne={this.closeOne} getRegistrations={this.getRegistrations}/>
@@ -226,6 +227,7 @@ class AttendanceTable extends Component {
         }
         return (
             <div>
+                {/* passes history through props to enable 'push' */}
                 <Nav history={this.props.history}/>
                 {content}
             </div>
