@@ -18,7 +18,7 @@ class FormTable extends Component {
     componentDidMount() {
         this.getCreatedForms();
     }
-
+    // populates table with dates and class names for forms stored in the database
     getCreatedForms = () => {
         axios({
             method: 'GET',
@@ -31,6 +31,7 @@ class FormTable extends Component {
         })
     }
 
+    //removes specific form from the database
     deleteCreatedForm = (id) => {       
         axios({
             method: 'DELETE',

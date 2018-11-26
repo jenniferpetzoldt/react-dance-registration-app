@@ -22,7 +22,7 @@ class Lessons extends Component {
             },
         }
     }
-
+    //calculates total cost, and reconverts the numbers to a string to send to redux
     calculateTotal = () => {
         const firstHourCost = Number(this.state.lessons.firstHourCost);
         const secondHourCost = Number(this.state.lessons.secondHourCost);
@@ -30,7 +30,7 @@ class Lessons extends Component {
         const stringTotal = String(total);
         this.props.dispatch({ type: 'ADD_TOTAL', payload: stringTotal });
     }
-
+    //updates state if first hour class selection is changed
     handleFirstHourChange = (event) => {
         if (this.props.state.userInput.personalInfo.admission === "General") {
             this.setState({
@@ -51,7 +51,7 @@ class Lessons extends Component {
             })
         }
     }
-
+    //updates state if second hour class selection is changed
     handleSecondHourChange = (event) => {
         if (this.props.state.userInput.personalInfo.admission === "General") {
             this.setState({
@@ -72,15 +72,18 @@ class Lessons extends Component {
         }
     }
 
+    // adds lessons to redux and recalculates total
     addLessons = () => {
         this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
         this.calculateTotal();
     }
-    
+
+    // cancels registration and returns user to main registration page
     cancelClick = (event) => {
         this.props.history.push('/registration');
     }
 
+    // dispatcches lesson selection to redux and sends user to next view
     handleNextClick = (event) => {
         this.addLessons();
         this.props.history.push('/payment');

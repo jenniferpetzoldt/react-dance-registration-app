@@ -48,10 +48,12 @@ class EditDialog extends Component {
         this.updateRegistraiton();
     }
 
+    // on click returns user to main registration page
     cancelClick = (event) => {
         this.props.history.push('/registration');
     }
 
+    //recalculates cost if Admission type is changed
     handleAdmissionChange = (event) => {
         const studentDiscount = '35';
         const general = '40';
@@ -91,6 +93,7 @@ class EditDialog extends Component {
         this.props.closeClick();
     }
 
+    //updates state if personal information is changed
     handlePersonalInformationChange = (event) => {
         this.setState({
             personalInformation: {
@@ -119,7 +122,7 @@ class EditDialog extends Component {
             });
         } 
     }
-
+    //updates state if second hour class selection is changed based on admission type
     handleSecondHourChange = (event) => {
         if (this.state.personalInformation.admission === "general") {
             this.setState({
@@ -140,6 +143,7 @@ class EditDialog extends Component {
         } 
     }
 
+    //dispatches new information to redux
     updateRegistraiton = () => {
         this.props.dispatch({ type: 'ADD_PERSONAL_INFO', payload: this.state.personalInformation });
         this.props.dispatch({ type: 'ADD_LESSONS', payload: this.state.lessons });
