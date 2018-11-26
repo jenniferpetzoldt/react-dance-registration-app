@@ -30,12 +30,14 @@ class CreateFormPage extends Component {
         }
     }
    
+    //updates state with the month selected in the drop down
     handleMonthChange = (event) => {
         this.setState({
             selectedMonth: event.target.value,
         });
     }
 
+    //updates state with the month selected in the drop down
     handleYearChange = (event) => {
         this.setState({
             selectedYear: event.target.value,
@@ -52,6 +54,7 @@ class CreateFormPage extends Component {
         this.props.dispatch({ type: 'ADD_YEAR', payload: this.state.selectedYear });
     }
 
+    //call s the createDate function and pushes to the next view
     handleClick = (event) => {
         this.createDate();
         this.props.history.push('/classnames');

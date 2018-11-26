@@ -47,13 +47,14 @@ class AddDancerDialog extends Component {
             week4: '',
         };
     }
+
     //updates local state as admin inputs information
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         });
     }
-
+    
     //resets the form so the admin does not need to clear the fields
     clearInputs = () => {
         this.setState({

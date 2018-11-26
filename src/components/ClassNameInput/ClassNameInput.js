@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
     state,
 });
 
+// inline styles for form
 const styles = {
     formControl: {
         margin: 15,

@@ -52,7 +52,6 @@ class AttendanceTable extends Component {
         this.props.dispatch({ type: 'ADD_ID_TO_UPDATE', payload: id });
         this.openOne();
     }
-
     openOne = () => {
         this.setState({
             open: true,
